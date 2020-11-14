@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
   Platform,
+  StatusBar
 } from 'react-native';
 
 
@@ -24,6 +25,7 @@ import CustomButton from '../elements/CustomButton';
 
     return (
         <View style={CommonStyles.normalSinglePage}>
+        <StatusBar barStyle='default' />
           <View style={CommonStyles.introPageTextBox}>
             {/* <Image
               source={require('../../assets/img/surgeon.png')}
@@ -55,8 +57,8 @@ import CustomButton from '../elements/CustomButton';
           
           {/* <View style={CommonStyles.introPageButtonBox}> */}
           
-            <View>
-            <CustomButton title="Next"  onPress={() => navigation.navigate("Second") }  />
+            <View style={CommonStyles.introOneButton}>
+            <CustomButton title="Next"  width={223} height={53} color="#FFFFFF" onPress={() => navigation.navigate("Second") }  />
               
             </View>
           {/* </View> */}
@@ -65,7 +67,12 @@ import CustomButton from '../elements/CustomButton';
   }
   
   const styles = StyleSheet.create({
-   container: {}
+   container: {
+     marginTop:29,
+    marginBottom:57,
+    marginLeft:76,
+    marginRight:76,
+   }
   });
   
   

@@ -144,10 +144,11 @@ export const CommonStyles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   textInput: {
-    width: deviceWidth - 55,
-    height: 45,
+    // width: deviceWidth - 55,
+    // width: 280,
+    // height: 45,
     paddingLeft: 50,
-    color: "rgb(150,150,150)",
+    color: "#FF7C7C",
     fontSize: 16,
     fontFamily: "Poppins-Regular",
   },
@@ -182,6 +183,10 @@ export const CommonStyles = StyleSheet.create({
     alignItems: "center",
     width: 60,
     height: 60,
+  },
+  SignInButton:{
+    marginLeft:48,
+    marginRight:47,
   },
   // Intro pages styles
   introPageImageBox: {
@@ -222,8 +227,18 @@ export const CommonStyles = StyleSheet.create({
     bottom:0,
     zIndex:1
   },
+  introOneButton:{
+    marginTop:29,
+    marginBottom:57,
+    marginLeft:76,
+    marginRight:76,
+  },
   introSecondButton:{
     position:'absolute',
+    marginTop:29,
+    marginBottom:57,
+    marginLeft:76,
+    marginRight:76,
     bottom:23
   },
   introPageTextBox: {

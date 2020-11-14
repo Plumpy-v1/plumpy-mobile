@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
   Platform,
+  StatusBar
 } from 'react-native';
 
 import { CommonStyles, blueGradient} from '../styles/CommonStyles';
@@ -19,6 +20,7 @@ import CustomButton from '../elements/CustomButton';
 
     return (
         <View style={CommonStyles.normalSinglePage}>
+        <StatusBar barStyle='default' />
           <View style={CommonStyles. introSecondPageTextBox}>
             <Text style={[
               CommonStyles.headerText,
@@ -59,7 +61,7 @@ import CustomButton from '../elements/CustomButton';
           
             <View style={CommonStyles.introSecondButton}>
             {/* <CustomButton  title="Start"  onPress={() => navigation.navigate("Second") }  /> */}
-            <CustomButton  title="Start"  onPress={() => console.log('Start') }  />
+            <CustomButton  title=" tart" width={223} height={53} color="#FFFFFF"   onPress={() => navigation.navigate("SignIn")  }  />
               
             </View>
          

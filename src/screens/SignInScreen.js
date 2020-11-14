@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   Button,
   ImageBackground,
@@ -9,22 +9,19 @@ import {
   Dimensions,
   TextInput,
   Text,
+  TouchableOpacity,
 } from "react-native";
-import {
-  CommonStyles,
-  deviceWidth,
-  blueGradient,
-} from "../styles/CommonStyles";
+import { CommonStyles, deviceWidth } from "../styles/CommonStyles";
 
 import CustomButton from "../elements/CustomButton";
 
-const SignInScreen = () => {
+const SignInScreen = (props) => {
   return (
     <ImageBackground
       style={[CommonStyles.normalSinglePage, CommonStyles.SignInPageBackgroud]}
       source={require("../../assets/img/SignInScreen/LogInBack.png")}
     >
-      <StatusBar barStyle='dark-content' />
+      <StatusBar barStyle='light-content' />
       <View style={CommonStyles.SignInLogoImageBox}>
         <Image
           source={require("../../assets/img/SignInScreen/LoginPageLogo.png")}
@@ -44,6 +41,7 @@ const SignInScreen = () => {
           />
           <TextInput
             placeholder='Username'
+            placeholderTextColor='#FF7C7C'
             style={CommonStyles.textInput}
             underlineColorAndroid='transparent'
           />
@@ -61,14 +59,40 @@ const SignInScreen = () => {
           />
           <TextInput
             placeholder='Password'
+            type='password'
+            placeholderTextColor='#FF7C7C'
             style={CommonStyles.textInput}
             underlineColorAndroid='transparent'
           />
         </View>
-        
+
+        <CustomButton
+          title='Login'
+          textcolor='#FFFFFF'
+          color='#FF7C7C'
+          width={330}
+          height={45}
+          onPress={() => console.log("Start")}
+        />
       </View>
-      <View style={CommonStyles.introSecondButton}>
-        <CustomButton title='Start' onPress={() => console.log("Start")} />
+      <TouchableOpacity onPress={() => console.log("forgot pass")}>
+        <Text style={styles.forgetText}>forgot password ?</Text>
+      </TouchableOpacity>
+      <Text style={styles.loginText}>login with</Text>
+      <View style={styles.loginAuth}>
+        <TouchableOpacity>
+          <Image source={require("../../assets/img/SignInScreen/apple.png")} />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.googleIcon}  >
+          <Image  source={require("../../assets/img/SignInScreen/google.png")} />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.facebookIcon}>
+          <Image
+            source={require("../../assets/img/SignInScreen/facebook.png")}
+          />
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
@@ -82,16 +106,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   formBox: {
-    height: 190,
     marginTop: 47,
     alignItems: "center",
   },
   subFormBox: {
     flexDirection: "row",
     justifyContent: "space-between",
-    width: deviceWidth - 85,
-    height: 45,
-    marginBottom: 25,
+    // width: deviceWidth - 85,
+
+    marginBottom: 20,
   },
   noteBox: {
     height: 25,
@@ -100,5 +123,41 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 15,
   },
+  forgetText: {
+    color: "#FFFFFF",
+    marginTop: 18,
+    marginLeft: 25,
+    marginRight: 230,
+    fontSize: 15,
+    textAlign: "left",
+    lineHeight: 23,
+  },
+  loginText: {
+    color: "#FBE7E3",
+    marginTop: 47,
+    fontSize: 15,
+    lineHeight: 23,
+    width: 73,
+    height: 21,
+  },
+  loginAuth: {
+    
+    flexDirection: "row",
+    justifyContent: "space-between",
+    // alignItems: "center",
+    width: 160.41,
+    height: 31.15,
+    marginTop: 24.36,
+    position: "relative",
+    marginBottom: 0,
+    display:'flex',
+    
+  },
+  googleIcon:{
+    marginTop:5.9
+  },
+  facebookIcon:{
+    marginTop:5.9
+  }
 });
 export default SignInScreen;
