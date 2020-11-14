@@ -61,7 +61,7 @@ import CustomButton from '../elements/CustomButton';
           
             <View style={CommonStyles.introSecondButton}>
             {/* <CustomButton  title="Start"  onPress={() => navigation.navigate("Second") }  /> */}
-            <CustomButton  title=" tart" width={223} height={53} color="#FFFFFF"   onPress={() => navigation.navigate("SignIn")  }  />
+            <CustomButton  title=" start" width={223} height={53} color="#FFFFFF"   onPress={() => navigation.navigate("SignIn")  }  />
               
             </View>
          
