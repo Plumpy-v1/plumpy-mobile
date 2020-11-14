@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   Button,
   Text,
@@ -6,74 +6,67 @@ import {
   StyleSheet,
   Image,
   Platform,
-  StatusBar
-} from 'react-native';
+  StatusBar,
+} from "react-native";
 
+import { CommonStyles } from "../styles/CommonStyles";
 
-// import { Navigation } from 'react-native-navigation';
-// import LinearGradient from 'react-native-linear-gradient';
+import CustomButton from "../elements/CustomButton";
 
-import ImageButton from '../elements/ImageButton';
-import { CommonStyles, blueGradient} from '../styles/CommonStyles';
+const IntroOneScreen = ({ navigation }) => {
+  return (
+    <View style={CommonStyles.normalSinglePage}>
+      <StatusBar barStyle='default' />
+      <View style={CommonStyles.introPageTextBox}>
+        <Text
+          style={[
+            CommonStyles.headerText,
+            CommonStyles.blackColor,
+            CommonStyles.regularBold,
+            CommonStyles.semiBold,
+          ]}
+        >
+          this happens
+        </Text>
+        <Text
+          style={[
+            CommonStyles.headerText,
+            CommonStyles.blackColor,
+            CommonStyles.semiBold,
+          ]}
+        >
+          so many times
+        </Text>
+      </View>
 
-import CustomButton from '../elements/CustomButton';
-// import { appSingleNavigation } from '../styles/navigatorStyle';
+      <View style={CommonStyles.introPageImageBox}>
+        <Image source={require("../../assets/img/IntroScreens/IntroOne.png")} />
+      </View>
+      <View style={CommonStyles.introPageImageLogo}>
+        <Image
+          source={require("../../assets/img/IntroScreens/IntroOneLogo.png")}
+        />
+      </View>
+      <View style={CommonStyles.introOneButton}>
+        <CustomButton
+          title='Next'
+          width={223}
+          height={53}
+          color='#FFFFFF'
+          onPress={() => navigation.navigate("Second")}
+        />
+      </View>
+    </View>
+  );
+};
 
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 29,
+    marginBottom: 57,
+    marginLeft: 76,
+    marginRight: 76,
+  },
+});
 
- const IntroOneScreen = ({navigation}) => {
-    // static navigatorStyle = appSingleNavigation;
-
-    return (
-        <View style={CommonStyles.normalSinglePage}>
-        <StatusBar barStyle='default' />
-          <View style={CommonStyles.introPageTextBox}>
-            {/* <Image
-              source={require('../../assets/img/surgeon.png')}
-              style={{width: 152, height: 205.5}}
-            /> */}
-            <Text style={[
-              CommonStyles.headerText,
-              CommonStyles.blackColor,
-              CommonStyles.regularBold,
-              CommonStyles.semiBold
-            ]}>this happens</Text>
-            <Text style={[
-              CommonStyles.headerText,
-              CommonStyles.blackColor,
-              CommonStyles.semiBold
-            ]}>so many times</Text>
-          </View>
-
-          <View style={CommonStyles.introPageImageBox}>
-            <Image
-              source={require('../../assets/img/IntroScreens/IntroOne.png')}
-            />
-          </View>
-          <View style={CommonStyles.introPageImageLogo}>
-            <Image
-              source={require('../../assets/img/IntroScreens/IntroOneLogo.png')}
-            />
-          </View>
-          
-          {/* <View style={CommonStyles.introPageButtonBox}> */}
-          
-            <View style={CommonStyles.introOneButton}>
-            <CustomButton title="Next"  width={223} height={53} color="#FFFFFF" onPress={() => navigation.navigate("Second") }  />
-              
-            </View>
-          {/* </View> */}
-        </View>
-      );
-  }
-  
-  const styles = StyleSheet.create({
-   container: {
-     marginTop:29,
-    marginBottom:57,
-    marginLeft:76,
-    marginRight:76,
-   }
-  });
-  
-  
-  export default IntroOneScreen;
+export default IntroOneScreen;

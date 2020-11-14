@@ -84,8 +84,8 @@ const SignInScreen = (props) => {
           <Image source={require("../../assets/img/SignInScreen/apple.png")} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.googleIcon}  >
-          <Image  source={require("../../assets/img/SignInScreen/google.png")} />
+        <TouchableOpacity style={styles.googleIcon}>
+          <Image source={require("../../assets/img/SignInScreen/google.png")} />
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.facebookIcon}>
@@ -112,7 +112,6 @@ const styles = StyleSheet.create({
   subFormBox: {
     flexDirection: "row",
     justifyContent: "space-between",
-    // width: deviceWidth - 85,
 
     marginBottom: 20,
   },
@@ -141,7 +140,6 @@ const styles = StyleSheet.create({
     height: 21,
   },
   loginAuth: {
-    
     flexDirection: "row",
     justifyContent: "space-between",
     // alignItems: "center",
@@ -150,14 +148,13 @@ const styles = StyleSheet.create({
     marginTop: 24.36,
     position: "relative",
     marginBottom: 0,
-    display:'flex',
-    
+    display: "flex",
   },
-  googleIcon:{
-    marginTop:5.9
+  googleIcon: {
+    marginTop: 5.9,
   },
-  facebookIcon:{
-    marginTop:5.9
-  }
+  facebookIcon: {
+    marginTop: 5.9,
+  },
 });
 export default SignInScreen;
