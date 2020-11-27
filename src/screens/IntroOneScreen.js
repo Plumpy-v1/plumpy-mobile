@@ -1,22 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 import {
-  Button,
   Text,
   View,
   StyleSheet,
   Image,
-  Platform,
   StatusBar,
-  SafeAreaView
+  SafeAreaView,
 } from "react-native";
 
 import { CommonStyles } from "../styles/CommonStyles";
 
 import CustomButton from "../elements/CustomButton";
 
-
 const IntroOneScreen = ({ navigation }) => {
-  console.log("navigation" ,navigation.navigate);
+  console.log("navigation", navigation.navigate);
   return (
     <SafeAreaView style={CommonStyles.normalSinglePage}>
       <StatusBar barStyle='default' />
@@ -41,26 +38,24 @@ const IntroOneScreen = ({ navigation }) => {
           so many times
         </Text>
       </View>
-     
-        <Image
-          source={require("../../assets/img/IntroScreens/IntroOne.png")}
-          style={{flex: 1, width: '95%',alignSelf:'center'}}
-          resizeMode={'contain'}
-        />
-        {/* width={303} height={338} */}
-     
-      {/* <View style={CommonStyles.introPageImageLogo}> */}
-        <Image
-          source={require("../../assets/img/IntroScreens/IntroOneLogo.png")}
-          style={{alignSelf: 'center', flex: 1/4, width: '95%'}}
-          resizeMode={'contain'}
-        />
-      {/* </View> */}
+
+      <Image
+        source={require("../../assets/img/IntroScreens/IntroOne.png")}
+        style={CommonStyles.introPageImageBox}
+        resizeMode={"contain"}
+      />
+
+      <Image
+        source={require("../../assets/img/IntroScreens/IntroOneLogo.png")}
+        style={CommonStyles.introPageImageLogo}
+        resizeMode={"contain"}
+      />
+
       <View style={CommonStyles.introOneButton}>
         <CustomButton
           title='Next'
           colorbg='#FFFFFF'
-          textcolor="#111"
+          textcolor='#111'
           onPress={() => navigation.navigate("IntroSecond")}
         />
       </View>

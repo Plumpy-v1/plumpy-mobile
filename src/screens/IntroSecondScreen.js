@@ -1,15 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 import {
-  Button,
   Text,
   View,
   StyleSheet,
   Image,
-  Platform,
-  StatusBar, SafeAreaView
+  StatusBar,
+  SafeAreaView,
 } from "react-native";
 
-import { CommonStyles, blueGradient } from "../styles/CommonStyles";
+import { CommonStyles } from "../styles/CommonStyles";
 
 import CustomButton from "../elements/CustomButton";
 
@@ -49,45 +48,29 @@ const IntroOneScreen = ({ navigation }) => {
         </Text>
       </View>
 
-      {/* <View style={CommonStyles.introSecondPageImageLogo}> */}
-        <Image
-          source={require("../../assets/img/IntroScreens/IntroTwoLogo.png")}
-          style={{alignSelf: 'center', flex: 1/4, width: '95%'}}
-          resizeMode={'contain'}
-        />
-      {/* </View> */}
+      <Image
+        source={require("../../assets/img/IntroScreens/IntroTwoLogo.png")}
+        style={CommonStyles.introSecondPageImageLogo}
+        resizeMode={"contain"}
+      />
 
-     
       <View style={CommonStyles.introSecondLeftImageLogo}>
         <Image
           source={require("../../assets/img/IntroScreens/Left_Chat.png")}
         />
-      </View>    
-      <View style={CommonStyles.introSecondRightImageLogo}>
-
-        <Image
-          source={require("../../assets/img/IntroScreens/Right_Chat.png")} />
-
       </View>
-    
-     
-     {/* // height:hp('50%'),
-    // marginRight: -100,
-    marginRight: '-35%',
-    position: "absolute",
-    alignSelf: "flex-end",
-    display:'flex',
-    zIndex: 1, */}
+      <View style={CommonStyles.introSecondRightImageLogo}>
+        <Image
+          source={require("../../assets/img/IntroScreens/Right_Chat.png")}
+        />
+      </View>
 
       <View style={CommonStyles.introSecondButton}>
-        {/* <CustomButton  title="Start"  onPress={() => navigation.navigate("Second") }  /> */}
         <CustomButton
           title='start'
-          // width={223}
-          // height={53}
           title='Next'
           colorbg='#FFFFFF'
-          textcolor="#111"
+          textcolor='#111'
           onPress={() => navigation.navigate("SignIn")}
         />
       </View>

@@ -36,8 +36,6 @@ export const CommonStyles = StyleSheet.create({
   normalSinglePage: {
     flex: 1,
     backgroundColor: "#fbe7e3",
-    
-   
   },
   wrapperBox: {
     marginTop: 20,
@@ -90,7 +88,7 @@ export const CommonStyles = StyleSheet.create({
     fontSize: 23,
     textAlign: "center",
     lineHeight: 32,
-    width: wp('80%'),
+    width: wp("80%"),
   },
   itemHeaderText: {
     fontSize: 17,
@@ -154,7 +152,7 @@ export const CommonStyles = StyleSheet.create({
   },
   textInput: {
     // width: deviceWidth - 55,
-     width: 280,
+    width: 280,
     // height: 45,
     paddingLeft: 50,
     color: "#FF7C7C",
@@ -201,73 +199,35 @@ export const CommonStyles = StyleSheet.create({
   introPageImageBox: {
     // marginLeft: 36,
     flex: 1,
-    width: wp('100%'),
-    height: hp('50%'),
-    paddingTop:20,
-    resizeMode: "contain",
-    
-    alignItems: "center",
+    width: "95%",
+    alignSelf: "center",
   },
   introPageImageLogo: {
-    
-    //width: wp('100%'),
-    //height: hp('50%'),
-    
-    //resizeMode: "contain",
-    //paddingBottom:20,
-   alignItems: "center",
-   justifyContent: "center",
-   // marginTop:0,
-  //  paddingTop:30,
-  //  flexDirection:'column',
-    // borderColor: "rgb(229,229,229)",
-    // backgroundColor:'#222',
-    
-   // borderStyle: "solid",
-    // marginTop: "5%",
+    alignSelf: "center",
+    flex: 1 / 4,
+    width: "95%",
   },
   introSecondPageImageLogo: {
-    // width: 235.34,
-    // height: 187.54,
-    // marginLeft: 60.41,
-    // marginRight: 79.26,
-    
-    flex: 1,
-    width: null,
-    height: null,
-    aspectRatio:1 * 2.5,
-    resizeMode: "contain",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop:'20%',
-    paddingBottom:'20%',
-    
-
+    alignSelf: "center",
+    flex: 1 / 4,
+    width: "95%",
   },
   introSecondLeftImageLogo: {
-    // marginTop: 23.51,
-    // width: 231,
-    // height: 416,
-    // marginLeft: -100,
-    width: '95%',
+    width: "95%",
     position: "absolute",
-    resizeMode: 'cover',
-    marginTop:'2%',
-    marginLeft:'-25%',
-    bottom:'-7%',
+    resizeMode: "cover",
+    marginTop: "2%",
+    marginLeft: "-25%",
+    bottom: "-7%",
   },
   introSecondRightImageLogo: {
-    // marginTop: 67.65,
-    // width: 179.23,
-     //height:hp('50%'),
-    // marginRight: -100,
-    marginRight: '-35%',
+    marginRight: "-35%",
     position: "absolute",
     alignSelf: "flex-end",
-    display:'flex',
+    display: "flex",
     zIndex: 1,
-    
-    bottom:'-7%'
+
+    bottom: "-7%",
   },
   introOneButton: {
     marginTop: "2%",
@@ -278,50 +238,30 @@ export const CommonStyles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     paddingBottom: "2%",
-
-    // width:'100%',
-    // height:'100%',
-    // width:'400%',
-    // height:'40%'
-    // marginLeft:76,
-    // marginRight:76,
   },
   introSecondButton: {
     position: "absolute",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-     width: "100%",
-     bottom:'3%'
-    // marginTop: 29,
-    // marginBottom: 57,
-    // marginLeft: 76,
-    // marginRight: 76,
-    // bottom: 23,
+    width: "100%",
+    bottom: "3%",
   },
   introPageTextBox: {
     alignItems: "center",
-    
+
     paddingTop: 20,
     paddingBottom: 10,
     flex: 0.2,
-    alignContent: 'center',
-    alignSelf: 'center'
-    // marginTop: introSpaceHeight * 0.27,
+    alignContent: "center",
+    alignSelf: "center",
   },
   introSecondPageTextBox: {
-    // alignItems: "center",
-    // paddingTop: 10,
-    // paddingBottom: 10,
-
     paddingTop: 10,
     paddingBottom: 10,
-    flex: 1/8,
-    alignContent: 'center',
-    alignSelf: 'center'
-   
-
-
+    flex: 1 / 8,
+    alignContent: "center",
+    alignSelf: "center",
   },
   introPageSubText: {
     width: deviceWidth - 75,
@@ -339,8 +279,7 @@ export const CommonStyles = StyleSheet.create({
     marginBottom: 20,
   },
   introPageButton: {
-    // flexDirection: 'row',
-    // justifyContent: 'center',
+    
     alignItems: "center",
     marginTop: 29,
     width: 60,
@@ -349,11 +288,7 @@ export const CommonStyles = StyleSheet.create({
 
   // SignInScreen
   SignInLogoImageBox: {
-    // marginTop: 93.93,
-    // marginLeft: 85.41,
-    // marginRight: 86,
-    // width: 203.59,
-    // height: 262.07,
+    
     flex: 1,
     width: null,
     height: null,
@@ -361,23 +296,22 @@ export const CommonStyles = StyleSheet.create({
     resizeMode: "contain",
     justifyContent: "center",
     alignItems: "center",
-    paddingTop:'20%',
-    paddingBottom:'20%',
-    alignSelf:'center',
-   // backgroundColor:'red'
+    paddingTop: "20%",
+    paddingBottom: "20%",
+    alignSelf: "center",
+    // backgroundColor:'red'
   },
-  SignInPageBackgroud:{
+  SignInPageBackgroud: {
     flex: 1,
     alignItems: "center",
     width: deviceWidth.width,
     height: deviceHeight.height,
   },
-  LogInButton:{
-    
+  LogInButton: {
     // marginTop: "2%",
 
     width: "100%",
-    textAlign:'center',
+    textAlign: "center",
     justifyContent: "center",
     alignItems: "center",
     // flexDirection: "row",
@@ -386,12 +320,10 @@ export const CommonStyles = StyleSheet.create({
     height: 45,
     marginBottom: 20,
     borderColor: "rgb(229,229,229)",
-    backgroundColor:'#FF7C7C',
-    
+    backgroundColor: "#FF7C7C",
+
     borderStyle: "solid",
     borderRadius: 10,
-    
-    
   },
   // StartScreens
   labelField: {
