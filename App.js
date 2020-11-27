@@ -1,25 +1,41 @@
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
-import IntroOneScreen from "./src/screens/IntroOneScreen";
-import IntroSecondScreen from "./src/screens/IntroSecondScreen";
-import SignInScreen from "./src/screens/SignInScreen";
-// import Second from "./src/screens/Second";
+import React, { useState } from 'react';
+import AppContainer from './src/navigation/AppNavigator';
+import {Asset} from 'expo-asset';
+import * as Font from 'expo-font';
+import { AppLoading } from 'expo';
+
+const App = (props) => {
+
+const[assetsLoaded,setAssetsLoaded] = useState(false);
+  const _loadResourcesAsync = async () => {
+    return Promise.all([
+      Asset.loadAsync([
+        require('./assets/img/IntroScreens/IntroOneLogo.png'),
+        require('./assets/img/SignInScreen/LogInBack.png'),
+      ]),
+      Font.loadAsync({
+        'Poppins-Bold': require('./assets/fonts/Poppins-Bold.ttf'),
+        'Poppins-SemiBold': require('./assets/fonts/Poppins-SemiBold.ttf'),
+        'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'),
+        
+      }),
+    ]);
+  };
 
 
-const navigator = createStackNavigator(
-  {
-    IntroOne: IntroOneScreen,
-    Second: IntroSecondScreen,
-    SignIn: SignInScreen
-    // Component: ComponentsScreen,
-    
-  },
-  {
-    initialRouteName: "IntroOne",
-    defaultNavigationOptions: {
-      headerShown: false
-    },
-  }
-);
+  return(
+    assetsLoaded ?
+    <AppContainer/>
+    :         
+    <AppLoading
+      startAsync={_loadResourcesAsync}
+      onFinish={() => setAssetsLoaded(true)}
+      onError={console.warn}
+      autoHideSplash={true}
+    />
+  );
+}
 
-export default createAppContainer(navigator);
+
+
+export default App;

@@ -20,6 +20,7 @@ const SignInScreen = (props) => {
     <ImageBackground
       style={[CommonStyles.normalSinglePage, CommonStyles.SignInPageBackgroud]}
       source={require("../../assets/img/SignInScreen/LogInBack.png")}
+      resizeMode='cover'
     >
       <StatusBar barStyle='light-content' />
       <View style={CommonStyles.SignInLogoImageBox}>
@@ -65,15 +66,17 @@ const SignInScreen = (props) => {
             underlineColorAndroid='transparent'
           />
         </View>
-
-        <CustomButton
-          title='Login'
-          textcolor='#FFFFFF'
-          color='#FF7C7C'
-          width={330}
-          height={45}
-          onPress={() => console.log("Start")}
-        />
+        <TouchableOpacity onPress={() => console.log("Start")}>
+          <View style={CommonStyles.LogInButton}>
+            <CustomButton
+              title='Login'
+              textcolor='#FFFFFF'
+              colorbg='#FF7C7C'
+              width={"100%"}
+              height={45}
+            />
+          </View>
+        </TouchableOpacity>
       </View>
       <TouchableOpacity onPress={() => console.log("forgot pass")}>
         <Text style={styles.forgetText}>forgot password ?</Text>
@@ -124,20 +127,23 @@ const styles = StyleSheet.create({
   },
   forgetText: {
     color: "#FFFFFF",
-    marginTop: 18,
+    // marginTop: 18,
     marginLeft: 25,
-    marginRight: 230,
+    // marginRight: 230,
     fontSize: 15,
+    flexDirection: "row",
+    alignItems: "flex-start",
     textAlign: "left",
     lineHeight: 23,
+    paddingRight: "50%",
   },
   loginText: {
     color: "#FBE7E3",
     marginTop: 47,
     fontSize: 15,
-    lineHeight: 23,
+    // lineHeight: ,
     width: 73,
-    height: 21,
+    height: 24,
   },
   loginAuth: {
     flexDirection: "row",
@@ -145,10 +151,11 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     width: 160.41,
     height: 31.15,
-    marginTop: 24.36,
+    marginTop: 20.36,
     position: "relative",
     marginBottom: 0,
     display: "flex",
+    marginBottom: "5%",
   },
   googleIcon: {
     marginTop: 5.9,

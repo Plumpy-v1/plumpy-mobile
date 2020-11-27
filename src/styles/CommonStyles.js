@@ -1,4 +1,10 @@
 import { StyleSheet, Dimensions } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol,
+} from "react-native-responsive-screen";
 
 export const NAV_TAB_HEIGHT = 95;
 export const NAV_HEIGHT = 45;
@@ -30,6 +36,8 @@ export const CommonStyles = StyleSheet.create({
   normalSinglePage: {
     flex: 1,
     backgroundColor: "#fbe7e3",
+    
+   
   },
   wrapperBox: {
     marginTop: 20,
@@ -79,9 +87,10 @@ export const CommonStyles = StyleSheet.create({
     lineHeight: 38,
   },
   headerText: {
-    fontSize: 27,
+    fontSize: 23,
     textAlign: "center",
-    lineHeight: 30,
+    lineHeight: 32,
+    width: wp('80%'),
   },
   itemHeaderText: {
     fontSize: 17,
@@ -145,7 +154,7 @@ export const CommonStyles = StyleSheet.create({
   },
   textInput: {
     // width: deviceWidth - 55,
-    // width: 280,
+     width: 280,
     // height: 45,
     paddingLeft: 50,
     color: "#FF7C7C",
@@ -184,81 +193,135 @@ export const CommonStyles = StyleSheet.create({
     width: 60,
     height: 60,
   },
-  SignInButton:{
-    marginLeft:48,
-    marginRight:47,
+  SignInButton: {
+    marginLeft: 48,
+    marginRight: 47,
   },
   // Intro pages styles
   introPageImageBox: {
-    width: 303,
-    height: 338,
-    marginLeft: 36,
-    marginRight: 36,
-    // alignItems: 'center',
-    // marginTop: introSpaceHeight * 0.33,
+    // marginLeft: 36,
+    flex: 1,
+    width: wp('100%'),
+    height: hp('50%'),
+    paddingTop:20,
+    resizeMode: "contain",
+    
+    alignItems: "center",
   },
   introPageImageLogo: {
-    width: 99,
-    height: 102.56,
-    marginLeft: 138,
-    marginRight: 138,
-    marginTop: 29,
+    
+    //width: wp('100%'),
+    //height: hp('50%'),
+    
+    //resizeMode: "contain",
+    //paddingBottom:20,
+   alignItems: "center",
+   justifyContent: "center",
+   // marginTop:0,
+  //  paddingTop:30,
+  //  flexDirection:'column',
+    // borderColor: "rgb(229,229,229)",
+    // backgroundColor:'#222',
+    
+   // borderStyle: "solid",
+    // marginTop: "5%",
   },
   introSecondPageImageLogo: {
-    width: 235.34,
-    height: 187.54,
-    marginLeft: 60.41,
-    marginRight: 79.26,
+    // width: 235.34,
+    // height: 187.54,
+    // marginLeft: 60.41,
+    // marginRight: 79.26,
+    
+    flex: 1,
+    width: null,
+    height: null,
+    aspectRatio:1 * 2.5,
+    resizeMode: "contain",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop:'20%',
+    paddingBottom:'20%',
+    
+
   },
   introSecondLeftImageLogo: {
-    marginTop: 23.51,
-    width: 231,
-    height: 416,
-    marginLeft:-100
-    
+    // marginTop: 23.51,
+    // width: 231,
+    // height: 416,
+    // marginLeft: -100,
+    width: '95%',
+    position: "absolute",
+    resizeMode: 'cover',
+    marginTop:'2%',
+    marginLeft:'-25%',
+    bottom:'-7%',
   },
   introSecondRightImageLogo: {
-    marginTop: 67.65,
-    width: 179.23,
-    height:371.85,
-    marginRight:-100,
-    position:'absolute',
-    alignSelf:'flex-end',
-    bottom:0,
-    zIndex:1
+    // marginTop: 67.65,
+    // width: 179.23,
+     //height:hp('50%'),
+    // marginRight: -100,
+    marginRight: '-35%',
+    position: "absolute",
+    alignSelf: "flex-end",
+    display:'flex',
+    zIndex: 1,
+    
+    bottom:'-7%'
   },
-  introOneButton:{
-    marginTop:29,
-    marginBottom:57,
-    marginLeft:76,
-    marginRight:76,
+  introOneButton: {
+    marginTop: "2%",
+
+    width: "100%",
+    //  height:'10%',
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    paddingBottom: "2%",
+
+    // width:'100%',
+    // height:'100%',
+    // width:'400%',
+    // height:'40%'
+    // marginLeft:76,
+    // marginRight:76,
   },
-  introSecondButton:{
-    position:'absolute',
-    marginTop:29,
-    marginBottom:57,
-    marginLeft:76,
-    marginRight:76,
-    bottom:23
+  introSecondButton: {
+    position: "absolute",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+     width: "100%",
+     bottom:'3%'
+    // marginTop: 29,
+    // marginBottom: 57,
+    // marginLeft: 76,
+    // marginRight: 76,
+    // bottom: 23,
   },
   introPageTextBox: {
     alignItems: "center",
-    width: 214,
-    height: 67,
-    marginTop: 88,
-    marginBottom: 49,
-    marginLeft: 81,
-    marginRight: 80,
+    
+    paddingTop: 20,
+    paddingBottom: 10,
+    flex: 0.2,
+    alignContent: 'center',
+    alignSelf: 'center'
     // marginTop: introSpaceHeight * 0.27,
   },
   introSecondPageTextBox: {
-    alignItems: "center",
-    width: 270,
-    height: 97,
-    marginTop: 88,
-    marginBottom: 0,
-    marginLeft: 52,
-    marginRight: 52,
+    // alignItems: "center",
+    // paddingTop: 10,
+    // paddingBottom: 10,
+
+    paddingTop: 10,
+    paddingBottom: 10,
+    flex: 1/8,
+    alignContent: 'center',
+    alignSelf: 'center'
+   
+
+
   },
   introPageSubText: {
     width: deviceWidth - 75,
@@ -285,18 +348,50 @@ export const CommonStyles = StyleSheet.create({
   },
 
   // SignInScreen
-  SignInLogoImageBox:{
-      marginTop:93.93,
-      marginLeft:85.41,
-      marginRight:86,
-      width:203.59,
-      height:262.07,
+  SignInLogoImageBox: {
+    // marginTop: 93.93,
+    // marginLeft: 85.41,
+    // marginRight: 86,
+    // width: 203.59,
+    // height: 262.07,
+    flex: 1,
+    width: null,
+    height: null,
+    //aspectRatio:1 * 2.5,
+    resizeMode: "contain",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop:'20%',
+    paddingBottom:'20%',
+    alignSelf:'center',
+   // backgroundColor:'red'
   },
   SignInPageBackgroud:{
-    flex: 1, 
+    flex: 1,
     alignItems: "center",
     width: deviceWidth.width,
     height: deviceHeight.height,
+  },
+  LogInButton:{
+    
+    // marginTop: "2%",
+
+    width: "100%",
+    textAlign:'center',
+    justifyContent: "center",
+    alignItems: "center",
+    // flexDirection: "row",
+    flexDirection: "row",
+    width: deviceWidth - 47,
+    height: 45,
+    marginBottom: 20,
+    borderColor: "rgb(229,229,229)",
+    backgroundColor:'#FF7C7C',
+    
+    borderStyle: "solid",
+    borderRadius: 10,
+    
+    
   },
   // StartScreens
   labelField: {

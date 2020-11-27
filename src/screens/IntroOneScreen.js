@@ -7,15 +7,18 @@ import {
   Image,
   Platform,
   StatusBar,
+  SafeAreaView
 } from "react-native";
 
 import { CommonStyles } from "../styles/CommonStyles";
 
 import CustomButton from "../elements/CustomButton";
 
+
 const IntroOneScreen = ({ navigation }) => {
+  console.log("navigation" ,navigation.navigate);
   return (
-    <View style={CommonStyles.normalSinglePage}>
+    <SafeAreaView style={CommonStyles.normalSinglePage}>
       <StatusBar barStyle='default' />
       <View style={CommonStyles.introPageTextBox}>
         <Text
@@ -38,35 +41,35 @@ const IntroOneScreen = ({ navigation }) => {
           so many times
         </Text>
       </View>
-
-      <View style={CommonStyles.introPageImageBox}>
-        <Image source={require("../../assets/img/IntroScreens/IntroOne.png")} />
-      </View>
-      <View style={CommonStyles.introPageImageLogo}>
+     
+        <Image
+          source={require("../../assets/img/IntroScreens/IntroOne.png")}
+          style={{flex: 1, width: '95%',alignSelf:'center'}}
+          resizeMode={'contain'}
+        />
+        {/* width={303} height={338} */}
+     
+      {/* <View style={CommonStyles.introPageImageLogo}> */}
         <Image
           source={require("../../assets/img/IntroScreens/IntroOneLogo.png")}
+          style={{alignSelf: 'center', flex: 1/4, width: '95%'}}
+          resizeMode={'contain'}
         />
-      </View>
+      {/* </View> */}
       <View style={CommonStyles.introOneButton}>
         <CustomButton
           title='Next'
-          width={223}
-          height={53}
-          color='#FFFFFF'
-          onPress={() => navigation.navigate("Second")}
+          colorbg='#FFFFFF'
+          textcolor="#111"
+          onPress={() => navigation.navigate("IntroSecond")}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 29,
-    marginBottom: 57,
-    marginLeft: 76,
-    marginRight: 76,
-  },
+  container: {},
 });
 
 export default IntroOneScreen;
