@@ -1,6 +1,5 @@
 ## Plumpy
 
-A simple cross platform (iOS and Android) React Native timer app.
 
 |            Intro-1            |            Intro-2            |           SignIn            |
 | :---------------------------: | :---------------------------: |:---------------------------: |
