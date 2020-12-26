@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import {
   Button,
   ImageBackground,
@@ -16,6 +16,8 @@ import { CommonStyles, deviceWidth } from "../styles/CommonStyles";
 import CustomButton from "../elements/CustomButton";
 
 const SignInScreen = (props) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <ImageBackground
       style={[CommonStyles.normalSinglePage, CommonStyles.SignInPageBackgroud]}
@@ -45,6 +47,8 @@ const SignInScreen = (props) => {
             placeholderTextColor='#FF7C7C'
             style={CommonStyles.textInput}
             underlineColorAndroid='transparent'
+            value={username}
+            onChangeText={(uname) => setUsername(uname)}
           />
         </View>
         <View style={CommonStyles.textInputField}>
@@ -64,6 +68,8 @@ const SignInScreen = (props) => {
             placeholderTextColor='#FF7C7C'
             style={CommonStyles.textInput}
             underlineColorAndroid='transparent'
+            value={password}
+            onChangeText={(pass) => setPassword(pass)}
           />
         </View>
         <TouchableOpacity onPress={() => console.log("Start")}>
@@ -74,6 +80,7 @@ const SignInScreen = (props) => {
               colorbg='#FF7C7C'
               width={"100%"}
               height={45}
+              onPress={() => console.warn("Login")}
             />
           </View>
         </TouchableOpacity>
