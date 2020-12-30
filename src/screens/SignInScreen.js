@@ -15,16 +15,16 @@ import { CommonStyles, deviceWidth } from "../styles/CommonStyles";
 
 import CustomButton from "../elements/CustomButton";
 
-const SignInScreen = (props) => {
+const SignInScreen = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   return (
     <ImageBackground
       style={[CommonStyles.normalSinglePage, CommonStyles.SignInPageBackgroud]}
       source={require("../../assets/img/SignInScreen/LogInBack.png")}
-      resizeMode='cover'
+      resizeMode="cover"
     >
-      <StatusBar barStyle='light-content' />
+      <StatusBar barStyle="light-content" />
       <View style={CommonStyles.SignInLogoImageBox}>
         <Image
           source={require("../../assets/img/SignInScreen/LoginPageLogo.png")}
@@ -43,10 +43,10 @@ const SignInScreen = (props) => {
             }}
           />
           <TextInput
-            placeholder='Username'
-            placeholderTextColor='#FF7C7C'
+            placeholder="Username"
+            placeholderTextColor="#FF7C7C"
             style={CommonStyles.textInput}
-            underlineColorAndroid='transparent'
+            underlineColorAndroid="transparent"
             value={username}
             onChangeText={(uname) => setUsername(uname)}
           />
@@ -63,11 +63,11 @@ const SignInScreen = (props) => {
             }}
           />
           <TextInput
-            placeholder='Password'
-            type='password'
-            placeholderTextColor='#FF7C7C'
+            placeholder="Password"
+            type="password"
+            placeholderTextColor="#FF7C7C"
             style={CommonStyles.textInput}
-            underlineColorAndroid='transparent'
+            underlineColorAndroid="transparent"
             value={password}
             onChangeText={(pass) => setPassword(pass)}
           />
@@ -75,12 +75,12 @@ const SignInScreen = (props) => {
         <TouchableOpacity onPress={() => console.log("Start")}>
           <View style={CommonStyles.LogInButton}>
             <CustomButton
-              title='Login'
-              textcolor='#FFFFFF'
-              colorbg='#FF7C7C'
+              title="Login"
+              textcolor="#FFFFFF"
+              colorbg="#FF7C7C"
               width={"100%"}
               height={45}
-              onPress={() => console.warn("Login")}
+              onPress={() => navigation.navigate("Home")}
             />
           </View>
         </TouchableOpacity>
