@@ -14,8 +14,9 @@ import {
 import { CommonStyles, deviceWidth } from "../styles/CommonStyles";
 
 import CustomButton from "../elements/CustomButton";
+import { Navigation } from "react-native-navigation";
 
-const SignInScreen = (props) => {
+const SignInScreen = ({navigation}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   return (
@@ -80,7 +81,7 @@ const SignInScreen = (props) => {
               colorbg='#FF7C7C'
               width={"100%"}
               height={45}
-              onPress={() => console.warn("Login")}
+              onPress={() => navigation.navigate("NearEvent")}
             />
           </View>
         </TouchableOpacity>

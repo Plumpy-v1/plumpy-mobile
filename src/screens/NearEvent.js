@@ -4,7 +4,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import EventImageContainer from '../components/NearEventContainer/EventImageContainer';
 import NearEventDistanceLine from '../components/NearEventContainer/NearEventDistanceLine';
 
-const NearEvent = (props) => {
+const NearEvent = ({navigation}) => {
   return(
       
       <View style={styles.container}>
@@ -13,15 +13,15 @@ const NearEvent = (props) => {
         Near Events
       </Text>
       <ScrollView>
-      <EventImageContainer />
+      <EventImageContainer onPress={() => navigation.navigate("HomeTab")} />
          <NearEventDistanceLine />
-         <EventImageContainer />
-         <EventImageContainer />
+         <EventImageContainer onPress={() => navigation.navigate("HomeTab")} />
+         <EventImageContainer onPress={() => navigation.navigate("HomeTab")} />
          <NearEventDistanceLine />
-         <EventImageContainer />
+         <EventImageContainer onPress={() => navigation.navigate("HomeTab")} />
          <NearEventDistanceLine />
-         <EventImageContainer />
-         <EventImageContainer />
+         <EventImageContainer onPress={() => navigation.navigate("HomeTab")} />
+         <EventImageContainer onPress={() => navigation.navigate("HomeTab")} />
 
      </ScrollView>
     </SafeAreaView>
