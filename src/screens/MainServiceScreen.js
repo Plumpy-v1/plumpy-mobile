@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
@@ -8,8 +8,27 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { CommonStyles } from "../styles/CommonStyles";
+import { SwipeablePanel } from "rn-swipeable-panel";
 
 const MainServiceScreen = () => {
+  const [panelProps, setPanelProps] = useState({
+    fullWidth: true,
+    openLarge: true,
+    showCloseButton: false,
+    closeOnTouchOutside: true,
+    onClose: () => closePanel(),
+    onPressCloseButton: () => closePanel(),
+  });
+  const [isPanelActive, setIsPanelActive] = useState(false);
+
+  const openPanel = () => {
+    setIsPanelActive(true);
+  };
+
+  const closePanel = () => {
+    setIsPanelActive(false);
+  };
+
   return (
     <ImageBackground
       style={styles.backimage}
@@ -51,7 +70,7 @@ const MainServiceScreen = () => {
       </View>
       <View style={styles.servicecontainer}>
         <View style={styles.colom1}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={openPanel}>
             <View>
               <Image
                 source={require("../../assets/img/HomeScreen/Nearevent.png")}
@@ -102,6 +121,9 @@ const MainServiceScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
+      <SwipeablePanel {...panelProps} isActive={isPanelActive}>
+        <Text>This is swipe pannel good to see you</Text>
+      </SwipeablePanel>
     </ImageBackground>
   );
 };
