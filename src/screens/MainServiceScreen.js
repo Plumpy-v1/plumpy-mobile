@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { CommonStyles } from "../styles/CommonStyles";
 import { SwipeablePanel } from "rn-swipeable-panel";
+import NearEvent from "./NearEvent";
 
 const MainServiceScreen = () => {
   const [panelProps, setPanelProps] = useState({
@@ -122,7 +123,7 @@ const MainServiceScreen = () => {
         </View>
       </View>
       <SwipeablePanel {...panelProps} isActive={isPanelActive}>
-        <Text>This is swipe pannel good to see you</Text>
+        <NearEvent />
       </SwipeablePanel>
     </ImageBackground>
   );

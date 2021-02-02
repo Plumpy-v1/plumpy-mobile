@@ -32,15 +32,15 @@ export const AppStack = createStackNavigator(
         headerShown: false,
       },
     },
-    NearEvent:{
-      screen:NearEvent,
-      navigationOptions:{
-        headerShown:false
-      }
-    }
+    NearEvent: {
+      screen: NearEvent,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
   },
   {
-    initialRouteName: "NearEvent",
+    initialRouteName: "IntroOne",
     defaultNavigationOptions: {
       headerShown: false,
     },
