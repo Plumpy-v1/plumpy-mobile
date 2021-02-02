@@ -3,6 +3,7 @@ import IntroSecondScreen from "../screens/IntroSecondScreen";
 import SignInScreen from "../screens/SignInScreen";
 import MainServiceScreen from "../screens/MainServiceScreen";
 import { createStackNavigator } from "react-navigation-stack";
+import NearEvent from "../screens/NearEvent";
 
 export const AppStack = createStackNavigator(
   {
@@ -31,9 +32,15 @@ export const AppStack = createStackNavigator(
         headerShown: false,
       },
     },
+    NearEvent:{
+      screen:NearEvent,
+      navigationOptions:{
+        headerShown:false
+      }
+    }
   },
   {
-    initialRouteName: "IntroOne",
+    initialRouteName: "NearEvent",
     defaultNavigationOptions: {
       headerShown: false,
     },
