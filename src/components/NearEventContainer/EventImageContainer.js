@@ -3,10 +3,10 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const EventImageContainer = (props) => {
+const EventImageContainer = ({onPress}) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => console.warn("Event Tapped")}>
+      <TouchableOpacity onPress={onPress}>
         <View style={styles.imageContainer}>
           <Image
             source={require("../../../assets/img/NearEvents/eventImg.png")}

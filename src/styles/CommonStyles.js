@@ -290,8 +290,8 @@ export const CommonStyles = StyleSheet.create({
   SignInLogoImageBox: {
     
     flex: 1,
-    width: null,
-    height: null,
+    marginTop:20,
+    
     //aspectRatio:1 * 2.5,
     resizeMode: "contain",
     justifyContent: "center",
