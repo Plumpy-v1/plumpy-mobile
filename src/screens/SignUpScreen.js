@@ -14,11 +14,12 @@ import {
 import { CommonStyles, deviceWidth } from "../styles/CommonStyles";
 
 import CustomButton from "../elements/CustomButton";
-import { Navigation } from "react-native-navigation";
 
-const SignInScreen = ({navigation}) => {
-  const [username, setUsername] = useState("");
+
+const SignUpScreen = ({navigation}) => {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword,setConfirmPassword] = useState("")
   return (
     <ImageBackground
       style={[CommonStyles.normalSinglePage, CommonStyles.SignInPageBackgroud]}
@@ -44,14 +45,15 @@ const SignInScreen = ({navigation}) => {
             }}
           />
           <TextInput
-            placeholder='Username'
+            placeholder='Email'
             placeholderTextColor='#FF7C7C'
             style={CommonStyles.textInput}
             underlineColorAndroid='transparent'
-            value={username}
-            onChangeText={(uname) => setUsername(uname)}
+            value={email}
+            onChangeText={(nemail) => setEmail(nemail)}
           />
         </View>
+       
         <View style={CommonStyles.textInputField}>
           <Image
             source={require("../../assets/img/SignInScreen/padlock.png")}
@@ -72,33 +74,43 @@ const SignInScreen = ({navigation}) => {
             value={password}
             onChangeText={(pass) => setPassword(pass)}
           />
+        </View>
+        <View style={CommonStyles.textInputField}>
+          <Image
+            source={require("../../assets/img/SignInScreen/padlock.png")}
+            style={{
+              position: "absolute",
+              bottom: 12,
+              left: 20,
+              width: 17,
+              height: 22,
+            }}
+          />
           <TextInput
-            placeholder='Password'
+            placeholder='Comfirm Password'
             type='password'
             placeholderTextColor='#FF7C7C'
             style={CommonStyles.textInput}
             underlineColorAndroid='transparent'
-            value={password}
-            onChangeText={(pass) => setPassword(pass)}
+            value={confirmPassword}
+            onChangeText={(pass) => setConfirmPassword(pass)}
           />
         </View>
         <TouchableOpacity onPress={() => console.log("Start")}>
           <View style={CommonStyles.LogInButton}>
             <CustomButton
-              title='Login'
+              title='SignUp'
               textcolor='#FFFFFF'
               colorbg='#FF7C7C'
               width={"100%"}
               height={45}
-              onPress={() => navigation.navigate("SignUp")}
+              onPress={() => navigation.navigate("NearEvent")}
             />
           </View>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => console.log("forgot pass")}>
-        <Text style={styles.forgetText}>forgot password ?</Text>
-      </TouchableOpacity>
-      <Text style={styles.loginText}>login with</Text>
+      
+      <Text style={styles.loginText}>SignUp with</Text>
       <View style={styles.loginAuth}>
         <TouchableOpacity>
           <Image source={require("../../assets/img/SignInScreen/apple.png")} />
@@ -126,7 +138,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   formBox: {
-    marginTop: 47,
+    marginTop: 80,
     alignItems: "center",
   },
   subFormBox: {
@@ -156,11 +168,12 @@ const styles = StyleSheet.create({
   },
   loginText: {
     color: "#FBE7E3",
-    marginTop: 47,
+    marginTop: 20,
     fontSize: 15,
     // lineHeight: ,
-    width: 73,
+    width: 100,
     height: 24,
+    textAlign:'center',
   },
   loginAuth: {
     flexDirection: "row",
@@ -181,4 +194,4 @@ const styles = StyleSheet.create({
     marginTop: 5.9,
   },
 });
-export default SignInScreen;
+export default SignUpScreen;

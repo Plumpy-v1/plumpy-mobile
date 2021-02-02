@@ -7,6 +7,7 @@ import HomeScreenTest from "../screens/HomeScreenTest";
  import HomeTabNavigation from "./HomeTabNavigation";
  import {NavigationContainer} from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import SignUpScreen from '../screens/SignUpScreen'
 
 
 // Old Navigation
@@ -95,6 +96,15 @@ export const AppStack = (props) => {
             headerShown: false,
           }}
         />
+
+        <Stack.Screen
+          name={"SignUp"}
+          component={SignUpScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+
         <Stack.Screen
           name={"NearEvent"}
           component={NearEvent}

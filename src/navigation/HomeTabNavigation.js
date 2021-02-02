@@ -20,8 +20,6 @@ const HomeTabNavigation = (props) => {
         style: {
           width: "100%",
           height: "9%",
-          borderTopLeftRadius: 40,
-          borderTopRightRadius: 40,
           borderColor: "transparent",
           overflow: "hidden",
         },
