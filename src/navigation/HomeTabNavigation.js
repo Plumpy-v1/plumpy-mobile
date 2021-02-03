@@ -8,6 +8,7 @@ import SignInScreen from "../screens/SignInScreen";
 import { Feather } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import HomeScreenTest from "../screens/HomeScreenTest";
+import MainServiceScreen from '../screens/MainServiceScreen'
 import NearEvent from "../screens/NearEvent";
 
 const Tab = createBottomTabNavigator();
@@ -27,7 +28,7 @@ const HomeTabNavigation = (props) => {
     >
       <Tab.Screen
         name={"Home"}
-        component={HomeScreenTest}
+        component={MainServiceScreen}
         options={{
           tabBarIcon: () => <Feather name='home' size={30} color='#FF7C7C' />,
 
@@ -49,7 +50,7 @@ const HomeTabNavigation = (props) => {
       />
       <Tab.Screen
         name={"Favorite"}
-        component={HomeScreenTest}
+        component={MainServiceScreen}
         options={{
           tabBarIcon: () => (
             <MaterialIcons name='favorite-border' size={30} color='#FF7C7C' />

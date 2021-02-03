@@ -3,12 +3,12 @@ import IntroOneScreen from "../screens/IntroOneScreen";
 import IntroSecondScreen from "../screens/IntroSecondScreen";
 import SignInScreen from "../screens/SignInScreen";
 import NearEvent from "../screens/NearEvent";
-import HomeScreenTest from "../screens/HomeScreenTest";
+//import HomeScreenTest from "../screens/HomeScreenTest";
 import HomeTabNavigation from "./HomeTabNavigation";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import SignUpScreen from "../screens/SignUpScreen";
-
+import MainServiceScreen from "../screens/MainServiceScreen";
 // Old Navigation
 
 // export const AppStack = createStackNavigator(
@@ -68,7 +68,6 @@ export const AppStack = (props) => {
             headerShown: false,
           }}
         />
-
         <Stack.Screen
           name={"HomeTab"}
           component={HomeTabNavigation}
@@ -109,10 +108,10 @@ export const AppStack = (props) => {
           }}
         />
         <Stack.Screen
-          name={"HomeTest"}
-          component={HomeScreenTest}
+          name={"HomePage"}
+          component={MainServiceScreen}
           options={{
-            title: "How many people?",
+            headerShown: false,
           }}
         />
       </Stack.Navigator>

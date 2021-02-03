@@ -104,7 +104,7 @@ const SignUpScreen = ({navigation}) => {
               colorbg='#FF7C7C'
               width={"100%"}
               height={45}
-              onPress={() => navigation.navigate("NearEvent")}
+              onPress={() => navigation.navigate("HomeTab")}
             />
           </View>
         </TouchableOpacity>

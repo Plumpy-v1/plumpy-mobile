@@ -138,23 +138,23 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   logocontainer: {
-    marginTop: "4.64%",
+   // marginTop: "2.64%",
   },
   Profilecontainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
     paddingHorizontal: "8.8%",
-    marginTop: "2.95%",
+    //marginTop: "1.95%",
   },
   Textcontainer: {
     width: "60.93%",
   },
   Username: {
-    fontSize: 27,
+    fontSize: 25,
   },
   servicecontainer: {
-    marginTop: "4.68%",
+    marginTop: "2.68%",
     flexDirection: "row",
     paddingHorizontal: "8.8%",
     justifyContent: "space-between",
