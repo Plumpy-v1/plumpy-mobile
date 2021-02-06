@@ -3,61 +3,25 @@ import IntroOneScreen from "../screens/IntroOneScreen";
 import IntroSecondScreen from "../screens/IntroSecondScreen";
 import SignInScreen from "../screens/SignInScreen";
 import NearEvent from "../screens/NearEvent";
-//import HomeScreenTest from "../screens/HomeScreenTest";
+import HomeScreenTest from "../screens/HomeScreenTest";
 import HomeTabNavigation from "./HomeTabNavigation";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import SignUpScreen from "../screens/SignUpScreen";
 import MainServiceScreen from "../screens/MainServiceScreen";
+import {
+  Back,
+  Profile,
+} from "../components/NearEventContainer/HeaderComponent/NavIcon";
+import { Navigation } from "react-native-navigation";
+import { Feather } from "@expo/vector-icons";
 // Old Navigation
-
-// export const AppStack = createStackNavigator(
-//   {
-//     IntroOne: {
-//       screen: IntroOneScreen,
-//       navigationOptions: {
-//         headerShown: false,
-//       },
-//     },
-
-//     IntroSecond: {
-//       screen: IntroSecondScreen,
-//       navigationOptions: {
-//         headerShown: false,
-//       },
-//     },
-//     SignIn: {
-//       screen: SignInScreen,
-//       navigationOptions: {
-//         headerShown: false,
-//       },
-//     },
-//     NearEvent: {
-//       screen: NearEvent,
-//       navigationOptions: {
-//         headerShown: false,
-//       },
-//     },
-//     HomeTest: {
-//       screen: HomeScreenTest,
-//       navigationOptions: {
-//         headerShown: false,
-//       },
-//     },
-//   },
-//   {
-//     initialRouteName: "HomeTest",
-//     defaultNavigationOptions: {
-//       headerShown: false,
-//     },
-//   }
-// );
 
 // New Navigation
 
 const Stack = createStackNavigator();
 
-export const AppStack = (props) => {
+export const AppStack = ({ navigation }) => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -103,9 +67,18 @@ export const AppStack = (props) => {
         <Stack.Screen
           name={"NearEvent"}
           component={NearEvent}
-          options={{
-            headerShown: false,
-          }}
+          options={({ navigation }) => ({
+            headerTitle: "Plumpy",
+            headerTitleStyle: { fontFamily: "Poppins-Bold" },
+            headerTransparent: true,
+            headerTitleAlign: "center",
+            headerLeft: () => <Back onPress={() => navigation.pop()} />,
+            headerLeftContainerStyle: { padding: 15 },
+            headerRight: () => (
+              <Profile onPress={() => navigation.navigate("")} />
+            ),
+            headerRightContainerStyle: { padding: 15 },
+          })}
         />
         <Stack.Screen
           name={"HomePage"}
@@ -113,6 +86,23 @@ export const AppStack = (props) => {
           options={{
             headerShown: false,
           }}
+        />
+
+        <Stack.Screen
+          name={"HomeTest"}
+          component={HomeScreenTest}
+          options={({ navigation }) => ({
+            headerTitle: "Plumpy",
+            headerTitleStyle: { fontFamily: "Poppins-Bold" },
+            headerTransparent: true,
+            headerTitleAlign: "center",
+            headerLeft: () => <Back onPress={() => navigation.pop()} />,
+            headerLeftContainerStyle: { padding: 15 },
+            headerRight: () => (
+              <Profile onPress={() => navigation.navigate("")} />
+            ),
+            headerRightContainerStyle: { padding: 15 },
+          })}
         />
       </Stack.Navigator>
     </NavigationContainer>

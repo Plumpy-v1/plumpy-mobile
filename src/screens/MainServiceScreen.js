@@ -10,26 +10,10 @@ import {
 import { CommonStyles } from "../styles/CommonStyles";
 import { SwipeablePanel } from "rn-swipeable-panel";
 import NearEvent from "./NearEvent";
+//import { Navigation } from "react-native-navigation";
 
-const MainServiceScreen = () => {
-  const [panelProps, setPanelProps] = useState({
-    fullWidth: true,
-    openLarge: true,
-    showCloseButton: false,
-    closeOnTouchOutside: true,
-    onClose: () => closePanel(),
-    onPressCloseButton: () => closePanel(),
-  });
-  const [isPanelActive, setIsPanelActive] = useState(false);
-
-  const openPanel = () => {
-    setIsPanelActive(true);
-  };
-
-  const closePanel = () => {
-    setIsPanelActive(false);
-  };
-
+const MainServiceScreen = ({navigation}) => {
+  
   return (
     <ImageBackground
       style={styles.backimage}
@@ -71,7 +55,7 @@ const MainServiceScreen = () => {
       </View>
       <View style={styles.servicecontainer}>
         <View style={styles.colom1}>
-          <TouchableOpacity onPress={openPanel}>
+          <TouchableOpacity onPress={() => navigation.navigate("NearEvent")}>
             <View>
               <Image
                 source={require("../../assets/img/HomeScreen/Nearevent.png")}
@@ -122,9 +106,6 @@ const MainServiceScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <SwipeablePanel {...panelProps} isActive={isPanelActive}>
-        <NearEvent />
-      </SwipeablePanel>
     </ImageBackground>
   );
 };
