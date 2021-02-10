@@ -12,8 +12,7 @@ import { SwipeablePanel } from "rn-swipeable-panel";
 import NearEvent from "./NearEvent";
 //import { Navigation } from "react-native-navigation";
 
-const MainServiceScreen = ({navigation}) => {
-  
+const MainServiceScreen = ({ navigation }) => {
   return (
     <ImageBackground
       style={styles.backimage}
@@ -66,7 +65,10 @@ const MainServiceScreen = ({navigation}) => {
               </Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={{ marginTop: 20 }}>
+          <TouchableOpacity
+            style={{ marginTop: 20 }}
+            onPress={() => navigation.navigate("FutureEvents")}
+          >
             <Image
               source={require("../../assets/img/HomeScreen/Futurevent.png")}
             />
@@ -119,7 +121,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   logocontainer: {
-   // marginTop: "2.64%",
+    // marginTop: "2.64%",
   },
   Profilecontainer: {
     flexDirection: "row",

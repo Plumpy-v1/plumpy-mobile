@@ -14,6 +14,7 @@ import { Navigation } from "react-native-navigation";
 import { Feather } from "@expo/vector-icons";
 import ImageComponent from "../components/ImageSelection/ImageComponent";
 import ImageSelectionContainer from "../screens/ImageSelectionContainer";
+import FutureEvents from "../screens/FutureEvents";
 // Old Navigation
 
 // New Navigation
@@ -89,6 +90,24 @@ export const AppStack = ({ navigation }) => {
         <Stack.Screen
           name={"ImageSelection"}
           component={ImageSelectionContainer}
+          options={({ navigation }) => ({
+            headerTitle: "Plumpy",
+            headerStyle: { backgroundColor: "#FBE7E3" },
+
+            headerTitleStyle: { fontFamily: "Poppins-Bold" },
+            //headerTransparent: true,
+            headerTitleAlign: "center",
+            headerLeft: () => <Back onPress={() => navigation.pop()} />,
+            headerLeftContainerStyle: { padding: 15 },
+            headerRight: () => (
+              <Profile onPress={() => navigation.navigate("")} />
+            ),
+            headerRightContainerStyle: { padding: 15 },
+          })}
+        />
+        <Stack.Screen
+          name={"FutureEvents"}
+          component={FutureEvents}
           options={({ navigation }) => ({
             headerTitle: "Plumpy",
             headerStyle: { backgroundColor: "#FBE7E3" },
