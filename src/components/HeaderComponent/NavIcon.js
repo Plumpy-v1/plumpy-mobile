@@ -3,8 +3,8 @@ import { Image, TouchableOpacity, StyleSheet } from "react-native";
 
 const Profile = ({ onPress }) => (
   <TouchableOpacity onPress={onPress}>
-    <Image
-      source={require("../../../../assets/img/NearEvents/eventImg.png")}
+    <Image 
+      source={require("../../../assets/img/NearEvents/eventImg.png")}
       style={styles.ProfileImg}
     />
   </TouchableOpacity>
@@ -13,7 +13,7 @@ const Profile = ({ onPress }) => (
 const Back = ({ onPress }) => (
   <TouchableOpacity onPress={onPress}>
     <Image
-      source={require("../../../../assets/img/Header/back.png")}
+      source={require("../../../assets/img/Header/back.png")}
       style={styles.backImage}
     />
   </TouchableOpacity>

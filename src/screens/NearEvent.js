@@ -17,14 +17,14 @@ const NearEvent = ({ navigation }) => {
 
         <ScrollView>
           <EventImageContainer
-            onPress={() => navigation.navigate("HomeTest")}
+            onPress={() => navigation.navigate("ImageSelection")}
           />
           <NearEventDistanceLine />
           <EventImageContainer
-            onPress={() => navigation.navigate("HomeTest")}
+            onPress={() => navigation.navigate("ImageSelection")}
           />
           <EventImageContainer
-            onPress={() => navigation.navigate("HomeTest")}
+            onPress={() => navigation.navigate("ImageSelection")}
           />
           <NearEventDistanceLine />
           <EventImageContainer onPress={() => navigation.navigate("HomeTab")} />

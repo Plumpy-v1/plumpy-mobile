@@ -9,12 +9,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import SignUpScreen from "../screens/SignUpScreen";
 import MainServiceScreen from "../screens/MainServiceScreen";
-import {
-  Back,
-  Profile,
-} from "../components/NearEventContainer/HeaderComponent/NavIcon";
+import { Back, Profile } from "../components/HeaderComponent/NavIcon";
 import { Navigation } from "react-native-navigation";
 import { Feather } from "@expo/vector-icons";
+import ImageComponent from "../components/ImageSelection/ImageComponent";
+import ImageSelectionContainer from "../screens/ImageSelectionContainer";
 // Old Navigation
 
 // New Navigation
@@ -86,6 +85,24 @@ export const AppStack = ({ navigation }) => {
           options={{
             headerShown: false,
           }}
+        />
+        <Stack.Screen
+          name={"ImageSelection"}
+          component={ImageSelectionContainer}
+          options={({ navigation }) => ({
+            headerTitle: "Plumpy",
+            headerStyle: { backgroundColor: "#FBE7E3" },
+
+            headerTitleStyle: { fontFamily: "Poppins-Bold" },
+            //headerTransparent: true,
+            headerTitleAlign: "center",
+            headerLeft: () => <Back onPress={() => navigation.pop()} />,
+            headerLeftContainerStyle: { padding: 15 },
+            headerRight: () => (
+              <Profile onPress={() => navigation.navigate("")} />
+            ),
+            headerRightContainerStyle: { padding: 15 },
+          })}
         />
 
         <Stack.Screen

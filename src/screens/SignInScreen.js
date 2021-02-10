@@ -95,9 +95,17 @@ const SignInScreen = ({ navigation }) => {
           </View>
         </TouchableOpacity>
       </View>
+      <View style={{display:'flex',flexDirection:'row',justifyContent:'space-around',width:'90%'}}>
+
       <TouchableOpacity onPress={() => console.log("forgot pass")}>
-        <Text style={styles.forgetText}>forgot password ?</Text>
+        <Text style={styles.forgetText}>forgot password ? </Text>
       </TouchableOpacity>
+      <Text style={{color:'#fff',fontSize: 15,paddingLeft:-10}}>Or</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+        <Text style={{color:'#FF7C7C',  fontSize: 15,}}>SignUp</Text>
+      </TouchableOpacity>
+      </View>
+      
       <Text style={styles.loginText}>login with</Text>
       <View style={styles.loginAuth}>
         <TouchableOpacity>
@@ -145,14 +153,14 @@ const styles = StyleSheet.create({
   forgetText: {
     color: "#FFFFFF",
     // marginTop: 18,
-    marginLeft: 25,
+    
     // marginRight: 230,
     fontSize: 15,
-    flexDirection: "row",
-    alignItems: "flex-start",
-    textAlign: "left",
-    lineHeight: 23,
-    paddingRight: "50%",
+    // flexDirection: "row",
+    // alignItems: "flex-start",
+    // textAlign: "left",
+    
+    // paddingRight: "50%",
   },
   loginText: {
     color: "#FBE7E3",
