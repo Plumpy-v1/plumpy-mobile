@@ -10,14 +10,14 @@ const PollScreen = ({ navigation }) => {
         UpVote Requests
       </Text>
       <PollUpVoteContainer />
-      {/* <View style={styles.buttonPosition}> */}
+      
         <CreatePollButton
           title='Create Event Request'
           colorbg='#FFFFFF'
           textcolor='#FF7C7C'
           onPress={() => navigation.navigate("EventRequest")}
         />
-      {/* </View> */}
+     
     </SafeAreaView>
   );
 };
@@ -28,9 +28,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: "flex-end",
   },
-  buttonPosition: {
-    justifyContent: "flex-end",
-  },
+  
 });
 
 export default PollScreen;

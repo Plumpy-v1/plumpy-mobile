@@ -17,20 +17,41 @@ const NearEvent = ({ navigation }) => {
 
         <ScrollView>
           <EventImageContainer
+           date="12-Dec-2020"
+              title="Cooking is good"
+              location="sardar bag hall,bardoli"
             onPress={() => navigation.navigate("ImageSelection")}
           />
           <NearEventDistanceLine />
           <EventImageContainer
+           date="12-Dec-2020"
+              title="Cooking is good"
+              location="sardar bag hall,bardoli"
             onPress={() => navigation.navigate("ImageSelection")}
           />
           <EventImageContainer
+           date="12-Dec-2020"
+              title="Cooking is good"
+              location="sardar bag hall,bardoli"
             onPress={() => navigation.navigate("ImageSelection")}
           />
           <NearEventDistanceLine />
-          <EventImageContainer onPress={() => navigation.navigate("HomeTab")} />
+          <EventImageContainer 
+           date="12-Dec-2020"
+              title="Cooking is good"
+              location="sardar bag hall,bardoli"
+          onPress={() => navigation.navigate("HomeTab")} />
           <NearEventDistanceLine />
-          <EventImageContainer onPress={() => navigation.navigate("HomeTab")} />
-          <EventImageContainer onPress={() => navigation.navigate("HomeTab")} />
+          <EventImageContainer 
+           date="12-Dec-2020"
+              title="Cooking is good"
+              location="sardar bag hall,bardoli"
+          onPress={() => navigation.navigate("HomeTab")} />
+          <EventImageContainer
+           date="12-Dec-2020"
+              title="Cooking is good"
+              location="sardar bag hall,bardoli"
+           onPress={() => navigation.navigate("HomeTab")} />
         </ScrollView>
         </View>
       </SafeAreaView>

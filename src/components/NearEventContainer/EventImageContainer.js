@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const EventImageContainer = ({onPress}) => {
+const EventImageContainer = ({onPress,date,title,location}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onPress}>
@@ -13,11 +13,11 @@ const EventImageContainer = ({onPress}) => {
             style={styles.image}
           />
           <View>
-            <Text style={styles.details}>12-Dec-2020</Text>
-            <Text style={styles.details}>Cooking is good</Text>
+            <Text style={styles.details}>{date}</Text>
+            <Text style={styles.details}>{title}</Text>
             <View style={styles.locationContainer}>
               <EvilIcons name='location' size={21} color='white' />
-              <Text style={styles.details}>sardar bag hall,bardoli</Text>
+              <Text style={styles.details}>{location}</Text>
             </View>
           </View>
         </View>

@@ -10,20 +10,18 @@ const CreatePollButton = ({
   textcolor,
 }) => {
   return (
-    <TouchableOpacity onPress={onPress}>
-      <View
-        style={[styles.button, { backgroundColor: colorbg, width, height }]}
-      >
-        <AntDesign name='plus' size={22} color='#FF7C7C' />
-        <Text style={[styles.text, { color: textcolor }]}>{title}</Text>
-      </View>
+    <TouchableOpacity
+      style={[styles.button, { backgroundColor: colorbg, width, height }]}
+      onPress={onPress}
+    >
+      <AntDesign name='plus' size={22} color='#FF7C7C' />
+      <Text style={[styles.text, { color: textcolor }]}>{title}</Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     alignItems: "center",
@@ -33,7 +31,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    alignSelf:'flex-end',
+    alignSelf: "flex-end",
     backgroundColor: "red",
   },
   text: {

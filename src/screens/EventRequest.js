@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, TextInput } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import CustomButton from "../elements/CustomButton";
 
-const EventRequest = (props) => {
+const EventRequest = ({navigation}) => {
   const [selectedValue, setSelectedValue] = useState("java");
   return (
     <View style={styles.container}>
@@ -63,7 +63,7 @@ const EventRequest = (props) => {
         textcolor='#FFFFFF'
         width={"100%"}
         height={50}
-        onPress={() => navigation.navigate("EventRequest")}
+        onPress={() => navigation.pop()}
         
       />
     </View>
