@@ -16,6 +16,7 @@ import ImageComponent from "../components/ImageSelection/ImageComponent";
 import ImageSelectionContainer from "../screens/ImageSelectionContainer";
 import PollScreen from "../screens/PollScreen";
 import PollUpVoteContainer from "../components/PollUpVote/PollUpVoteContainer";
+import EventRequest from "../screens/EventRequest";
 
 
 
@@ -30,7 +31,8 @@ export const AppStack = ({ navigation }) => {
     <NavigationContainer>
       <Stack.Navigator>
 
-     
+      
+
         <Stack.Screen
           name={"IntroOne"}
           component={IntroOneScreen}
@@ -131,6 +133,27 @@ export const AppStack = ({ navigation }) => {
             headerRightContainerStyle: { padding: 15 },
           })}
         />
+
+      <Stack.Screen
+          name={"EventRequest"}
+          component={EventRequest}
+          options={({ navigation }) => ({
+            headerTitle: "Plumpy",
+            headerTitleStyle: { fontFamily: "Poppins-Bold",color:'#FF7C7C' },
+           // headerTransparent: true,
+           headerStyle: { backgroundColor: "#FBE7E3", },
+           
+            headerTitleAlign: "center",
+            headerLeft: () => <Back onPress={() => navigation.pop()} />,
+            headerLeftContainerStyle: { padding: 15 },
+            headerRight: () => (
+              <Profile onPress={() => navigation.navigate("")} />
+            ),
+            headerRightContainerStyle: { padding: 15 },
+          })}
+        />
+
+
         <Stack.Screen
           name={"HomeTest"}
           component={HomeScreenTest}

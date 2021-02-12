@@ -6,19 +6,18 @@ import PollUpVoteContainer from "../components/PollUpVote/PollUpVoteContainer";
 const PollScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-    
       <Text style={{ fontSize: 22, textAlign: "center", color: "#FF7C7C" }}>
         UpVote Requests
       </Text>
       <PollUpVoteContainer />
-      <View style={styles.buttonPosition}>
+      {/* <View style={styles.buttonPosition}> */}
         <CreatePollButton
-          title='create event request'
+          title='Create Event Request'
           colorbg='#FFFFFF'
           textcolor='#FF7C7C'
-          onPress={() => navigation.navigate("IntroSecond")}
+          onPress={() => navigation.navigate("EventRequest")}
         />
-      </View>
+      {/* </View> */}
     </SafeAreaView>
   );
 };
@@ -31,7 +30,6 @@ const styles = StyleSheet.create({
   },
   buttonPosition: {
     justifyContent: "flex-end",
-   
   },
 });
 

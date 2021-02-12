@@ -14,7 +14,7 @@ const CreatePollButton = ({
       <View
         style={[styles.button, { backgroundColor: colorbg, width, height }]}
       >
-        <AntDesign name='plus' size={24} color='#FF7C7C' />
+        <AntDesign name='plus' size={22} color='#FF7C7C' />
         <Text style={[styles.text, { color: textcolor }]}>{title}</Text>
       </View>
     </TouchableOpacity>
