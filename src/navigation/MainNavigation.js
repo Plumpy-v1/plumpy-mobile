@@ -14,6 +14,11 @@ import { Navigation } from "react-native-navigation";
 import { Feather } from "@expo/vector-icons";
 import ImageComponent from "../components/ImageSelection/ImageComponent";
 import ImageSelectionContainer from "../screens/ImageSelectionContainer";
+import PollScreen from "../screens/PollScreen";
+import PollUpVoteContainer from "../components/PollUpVote/PollUpVoteContainer";
+
+
+
 // Old Navigation
 
 // New Navigation
@@ -24,6 +29,8 @@ export const AppStack = ({ navigation }) => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+
+     
         <Stack.Screen
           name={"IntroOne"}
           component={IntroOneScreen}
@@ -104,7 +111,26 @@ export const AppStack = ({ navigation }) => {
             headerRightContainerStyle: { padding: 15 },
           })}
         />
+       
 
+       <Stack.Screen
+          name={"PollScreen"}
+          component={PollScreen}
+          options={({ navigation }) => ({
+            headerTitle: "Plumpy",
+            headerTitleStyle: { fontFamily: "Poppins-Bold",color:'#FF7C7C' },
+           // headerTransparent: true,
+           headerStyle: { backgroundColor: "#FBE7E3", },
+           
+            headerTitleAlign: "center",
+            headerLeft: () => <Back onPress={() => navigation.pop()} />,
+            headerLeftContainerStyle: { padding: 15 },
+            headerRight: () => (
+              <Profile onPress={() => navigation.navigate("")} />
+            ),
+            headerRightContainerStyle: { padding: 15 },
+          })}
+        />
         <Stack.Screen
           name={"HomeTest"}
           component={HomeScreenTest}
