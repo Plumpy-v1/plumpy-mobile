@@ -6,9 +6,9 @@ import IntroOneScreen from "../screens/IntroOneScreen";
 import IntroSecondScreen from "../screens/IntroSecondScreen";
 import SignInScreen from "../screens/SignInScreen";
 import { Feather } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import HomeScreenTest from "../screens/HomeScreenTest";
-import MainServiceScreen from '../screens/MainServiceScreen'
+import MainServiceScreen from "../screens/MainServiceScreen";
 import NearEvent from "../screens/NearEvent";
 
 const Tab = createBottomTabNavigator();
@@ -30,7 +30,7 @@ const HomeTabNavigation = (props) => {
         name={"Home"}
         component={MainServiceScreen}
         options={{
-          tabBarIcon: () => <Feather name='home' size={30} color='#FF7C7C' />,
+          tabBarIcon: () => <Feather name="home" size={30} color="#FF7C7C" />,
 
           tabBarLabel: () => {
             return null;
@@ -41,7 +41,7 @@ const HomeTabNavigation = (props) => {
         name={"Search"}
         component={NearEvent}
         options={{
-          tabBarIcon: () => <Feather name='search' size={30} color='#FF7C7C' />,
+          tabBarIcon: () => <Feather name="search" size={30} color="#FF7C7C" />,
 
           tabBarLabel: () => {
             return null;
@@ -53,7 +53,7 @@ const HomeTabNavigation = (props) => {
         component={MainServiceScreen}
         options={{
           tabBarIcon: () => (
-            <MaterialIcons name='favorite-border' size={30} color='#FF7C7C' />
+            <MaterialCommunityIcons name="logout" size={30} color="#FF7C7C" />
           ),
 
           tabBarLabel: () => {
