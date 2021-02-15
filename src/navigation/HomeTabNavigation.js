@@ -11,6 +11,7 @@ import HomeScreenTest from "../screens/HomeScreenTest";
 import MainServiceScreen from "../screens/MainServiceScreen";
 import NearEvent from "../screens/NearEvent";
 import { FontAwesome } from "@expo/vector-icons";
+import Logout from "../components/Logout/Logout";
 
 const Tab = createBottomTabNavigator();
 
@@ -52,6 +53,19 @@ const HomeTabNavigation = (props) => {
       <Tab.Screen
         name={"Chat"}
         component={MainServiceScreen}
+        options={{
+          tabBarIcon: () => (
+            <MaterialCommunityIcons name="logout" size={30} color="#FF7C7C" />
+          ),
+
+          tabBarLabel: () => {
+            return null;
+          },
+        }}
+      />
+      <Tab.Screen
+        name={"logout"}
+        component={Logout}
         options={{
           tabBarIcon: () => (
             <MaterialCommunityIcons name="logout" size={30} color="#FF7C7C" />

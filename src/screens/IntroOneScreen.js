@@ -11,7 +11,7 @@ import {
 import { CommonStyles } from "../styles/CommonStyles";
 
 import CustomButton from "../elements/CustomButton";
-import { Get_shareddata, Set_shareddata } from "../../constant";
+import { Get_shareddata, DefaultState } from "../../constant";
 import { navigationiteam } from "../navigation/MainNavigation";
 
 const IntroOneScreen = ({ navigation }) => {
@@ -26,10 +26,10 @@ const IntroOneScreen = ({ navigation }) => {
     console.log("parth kanani");
     console.log(data);
     if (!!!data) {
-      await Set_shareddata();
+      await DefaultState();
     } else {
       if (data.isLogin) {
-        navigation.navigate(navigationiteam.HomePage);
+        navigation.navigate(navigationiteam.HomeTab);
       }
     }
   }, []);

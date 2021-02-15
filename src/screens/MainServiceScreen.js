@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -10,6 +10,7 @@ import {
 import { CommonStyles } from "../styles/CommonStyles";
 import { SwipeablePanel } from "rn-swipeable-panel";
 import NearEvent from "./NearEvent";
+import { DefaultState } from "../../constant";
 //import { Navigation } from "react-native-navigation";
 
 const MainServiceScreen = ({ navigation }) => {

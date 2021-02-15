@@ -1,6 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
+/**
+ *
+ * @param {{title,onPress,colorbg,width,height,textcolor}} param0
+ */
 const CustomButton = ({
   title,
   onPress,
@@ -29,7 +33,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     // paddingLeft:'15%',
     // paddingRight:'15%',
-    paddingHorizontal:'18%'
+    paddingHorizontal: "18%",
   },
   text: {
     // color: '#FF7C7C',

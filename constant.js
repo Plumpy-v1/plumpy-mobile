@@ -9,7 +9,7 @@ export const Get_shareddata = async () => {
   }
 };
 
-export const Set_shareddata = async () => {
+export const DefaultState = async () => {
   try {
     let isVisibleSplash = true;
     let token = "";
@@ -18,7 +18,7 @@ export const Set_shareddata = async () => {
     const jsonValue = JSON.stringify({ isVisibleSplash, token, isLogin });
     await AsyncStorage.setItem("shared_object", jsonValue);
   } catch (e) {
-    console.error({ Set_shareddata: e });
+    console.error({ DefaultState: e });
   }
 };
 /**

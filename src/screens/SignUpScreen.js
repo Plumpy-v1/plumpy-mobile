@@ -14,25 +14,90 @@ import {
 import { CommonStyles, deviceWidth } from "../styles/CommonStyles";
 
 import CustomButton from "../elements/CustomButton";
+import { env } from "../../env";
+import { DefaultState, Update_Mobilestore_Variable } from "../../constant";
+import { navigationiteam } from "../navigation/MainNavigation";
 
-
-const SignUpScreen = ({navigation}) => {
+const SignUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword,setConfirmPassword] = useState("")
+  const [name, setName] = useState("");
+
+  const _submit = async () => {
+    const query = `
+    mutation{
+      register(input :{email :\"${email.toString()}\" ,password :\"${password.toString()}\" , name :\"${name.toString()}\"})
+      {
+        success
+        token
+      }
+    }
+`;
+
+    console.log({ query });
+    const url = env.url;
+
+    const params = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ query }),
+    };
+    try {
+      const res = await fetch(url, params);
+      const data = await res.json();
+
+      console.log({ data });
+
+      if (!!data.data.register.success) {
+        await Update_Mobilestore_Variable({
+          isLogin: true,
+          token: data.data.register.token,
+          isVisibleSplash: false,
+        });
+        navigation.navigate(navigationiteam.HomeTab);
+      }
+    } catch (error) {
+      console.log({ errorInReg: error });
+    }
+  };
+
   return (
     <ImageBackground
       style={[CommonStyles.normalSinglePage, CommonStyles.SignInPageBackgroud]}
       source={require("../../assets/img/SignInScreen/LogInBack.png")}
-      resizeMode='cover'
+      resizeMode="cover"
     >
-      <StatusBar barStyle='light-content' />
+      <StatusBar barStyle="light-content" />
       <View style={CommonStyles.SignInLogoImageBox}>
         <Image
           source={require("../../assets/img/SignInScreen/LoginPageLogo.png")}
         />
       </View>
       <View style={styles.formBox}>
+        <View style={CommonStyles.textInputField}>
+          <Image
+            source={require("../../assets/img/SignInScreen/padlock.png")}
+            style={{
+              position: "absolute",
+              bottom: 12,
+              left: 20,
+              width: 17,
+              height: 22,
+            }}
+          />
+          <TextInput
+            placeholder="Name"
+            // type="text"
+            placeholderTextColor="#FF7C7C"
+            style={CommonStyles.textInput}
+            underlineColorAndroid="transparent"
+            value={name}
+            onChangeText={(eName) => setName(eName)}
+          />
+        </View>
+
         <View style={CommonStyles.textInputField}>
           <Image
             source={require("../../assets/img/SignInScreen/avatar.png")}
@@ -45,15 +110,15 @@ const SignUpScreen = ({navigation}) => {
             }}
           />
           <TextInput
-            placeholder='Email'
-            placeholderTextColor='#FF7C7C'
+            placeholder="Email"
+            placeholderTextColor="#FF7C7C"
             style={CommonStyles.textInput}
-            underlineColorAndroid='transparent'
+            underlineColorAndroid="transparent"
             value={email}
             onChangeText={(nemail) => setEmail(nemail)}
           />
         </View>
-       
+
         <View style={CommonStyles.textInputField}>
           <Image
             source={require("../../assets/img/SignInScreen/padlock.png")}
@@ -66,50 +131,30 @@ const SignUpScreen = ({navigation}) => {
             }}
           />
           <TextInput
-            placeholder='Password'
-            type='password'
-            placeholderTextColor='#FF7C7C'
+            placeholder="Password"
+            type="password"
+            placeholderTextColor="#FF7C7C"
             style={CommonStyles.textInput}
-            underlineColorAndroid='transparent'
+            underlineColorAndroid="transparent"
             value={password}
             onChangeText={(pass) => setPassword(pass)}
           />
         </View>
-        <View style={CommonStyles.textInputField}>
-          <Image
-            source={require("../../assets/img/SignInScreen/padlock.png")}
-            style={{
-              position: "absolute",
-              bottom: 12,
-              left: 20,
-              width: 17,
-              height: 22,
-            }}
-          />
-          <TextInput
-            placeholder='Comfirm Password'
-            type='password'
-            placeholderTextColor='#FF7C7C'
-            style={CommonStyles.textInput}
-            underlineColorAndroid='transparent'
-            value={confirmPassword}
-            onChangeText={(pass) => setConfirmPassword(pass)}
-          />
-        </View>
-        <TouchableOpacity onPress={() => console.log("Start")}>
+
+        <TouchableOpacity>
           <View style={CommonStyles.LogInButton}>
             <CustomButton
-              title='SignUp'
-              textcolor='#FFFFFF'
-              colorbg='#FF7C7C'
+              title="SignUp"
+              textcolor="#FFFFFF"
+              colorbg="#FF7C7C"
               width={"100%"}
               height={45}
-              onPress={() => navigation.navigate("HomeTab")}
+              onPress={_submit}
             />
           </View>
         </TouchableOpacity>
       </View>
-      
+
       <Text style={styles.loginText}>SignUp with</Text>
       <View style={styles.loginAuth}>
         <TouchableOpacity>
@@ -173,7 +218,7 @@ const styles = StyleSheet.create({
     // lineHeight: ,
     width: 100,
     height: 24,
-    textAlign:'center',
+    textAlign: "center",
   },
   loginAuth: {
     flexDirection: "row",
