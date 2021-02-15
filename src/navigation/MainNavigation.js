@@ -20,6 +20,22 @@ import PollUpVoteContainer from "../components/PollUpVote/PollUpVoteContainer";
 import EventRequest from "../screens/EventRequest";
 import HistoryEvents from "../screens/HistoryEvents";
 
+export const navigationiteam = {
+  IntroOne: "IntroOne",
+  HomeTab: "HomeTab",
+  IntroSecond: "IntroSecond",
+  SignIn: "SignIn",
+  SignUp: "SignUp",
+  NearEvent: "NearEvent",
+  HistoryEvents: "HistoryEvents",
+  HomePage: "HomePage",
+  ImageSelection: "ImageSelection",
+  FutureEvents: "FutureEvents",
+  PollScreen: "PollScreen",
+  EventRequest: "EventRequest",
+  HomeTest: "HomeTest",
+};
+
 // Old Navigation
 
 // New Navigation
