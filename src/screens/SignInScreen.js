@@ -72,15 +72,6 @@ const SignInScreen = ({ navigation }) => {
             value={password}
             onChangeText={(pass) => setPassword(pass)}
           />
-          <TextInput
-            placeholder="Password"
-            type="password"
-            placeholderTextColor="#FF7C7C"
-            style={CommonStyles.textInput}
-            underlineColorAndroid="transparent"
-            value={password}
-            onChangeText={(pass) => setPassword(pass)}
-          />
         </View>
         <TouchableOpacity onPress={() => console.log("Start")}>
           <View style={CommonStyles.LogInButton}>
@@ -95,12 +86,16 @@ const SignInScreen = ({ navigation }) => {
           </View>
         </TouchableOpacity>
       </View>
-      <View style={{display:'flex',flexDirection:'row',justifyContent:'space-around',width:'90%'}}>
+      <View style={{display:'flex',flexDirection:'row',justifyContent:'space-around',width:'100%'}}>
+            <View style={{display:'flex',flexDirection:'row',justifyContent:'flex-start'}}>
+              
+           <TouchableOpacity onPress={() => console.log("forgot pass")}>
+          <Text style={styles.forgetText}>forgot password ? </Text>
+          </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => console.log("forgot pass")}>
-        <Text style={styles.forgetText}>forgot password ? </Text>
-      </TouchableOpacity>
+
       <Text style={{color:'#fff',fontSize: 15,paddingLeft:-10}}>Or</Text>
+            </View>
       <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
         <Text style={{color:'#FF7C7C',  fontSize: 15,}}>SignUp</Text>
       </TouchableOpacity>

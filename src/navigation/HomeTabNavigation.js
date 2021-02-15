@@ -10,6 +10,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import HomeScreenTest from "../screens/HomeScreenTest";
 import MainServiceScreen from "../screens/MainServiceScreen";
 import NearEvent from "../screens/NearEvent";
+import { FontAwesome } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -49,7 +50,7 @@ const HomeTabNavigation = (props) => {
         }}
       />
       <Tab.Screen
-        name={"Favorite"}
+        name={"Chat"}
         component={MainServiceScreen}
         options={{
           tabBarIcon: () => (

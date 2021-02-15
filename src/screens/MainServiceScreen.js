@@ -14,6 +14,7 @@ import NearEvent from "./NearEvent";
 
 const MainServiceScreen = ({ navigation }) => {
   return (
+    
     <ImageBackground
       style={styles.backimage}
       source={require("../../assets/img/HomeScreen/Homeback.png")}
@@ -84,7 +85,7 @@ const MainServiceScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View style={styles.colom2}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("PollScreen")}>
             <Image
               source={require("../../assets/img/HomeScreen/Reqevent.png")}
             />
@@ -98,7 +99,7 @@ const MainServiceScreen = ({ navigation }) => {
               Request Events or Upvote Events
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ marginTop: 20 }}>
+          <TouchableOpacity style={{ marginTop: 20 }} onPress={() => navigation.navigate("HistoryEvents")}>
             <Image
               source={require("../../assets/img/HomeScreen/History.png")}
             />

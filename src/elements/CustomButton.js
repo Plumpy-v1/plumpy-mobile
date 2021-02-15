@@ -27,8 +27,9 @@ const styles = StyleSheet.create({
 
     justifyContent: "center",
     alignItems: "center",
-    paddingLeft:'15%',
-    paddingRight:'15%',
+    // paddingLeft:'15%',
+    // paddingRight:'15%',
+    paddingHorizontal:'18%'
   },
   text: {
     // color: '#FF7C7C',
