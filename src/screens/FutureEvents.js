@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet, Text, SafeAreaView, ScrollView } from "react-native";
 import ImageComponent from "../components/ImageSelection/ImageComponent";
 import { Feather } from "@expo/vector-icons";
+import FutureEventList from "../components/FutureEventList/FutureEventList";
 
 const FutureEvents = ({ navigation }) => {
   return (
@@ -17,15 +18,11 @@ const FutureEvents = ({ navigation }) => {
           >
             <Text style={styles.text}>Your Events</Text>
           </View>
-
+          {/* need to put flat list */}
           <ScrollView style={styles.scroll}>
-            <ImageComponent />
-
-            <ImageComponent />
-
-            <ImageComponent />
-            <ImageComponent />
-            <ImageComponent />
+            <FutureEventList />
+            <FutureEventList />
+            <FutureEventList />
           </ScrollView>
         </View>
       </SafeAreaView>
@@ -40,6 +37,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#5C63AB",
     // borderTopStartRadius: 20,
     // borderTopEndRadius: 20,
+    flex : 1
   },
   text: {
     fontSize: 22,
