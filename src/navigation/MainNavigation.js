@@ -19,10 +19,7 @@ import PollUpVoteContainer from "../components/PollUpVote/PollUpVoteContainer";
 import EventRequest from "../screens/EventRequest";
 import HistoryEvents from "../screens/HistoryEvents";
 import EventDetails from "../screens/EventDetails";
-
-// Old Navigation
-
-// New Navigation
+import UserProfile from "../screens/UserProfile";
 
 const Stack = createStackNavigator();
 
@@ -30,6 +27,30 @@ export const AppStack = ({ navigation }) => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+
+      <Stack.Screen
+          name={"UserProfile"}
+          component={UserProfile}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name={"HistoryEvents"}
+          component={HistoryEvents}
+          options={({ navigation }) => ({
+            headerTitle: "Plumpy",
+            headerTitleStyle: { fontFamily: "Poppins-Bold" },
+            headerTransparent: true,
+            headerTitleAlign: "center",
+            headerLeft: () => <Back onPress={() => navigation.pop()} />,
+            headerLeftContainerStyle: { padding: 15 },
+            headerRight: () => (
+              <Profile onPress={() => navigation.navigate("")} />
+            ),
+            headerRightContainerStyle: { padding: 15 },
+          })}
+        />
         <Stack.Screen
           name={"IntroOne"}
           component={IntroOneScreen}
@@ -105,22 +126,6 @@ export const AppStack = ({ navigation }) => {
           })}
         />
 
-        <Stack.Screen
-          name={"HistoryEvents"}
-          component={HistoryEvents}
-          options={({ navigation }) => ({
-            headerTitle: "Plumpy",
-            headerTitleStyle: { fontFamily: "Poppins-Bold" },
-            headerTransparent: true,
-            headerTitleAlign: "center",
-            headerLeft: () => <Back onPress={() => navigation.pop()} />,
-            headerLeftContainerStyle: { padding: 15 },
-            headerRight: () => (
-              <Profile onPress={() => navigation.navigate("")} />
-            ),
-            headerRightContainerStyle: { padding: 15 },
-          })}
-        />
         <Stack.Screen
           name={"HomePage"}
           component={MainServiceScreen}
