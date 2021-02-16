@@ -48,10 +48,12 @@ const MainServiceScreen = ({ navigation }) => {
             Hope You Doing great
           </Text>
         </View>
-        <Image
-          style={styles.profilepic}
-          source={require("../../assets/img/HomeScreen/Profile.png")}
-        />
+        <TouchableOpacity onPress={() => navigation.navigate("UserProfile")}>
+          <Image
+            style={styles.profilepic}
+            source={require("../../assets/img/HomeScreen/Profile.png")}
+          />
+        </TouchableOpacity>
       </View>
       <View style={styles.servicecontainer}>
         <View style={styles.colom1}>

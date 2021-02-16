@@ -19,6 +19,7 @@ import PollScreen from "../screens/PollScreen";
 import PollUpVoteContainer from "../components/PollUpVote/PollUpVoteContainer";
 import EventRequest from "../screens/EventRequest";
 import HistoryEvents from "../screens/HistoryEvents";
+import UserProfile from "../screens/UserProfile";
 import Logout from "../components/Logout/Logout";
 
 export const navigationiteam = {
@@ -35,6 +36,7 @@ export const navigationiteam = {
   PollScreen: "PollScreen",
   EventRequest: "EventRequest",
   HomeTest: "HomeTest",
+  UserProfile: "UserProfile",
 };
 import EventDetails from "../screens/EventDetails";
 
@@ -85,6 +87,19 @@ export const AppStack = ({ navigation }) => {
           options={{
             headerShown: false,
           }}
+        />
+        <Stack.Screen
+          name={"UserProfile"}
+          component={UserProfile}
+          options={({ navigation }) => ({
+            headerTitle: "Plumpy",
+            headerTitleStyle: { fontFamily: "Poppins-Bold" },
+            headerTransparent: true,
+            headerTitleAlign: "center",
+            headerLeft: () => <Back onPress={() => navigation.pop()} />,
+            headerLeftContainerStyle: { padding: 15 },
+            headerRightContainerStyle: { padding: 15 },
+          })}
         />
 
         <Stack.Screen
@@ -185,7 +200,7 @@ export const AppStack = ({ navigation }) => {
             headerRightContainerStyle: { padding: 15 },
           })}
         />
-{/* 
+        {/* 
         <Stack.Screen
           name={"PollScreen"}
           component={PollScreen}

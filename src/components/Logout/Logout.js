@@ -19,14 +19,13 @@ import CustomButton from "../../elements/CustomButton";
 function Logout({ navigation }) {
   const _logout = async () => {
     await DefaultState();
-    navigation.navigate(navigationiteam.SignUp);
+    navigation.navigate("SignIn");
   };
 
   return (
     <View
       style={{
-        display: "flex",
-        flex: "1",
+        flex: 1,
         justifyContent: "center",
         alignItems: "center",
       }}
@@ -34,11 +33,11 @@ function Logout({ navigation }) {
       <Text>mohit</Text>
       <CustomButton
         colorbg="#000"
-        height="30"
+        // height={30}
         onPress={_logout}
         title="Logout"
         textcolor="#FFF"
-        width="200"
+        // width={200}
       />
     </View>
   );

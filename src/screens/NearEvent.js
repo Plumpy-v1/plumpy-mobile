@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import {
   View,
   StyleSheet,
@@ -13,10 +13,70 @@ import NearEventDistanceLine from "../components/NearEventContainer/NearEventDis
 import eventdata from "../../assets/data/feed";
 import { Feather } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Get_shareddata } from "../../constant";
 const NearEvent = ({ navigation }) => {
+
+  useEffect(() => {
+    const getExploreEvent = async () => {
+
+      const {token } = await Get_shareddata()
+
+
+       const query = `
+   query{
+  viewer{
+    exploreQuery{
+      edges{
+        node{
+          eventId
+          date
+          address
+        	name
+          eventPic
+          
+        }
+      }
+    }
+  }
+}
+`;
+
+      //  console.log({ query });
+       const url = env.url;
+
+       const params = {
+         method: "POST",
+         headers: {
+           "Content-Type": "application/json",
+           "authorization" : ""
+         },
+         body: JSON.stringify({ query }),
+       };
+       try {
+         const res = await fetch(url, params);
+         const data = await res.json();
+
+         console.log({ data });
+
+         if (!!data.data.login.success) {
+           await Update_Mobilestore_Variable({
+             isLogin: true,
+             token: data.data.login.token,
+             isVisibleSplash: false,
+           });
+           navigation.navigate(navigationiteam.HomeTab);
+         }
+       } catch (error) {
+         console.log({ errorInReg: error });
+       }
+      
+    }
+  }, [input])
+
+
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView> 
         <View style={{ marginTop: "15%" }}>
           <View
             style={{
