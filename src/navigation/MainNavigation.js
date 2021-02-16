@@ -18,6 +18,7 @@ import PollScreen from "../screens/PollScreen";
 import PollUpVoteContainer from "../components/PollUpVote/PollUpVoteContainer";
 import EventRequest from "../screens/EventRequest";
 import HistoryEvents from "../screens/HistoryEvents";
+import EventDetails from "../screens/EventDetails";
 
 
 // Old Navigation
@@ -31,6 +32,8 @@ export const AppStack = ({ navigation }) => {
     <NavigationContainer>
       <Stack.Navigator>
 
+
+      
       
 
         <Stack.Screen
@@ -88,6 +91,26 @@ export const AppStack = ({ navigation }) => {
             headerRightContainerStyle: { padding: 15 },
           })}
         />
+
+<Stack.Screen
+          name={"EventDetails"}
+          component={EventDetails}
+          options={({ navigation }) => ({
+            headerTitle: "Plumpy",
+            headerStyle: { backgroundColor: "#FBE7E3" },
+
+            headerTitleStyle: { fontFamily: "Poppins-Bold" },
+            //headerTransparent: true,
+            headerTitleAlign: "center",
+            headerLeft: () => <Back onPress={() => navigation.pop()} />,
+            headerLeftContainerStyle: { padding: 15 },
+            headerRight: () => (
+              <Profile onPress={() => navigation.navigate("")} />
+            ),
+            headerRightContainerStyle: { padding: 15 },
+          })}
+        />
+
         <Stack.Screen
           name={"HistoryEvents"}
           component={HistoryEvents}
@@ -111,24 +134,7 @@ export const AppStack = ({ navigation }) => {
             headerShown: false,
           }}
         />
-        <Stack.Screen
-          name={"ImageSelection"}
-          component={ImageSelectionContainer}
-          options={({ navigation }) => ({
-            headerTitle: "Plumpy",
-            headerStyle: { backgroundColor: "#FBE7E3" },
-
-            headerTitleStyle: { fontFamily: "Poppins-Bold" },
-            //headerTransparent: true,
-            headerTitleAlign: "center",
-            headerLeft: () => <Back onPress={() => navigation.pop()} />,
-            headerLeftContainerStyle: { padding: 15 },
-            headerRight: () => (
-              <Profile onPress={() => navigation.navigate("")} />
-            ),
-            headerRightContainerStyle: { padding: 15 },
-          })}
-        />
+       
        
 
        <Stack.Screen
@@ -149,6 +155,26 @@ export const AppStack = ({ navigation }) => {
             headerRightContainerStyle: { padding: 15 },
           })}
         />
+
+<Stack.Screen
+          name={"ImageSelection"}
+          component={ImageSelectionContainer}
+          options={({ navigation }) => ({
+            headerTitle: "Plumpy",
+            headerStyle: { backgroundColor: "#FBE7E3" },
+
+            headerTitleStyle: { fontFamily: "Poppins-Bold" },
+            //headerTransparent: true,
+            headerTitleAlign: "center",
+            headerLeft: () => <Back onPress={() => navigation.pop()} />,
+            headerLeftContainerStyle: { padding: 15 },
+            headerRight: () => (
+              <Profile onPress={() => navigation.navigate("")} />
+            ),
+            headerRightContainerStyle: { padding: 15 },
+          })}
+        />
+      
 
       <Stack.Screen
           name={"EventRequest"}

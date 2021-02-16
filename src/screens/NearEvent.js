@@ -10,7 +10,7 @@ const NearEvent = ({ navigation }) => {
       <SafeAreaView>
       <View style={{marginTop:"15%"}}>
         <View style={{display:'flex', flexDirection:'row',justifyContent:'space-between'}}>
-          <Text style={styles.text}>Near Events</Text>
+          <Text style={styles.text}>Explore Events</Text>
 
           <Feather style={styles.icon} name="search" size={24} color="black" />
         </View>
@@ -20,14 +20,14 @@ const NearEvent = ({ navigation }) => {
            date="12-Dec-2020"
               title="Cooking is good"
               location="sardar bag hall,bardoli"
-            onPress={() => navigation.navigate("ImageSelection")}
+            onPress={() => navigation.navigate("EventDetails")}
           />
           <NearEventDistanceLine />
           <EventImageContainer
            date="12-Dec-2020"
               title="Cooking is good"
               location="sardar bag hall,bardoli"
-            onPress={() => navigation.navigate("ImageSelection")}
+            onPress={() => navigation.navigate("EventDetails")}
           />
           <EventImageContainer
            date="12-Dec-2020"
