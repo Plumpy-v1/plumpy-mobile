@@ -25,8 +25,8 @@ const ImageSelectionContainer = ({navigation}) => {
             // showsHorizontalScrollIndicator={false}
             // snapToInterval={width-50}
           contentContainerStyle={{alignItems:'center'}}
-            snapToAlignment={"center"}
-            decelerationRate={'fast'}
+          snapToAlignment={"center"}
+          decelerationRate={'fast'}
 
              />
 
