@@ -1,7 +1,8 @@
 import React from "react";
-import { View, StyleSheet, ScrollView, Image, Button, Text, SafeAreaView } from "react-native";
+import { View, StyleSheet, ScrollView, Image, Button, Text, SafeAreaView, FlatList } from "react-native";
 import ImageComponent from "../components/ImageSelection/ImageComponent";
 import CustomButton from "../elements/CustomButton";
+import places from "../../assets/data/feed";
 
 const ImageSelectionContainer = ({navigation}) => {
   return (
@@ -13,20 +14,26 @@ const ImageSelectionContainer = ({navigation}) => {
     <Text style={{fontSize:20,textAlign:'center',color:'#000000'}}>Select 3 images You like</Text>
 
       {/* Todo Update with flatlist */}
-      <ScrollView style={styles.scroll}>
-        <ImageComponent />
+      
 
-        <ImageComponent />
 
-        <ImageComponent />
-        <ImageComponent />
-        <ImageComponent />
-        <ImageComponent />
-      </ScrollView>
+      <FlatList 
+            // ref={flatList}
+            data={places}
+            renderItem={({item}) => <ImageComponent post={item} /> } 
+           
+            // showsHorizontalScrollIndicator={false}
+            // snapToInterval={width-50}
+          contentContainerStyle={{alignItems:'center'}}
+          snapToAlignment={"center"}
+          decelerationRate={'fast'}
+
+             />
+
 
       <View style={{alignItems:'center',Bottom:3}}>
         <CustomButton
-          title='Next'
+          title='Done'
           colorbg='#FF7878'
           textcolor='#fff'
           onPress={() => navigation.navigate("IntroOne")}
@@ -41,13 +48,13 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 5,
     justifyContent: "space-around",
+   
   },
-  scroll: {
-    marginBottom:10,
-    
-  },
+  
   safe:{
-    backgroundColor:'#FBE7E3'
+    backgroundColor:'#FBE7E3',
+    flex:1,
+   
   }
 });
 

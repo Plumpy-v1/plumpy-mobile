@@ -62,7 +62,7 @@ const MainServiceScreen = ({ navigation }) => {
                 resizeMode="cover"
               />
               <Text style={[CommonStyles.regularBold, styles.cardText]}>
-                Near Events
+                Explore Events
               </Text>
             </View>
           </TouchableOpacity>

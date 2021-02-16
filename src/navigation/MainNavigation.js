@@ -36,6 +36,7 @@ export const navigationiteam = {
   EventRequest: "EventRequest",
   HomeTest: "HomeTest",
 };
+import EventDetails from "../screens/EventDetails";
 
 // Old Navigation
 
@@ -102,6 +103,26 @@ export const AppStack = ({ navigation }) => {
             headerRightContainerStyle: { padding: 15 },
           })}
         />
+
+        <Stack.Screen
+          name={"EventDetails"}
+          component={EventDetails}
+          options={({ navigation }) => ({
+            headerTitle: "Plumpy",
+            headerStyle: { backgroundColor: "#FBE7E3" },
+
+            headerTitleStyle: { fontFamily: "Poppins-Bold" },
+            //headerTransparent: true,
+            headerTitleAlign: "center",
+            headerLeft: () => <Back onPress={() => navigation.pop()} />,
+            headerLeftContainerStyle: { padding: 15 },
+            headerRight: () => (
+              <Profile onPress={() => navigation.navigate("")} />
+            ),
+            headerRightContainerStyle: { padding: 15 },
+          })}
+        />
+
         <Stack.Screen
           name={"HistoryEvents"}
           component={HistoryEvents}
@@ -125,15 +146,16 @@ export const AppStack = ({ navigation }) => {
             headerShown: false,
           }}
         />
+
         <Stack.Screen
-          name={"ImageSelection"}
-          component={ImageSelectionContainer}
+          name={"PollScreen"}
+          component={PollScreen}
           options={({ navigation }) => ({
             headerTitle: "Plumpy",
+            headerTitleStyle: { fontFamily: "Poppins-Bold", color: "#FF7C7C" },
+            // headerTransparent: true,
             headerStyle: { backgroundColor: "#FBE7E3" },
 
-            headerTitleStyle: { fontFamily: "Poppins-Bold" },
-            //headerTransparent: true,
             headerTitleAlign: "center",
             headerLeft: () => <Back onPress={() => navigation.pop()} />,
             headerLeftContainerStyle: { padding: 15 },
@@ -163,7 +185,7 @@ export const AppStack = ({ navigation }) => {
             headerRightContainerStyle: { padding: 15 },
           })}
         />
-
+{/* 
         <Stack.Screen
           name={"PollScreen"}
           component={PollScreen}
@@ -172,7 +194,18 @@ export const AppStack = ({ navigation }) => {
             headerTitleStyle: { fontFamily: "Poppins-Bold", color: "#FF7C7C" },
             // headerTransparent: true,
             headerStyle: { backgroundColor: "#FBE7E3" },
+          })}
+        /> */}
 
+        <Stack.Screen
+          name={"ImageSelection"}
+          component={ImageSelectionContainer}
+          options={({ navigation }) => ({
+            headerTitle: "Plumpy",
+            headerStyle: { backgroundColor: "#FBE7E3" },
+
+            headerTitleStyle: { fontFamily: "Poppins-Bold" },
+            //headerTransparent: true,
             headerTitleAlign: "center",
             headerLeft: () => <Back onPress={() => navigation.pop()} />,
             headerLeftContainerStyle: { padding: 15 },
