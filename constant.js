@@ -32,29 +32,32 @@ export const Update_Mobilestore_Variable = async ({
 }) => {
   try {
     const sobj = await AsyncStorage.getItem("shared_object");
+
     if (!!sobj) {
       let obj = JSON.parse(sobj);
-      let newObj = {};
+      let newObj = { ...obj };
       if (!!token) {
-        newobj = {
-          ...obj,
-          token,
+        newObj = {
+          ...newObj,
+          token: token,
         };
       }
       if (!!isLogin) {
-        newobj = {
-          ...obj,
-          isLogin,
+        newObj = {
+          ...newObj,
+          isLogin: isLogin,
         };
       }
 
       if (!!isVisibleSplash) {
-        newobj = {
-          ...obj,
-          isVisibleSplash,
+        newObj = {
+          ...newObj,
+          isVisibleSplash: isVisibleSplash,
         };
       }
-      const jsonValue = JSON.stringify(newobj);
+      console.log({ newObj, obj });
+      const jsonValue = JSON.stringify(newObj);
+      // console.log({ jsonValue });
       await AsyncStorage.setItem("shared_object", jsonValue);
     }
   } catch (e) {
