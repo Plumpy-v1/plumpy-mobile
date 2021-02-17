@@ -9,6 +9,8 @@ export default [
     bedroom: 3,
     date:'12-Dec-2020',
     oldPrice: 25,
+    name:'Manoj JAsoliya',
+    email:'jasoliyamanoj999@gmail.com',
     newPrice: 20,
     location:"Surat, Gujarart" ,
     totalPrice: 120,
