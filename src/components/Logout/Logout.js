@@ -19,7 +19,7 @@ import CustomButton from "../../elements/CustomButton";
 function Logout({ navigation }) {
   const _logout = async () => {
     await DefaultState();
-    navigation.navigate("SignIn");
+    await navigation.navigate("SignIn");
   };
 
   return (

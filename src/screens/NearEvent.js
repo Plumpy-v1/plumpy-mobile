@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -14,15 +14,18 @@ import eventdata from "../../assets/data/feed";
 import { Feather } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Get_shareddata } from "../../constant";
+import { env } from "../../env";
 const NearEvent = ({ navigation }) => {
+  const [events, setEvents] = useState([]);
+
+  // console.log({ events });
 
   useEffect(() => {
     const getExploreEvent = async () => {
+      const sharedData = await Get_shareddata();
+      // console.log({ sharedData });
 
-      const {token } = await Get_shareddata()
-
-
-       const query = `
+      const query = `
    query{
   viewer{
     exploreQuery{
@@ -42,41 +45,35 @@ const NearEvent = ({ navigation }) => {
 `;
 
       //  console.log({ query });
-       const url = env.url;
+      const url = env.url;
 
-       const params = {
-         method: "POST",
-         headers: {
-           "Content-Type": "application/json",
-           "authorization" : ""
-         },
-         body: JSON.stringify({ query }),
-       };
-       try {
-         const res = await fetch(url, params);
-         const data = await res.json();
+      const params = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: sharedData.token,
+        },
+        body: JSON.stringify({ query }),
+      };
+      try {
+        const res = await fetch(url, params);
+        const data = await res.json();
 
-         console.log({ data });
+        // console.log({ Listdata: data.data.viewer.exploreQuery.edges });
 
-         if (!!data.data.login.success) {
-           await Update_Mobilestore_Variable({
-             isLogin: true,
-             token: data.data.login.token,
-             isVisibleSplash: false,
-           });
-           navigation.navigate(navigationiteam.HomeTab);
-         }
-       } catch (error) {
-         console.log({ errorInReg: error });
-       }
-      
-    }
-  }, [input])
-
+        if (!!data.data.viewer.exploreQuery) {
+          setEvents([...events, ...data.data.viewer.exploreQuery.edges]);
+        }
+      } catch (error) {
+        console.log({ errorInReg: error });
+      }
+    };
+    getExploreEvent();
+  }, []);
 
   return (
     <View style={styles.container}>
-      <SafeAreaView> 
+      <SafeAreaView>
         <View style={{ marginTop: "15%" }}>
           <View
             style={{
@@ -90,21 +87,26 @@ const NearEvent = ({ navigation }) => {
             <TouchableOpacity onPress={() => console.log("Search")}>
               <Feather
                 style={styles.icon}
-                name='search'
+                name="search"
                 size={24}
-                color='black'
+                color="black"
               />
             </TouchableOpacity>
           </View>
 
           <FlatList
-            data={eventdata}
-            renderItem={({ item }) => (
-              <EventImageContainer
-                info={item}
-                onPress={() => navigation.navigate("EventDetails")}
-              />
-            )}
+            data={events}
+            renderItem={({ item }) => {
+              // console.log(event);
+
+              // return <Text>Mphit</Text>;
+              return (
+                <EventImageContainer
+                  info={item.node}
+                  onPress={() => navigation.navigate("EventDetails")}
+                />
+              );
+            }}
             snapToAlignment={"center"}
             decelerationRate={"fast"}
           />

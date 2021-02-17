@@ -56,7 +56,7 @@ const SignInScreen = ({ navigation }) => {
           token: data.data.login.token,
           isVisibleSplash: false,
         });
-        navigation.navigate(navigationiteam.HomeTab);
+        await navigation.navigate(navigationiteam.HomeTab);
       }
     } catch (error) {
       console.log({ errorInReg: error });

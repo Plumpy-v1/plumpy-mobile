@@ -3,21 +3,22 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-
-const EventImageContainer = ({onPress,info}) => {
-  
+const EventImageContainer = ({ onPress, info }) => {
   // const info = props.info;
+  console.log({ info });
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onPress}>
         <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{uri: info.image}} />
-          <View style={{marginHorizontal:12}}>
+          <Image style={styles.image} source={{ uri: "" }} />
+          <View style={{ marginHorizontal: 12 }}>
             <Text style={styles.details}>{info.date}</Text>
-            <Text numberOfLines={1} style={styles.details}>{info.title}</Text>
+            <Text numberOfLines={1} style={styles.details}>
+              {info.name}
+            </Text>
             <View style={styles.locationContainer}>
-              <EvilIcons name='location' size={21} color='white' />
-              <Text style={styles.details}>{info.location}</Text>
+              <EvilIcons name="location" size={21} color="white" />
+              <Text style={styles.details}>{info.address}</Text>
             </View>
           </View>
         </View>
