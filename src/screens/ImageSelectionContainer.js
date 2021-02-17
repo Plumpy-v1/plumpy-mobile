@@ -36,7 +36,7 @@ const ImageSelectionContainer = ({navigation}) => {
           title='Done'
           colorbg='#FF7878'
           textcolor='#fff'
-          onPress={() => navigation.navigate("IntroOne")}
+          onPress={() => navigation.navigate("JoinedEvent")}
         />
       </View>
     </View>
