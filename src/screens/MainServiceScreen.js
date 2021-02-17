@@ -48,7 +48,7 @@ const MainServiceScreen = ({ navigation }) => {
             Hope You Doing great
           </Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate("UserProfile")}>
+        <TouchableOpacity onPress={() => navigation.navigate("ProfileScreen")}>
           <Image
             style={styles.profilepic}
             source={require("../../assets/img/HomeScreen/Profile.png")}

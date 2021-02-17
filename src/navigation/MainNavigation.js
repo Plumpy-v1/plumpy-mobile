@@ -19,8 +19,6 @@ import PollScreen from "../screens/PollScreen";
 import PollUpVoteContainer from "../components/PollUpVote/PollUpVoteContainer";
 import EventRequest from "../screens/EventRequest";
 import HistoryEvents from "../screens/HistoryEvents";
-import UserProfile from "../screens/UserProfile";
-import Logout from "../components/Logout/Logout";
 
 export const navigationiteam = {
   IntroOne: "IntroOne",
@@ -89,20 +87,6 @@ export const AppStack = ({ navigation }) => {
             headerShown: false,
           }}
         />
-        <Stack.Screen
-          name={"UserProfile"}
-          component={UserProfile}
-          options={({ navigation }) => ({
-            headerTitle: "Plumpy",
-            headerTitleStyle: { fontFamily: "Poppins-Bold" },
-            headerTransparent: true,
-            headerTitleAlign: "center",
-            headerLeft: () => <Back onPress={() => navigation.pop()} />,
-            headerLeftContainerStyle: { padding: 15 },
-            headerRightContainerStyle: { padding: 15 },
-          })}
-        />
-
         <Stack.Screen
           name={"NearEvent"}
           component={NearEvent}
@@ -298,14 +282,6 @@ export const AppStack = ({ navigation }) => {
             ),
             headerRightContainerStyle: { padding: 15 },
           })}
-        />
-
-        <Stack.Screen
-          name={"logout"}
-          component={Logout}
-          options={{
-            headerShown: false,
-          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

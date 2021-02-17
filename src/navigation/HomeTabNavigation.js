@@ -1,17 +1,9 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
-// import HomeScreen from '../screens/Home';
-import IntroOneScreen from "../screens/IntroOneScreen";
-import IntroSecondScreen from "../screens/IntroSecondScreen";
-import SignInScreen from "../screens/SignInScreen";
 import { Feather } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import HomeScreenTest from "../screens/HomeScreenTest";
 import MainServiceScreen from "../screens/MainServiceScreen";
 import NearEvent from "../screens/NearEvent";
 import { FontAwesome } from "@expo/vector-icons";
-import Logout from "../components/Logout/Logout";
 
 const Tab = createBottomTabNavigator();
 
@@ -55,20 +47,7 @@ const HomeTabNavigation = (props) => {
         component={MainServiceScreen}
         options={{
           tabBarIcon: () => (
-            <MaterialCommunityIcons name="logout" size={30} color="#FF7C7C" />
-          ),
-
-          tabBarLabel: () => {
-            return null;
-          },
-        }}
-      />
-      <Tab.Screen
-        name={"logout"}
-        component={Logout}
-        options={{
-          tabBarIcon: () => (
-            <MaterialCommunityIcons name="logout" size={30} color="#FF7C7C" />
+            <FontAwesome name="wechat" size={30} color="#FF7C7C" />
           ),
 
           tabBarLabel: () => {

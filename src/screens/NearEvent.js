@@ -96,6 +96,7 @@ const NearEvent = ({ navigation }) => {
 
           <FlatList
             data={events}
+            keyExtractor={(item, index) => item.eventId}
             renderItem={({ item }) => {
               // console.log(event);
 
@@ -103,7 +104,11 @@ const NearEvent = ({ navigation }) => {
               return (
                 <EventImageContainer
                   info={item.node}
-                  onPress={() => navigation.navigate("EventDetails")}
+                  onPress={() =>
+                    navigation.navigate("EventDetails", {
+                      eventId: item.node.eventId,
+                    })
+                  }
                 />
               );
             }}

@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { env } from "../../../env";
 
 const EventImageContainer = ({ onPress, info }) => {
   // const info = props.info;
@@ -10,7 +11,13 @@ const EventImageContainer = ({ onPress, info }) => {
     <View style={styles.container}>
       <TouchableOpacity onPress={onPress}>
         <View style={styles.imageContainer}>
-          <Image style={styles.image} source={{ uri: "" }} />
+         
+          <Image
+            style={styles.image}
+            source={{
+              uri: `${env.serverUrl}/${info.eventPic || env.defaultImageName}`,
+            }}
+          />
           <View style={{ marginHorizontal: 12 }}>
             <Text style={styles.details}>{info.date}</Text>
             <Text numberOfLines={1} style={styles.details}>
