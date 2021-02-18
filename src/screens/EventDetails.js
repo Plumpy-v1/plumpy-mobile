@@ -1,10 +1,20 @@
-import React, { useEffect ,useState} from "react";
-import { View, StyleSheet ,Image, SafeAreaView,TouchableOpacity,FlatList, useWindowDimensions,Text} from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  StyleSheet,
+  Image,
+  SafeAreaView,
+  TouchableOpacity,
+  FlatList,
+  useWindowDimensions,
+  Text,
+} from "react-native";
 import places from "../../assets/data/feed";
 import ImageCorousel from "../components/EventDetail/ImageCorousel";
 import CustomButton from "../elements/CustomButton";
 import { Get_shareddata } from "../../constant";
 import { env } from "../../env";
+import { navigationiteam } from "../navigation/MainNavigation";
 
 const EventDetails = ({ navigation, route }) => {
   const width = useWindowDimensions().width;
@@ -13,12 +23,55 @@ const EventDetails = ({ navigation, route }) => {
 
   const [eventdata, setEventdata] = useState(null);
 
-    useEffect(() => {
-      const getEventDetail = async () => {
-        const sharedData = await Get_shareddata();
-        // console.log({ sharedData });
+  const _joinEvent = async () => {
+    const sharedData = await Get_shareddata();
+    // console.log({ sharedData });
 
-        const query = `
+    const query = `
+      mutation{
+
+        joinEvent(input :{eventId :\"${eventId}\"})
+        {
+          success
+        }
+      }
+      
+      
+`;
+
+    //  console.log({ query });
+    const url = env.url;
+
+    const params = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: sharedData.token,
+      },
+      body: JSON.stringify({ query }),
+    };
+    try {
+      const res = await fetch(url, params);
+      const data = await res.json();
+      // console.log({ eventdetail: data.data.viewer.getEventById });
+
+      if (!!data.data.joinEvent.success) {
+        navigation.navigate(navigationiteam.ImageSelection, {
+          eventId,
+          eventdata: JSON.stringify(eventdata),
+        });
+      }
+    } catch (error) {
+      console.log({ errorInReg: error });
+    }
+  };
+
+  useEffect(() => {
+    const getEventDetail = async () => {
+      const sharedData = await Get_shareddata();
+      // console.log({ sharedData });
+
+      const query = `
  query{
   viewer{
     getEventById(eventId : \"${eventId}\" ){
@@ -37,31 +90,31 @@ const EventDetails = ({ navigation, route }) => {
 }
 `;
 
-        //  console.log({ query });
-        const url = env.url;
+      //  console.log({ query });
+      const url = env.url;
 
-        const params = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: sharedData.token,
-          },
-          body: JSON.stringify({ query }),
-        };
-        try {
-          const res = await fetch(url, params);
-          const data = await res.json();
-          // console.log({ eventdetail: data.data.viewer.getEventById });
-
-          if (!!data.data.viewer.getEventById) {
-            setEventdata(data.data.viewer.getEventById);
-          }
-        } catch (error) {
-          console.log({ errorInReg: error });
-        }
+      const params = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: sharedData.token,
+        },
+        body: JSON.stringify({ query }),
       };
-      getEventDetail();
-    }, []);
+      try {
+        const res = await fetch(url, params);
+        const data = await res.json();
+        // console.log({ eventdetail: data.data.viewer.getEventById });
+
+        if (!!data.data.viewer.getEventById) {
+          setEventdata(data.data.viewer.getEventById);
+        }
+      } catch (error) {
+        console.log({ errorInReg: error });
+      }
+    };
+    getEventDetail();
+  }, []);
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -140,7 +193,8 @@ const EventDetails = ({ navigation, route }) => {
             title="Join"
             colorbg="#FFFFFF"
             textcolor="#FF7C7C"
-            onPress={() => navigation.navigate("ImageSelection")}
+            onPress={_joinEvent}
+            // onPress={() => navigation.navigate("ImageSelection")}
           />
         </View>
       </View>
@@ -183,9 +237,9 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     // shadowOpacity: 0.36,
     shadowRadius: 6.68,
-    display: 'flex',
+    display: "flex",
     width: "100%",
-    alignItems : 'center',
+    alignItems: "center",
 
     elevation: 11,
   },

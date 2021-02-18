@@ -1,8 +1,29 @@
 import React from "react";
-import { View, Image, Text, SafeAreaView, StyleSheet } from "react-native";
+import {
+  View,
+  Image,
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  Platform,
+} from "react-native";
 import CustomButton from "../elements/CustomButton";
 
 const JoinedEvent = ({ navigation }) => {
+  const _navigateToMap = () => {
+    const scheme = Platform.select({
+      ios: "maps:0,0?q=",
+      android: "geo:0,0?q=",
+    });
+    const latLng = `${21.26669044923412},${72.78424309627552}`;
+    const label = "Custom Label";
+    const url = Platform.select({
+      ios: `${scheme}${label}@${latLng}`,
+      android: `${scheme}${latLng}(${label})`,
+    });
+
+    Linking.openURL(url);
+  };
   return (
     <SafeAreaView style={styles.safe}>
       <View>
@@ -26,8 +47,7 @@ const JoinedEvent = ({ navigation }) => {
           </Text>
         </View>
 
-
-{/* Future Task days left OR OnGOing */}
+        {/* Future Task days left OR OnGOing */}
         <Text
           style={{
             color: "#FF7C7C",
@@ -50,36 +70,37 @@ const JoinedEvent = ({ navigation }) => {
         >
           <View style={{ marginVertical: 10 }}>
             <CustomButton
-              title='Details'
-              colorbg='#FFFFFF'
-              textcolor='#FF7C7C'
+              title="Details"
+              colorbg="#FFFFFF"
+              textcolor="#FF7C7C"
               width={250}
               onPress={() => navigation.navigate("EventDetails")}
             />
           </View>
           <View style={{ marginVertical: 10 }}>
             <CustomButton
-              title='Navigate'
-              colorbg='#FFFFFF'
-              textcolor='#FF7C7C'
+              title="Navigate"
+              colorbg="#FFFFFF"
+              textcolor="#FF7C7C"
               width={250}
-              onPress={() => console.log("Navigate to Map")}
+              // onPress={() => console.log("Navigate to Map")}
+              onPress={_navigateToMap}
             />
           </View>
           <View style={{ marginVertical: 10 }}>
             <CustomButton
-              title='Chat'
-              colorbg='#FFFFFF'
-              textcolor='#FF7C7C'
+              title="Chat"
+              colorbg="#FFFFFF"
+              textcolor="#FF7C7C"
               width={250}
               onPress={() => console.log("Chat")}
             />
           </View>
           <View style={{ marginVertical: 10 }}>
             <CustomButton
-              title='Activities'
-              colorbg='#FFFFFF'
-              textcolor='#FF7C7C'
+              title="Activities"
+              colorbg="#FFFFFF"
+              textcolor="#FF7C7C"
               width={250}
               onPress={() => navigation.navigate("IntroOne")}
             />
@@ -93,7 +114,6 @@ const JoinedEvent = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     marginTop: 100,
-    
   },
   safe: {
     flex: 1,
