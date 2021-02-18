@@ -8,14 +8,19 @@ import {
   Platform,
 } from "react-native";
 import CustomButton from "../elements/CustomButton";
+import * as Linking from "expo-linking";
 
-const JoinedEvent = ({ navigation }) => {
+const JoinedEvent = ({ navigation, route }) => {
+  const { res } = route.params;
+  console.log({ res });
+  const eventData = JSON.parse(res.eventdata);
+  console.log({ eventData });
   const _navigateToMap = () => {
     const scheme = Platform.select({
       ios: "maps:0,0?q=",
       android: "geo:0,0?q=",
     });
-    const latLng = `${21.26669044923412},${72.78424309627552}`;
+    const latLng = `${eventData.mapLat},${eventData.mapLag}`;
     const label = "Custom Label";
     const url = Platform.select({
       ios: `${scheme}${label}@${latLng}`,

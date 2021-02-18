@@ -81,6 +81,9 @@ const EventDetails = ({ navigation, route }) => {
       description
       date
       address
+
+      mapLat
+      mapLag
       organizerInfo{
         name
       }

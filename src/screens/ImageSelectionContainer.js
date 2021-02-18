@@ -70,7 +70,7 @@ const ImageSelectionContainer = ({ navigation, route }) => {
             title="Done"
             colorbg="#FF7878"
             textcolor="#fff"
-            onPress={() => navigation.navigate("JoinedEvent")}
+            onPress={() => navigation.navigate("JoinedEvent", { res })}
           />
         </View>
       </View>
