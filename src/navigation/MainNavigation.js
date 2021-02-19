@@ -35,6 +35,7 @@ export const navigationiteam = {
   EventRequest: "EventRequest",
   HomeTest: "HomeTest",
   UserProfile: "UserProfile",
+  JoinedEvent: "JoinedEvent",
 };
 import EventDetails from "../screens/EventDetails";
 import JoinedEvent from "../screens/JoinedEvent";

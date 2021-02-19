@@ -1,8 +1,9 @@
 import React from "react";
-import { View, StyleSheet, Text, SafeAreaView, ScrollView } from "react-native";
+import { View, StyleSheet, Text, SafeAreaView, ScrollView,FlatList } from "react-native";
 import ImageComponent from "../components/ImageSelection/ImageComponent";
 import { Feather } from "@expo/vector-icons";
 import FutureEventList from "../components/FutureEventList/FutureEventList";
+import eventdata from "../../assets/data/feed";
 
 const FutureEvents = ({ navigation }) => {
   return (
@@ -18,12 +19,24 @@ const FutureEvents = ({ navigation }) => {
           >
             <Text style={styles.text}>Your Events</Text>
           </View>
-          {/* need to put flat list */}
-          <ScrollView style={styles.scroll}>
-            <FutureEventList />
-            <FutureEventList />
-            <FutureEventList />
-          </ScrollView>
+
+          <FlatList
+            data={eventdata}
+            // keyExtractor={(item, index) => item.eventId}
+            renderItem={({ item }) => {
+              // console.log(event);
+
+              // return <Text>Mphit</Text>;
+              return (
+                <FutureEventList
+                  info={item}
+                  onPress={() => navigation.navigate("EventDetails")}
+                />
+              );
+            }}
+            snapToAlignment={"center"}
+            decelerationRate={"fast"}
+          />
         </View>
       </SafeAreaView>
     </View>
@@ -48,7 +61,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     padding: 20,
-
     color: "#FFFFFF",
   },
   scroll: {

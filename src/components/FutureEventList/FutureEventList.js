@@ -1,7 +1,7 @@
 import React from "react";
 import { View,Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-const FutureEventList = (props) => {
+const FutureEventList = ({ info }) => {
   return (
     <TouchableOpacity onPress={() => console.log("m")} style={styles.container}>
       <Image
@@ -9,23 +9,27 @@ const FutureEventList = (props) => {
         source={require("../../../assets/img/event.png")}
       />
       <View style={styles.innerContainer}>
-        <Text style={styles.text}>12 Dec 2020</Text>
-        <Text style={[styles.text, { fontSize: 20.4 }]}>React Native Event</Text>
+        <Text style={styles.text}>{info.date}</Text>
+        <Text style={[styles.text, { fontSize: 20.4 }]}>{info.title}</Text>
       </View>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1
+  },
   innerContainer: {
     display: "flex",
     position: "absolute",
     left: 60,
     // backgroundColor: "#FF7C7C",
     backgroundColor: "transparent",
-    top: 120,
-    overflow: "hidden",
+    top: 100,
+    // overflow: "hidden",
+    // height: "50%",
+    width: 250
   },
   text: {
     fontSize: 12,
@@ -33,9 +37,9 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins-Medium",
   },
   img: {
-    // width: 280,
+    // width: 350,
     // height: 156,
-    aspectRatio: 5 / 3,
+    aspectRatio: 5 / 2.9,
     //justifyContent:'center',
     alignSelf: "center",
     borderRadius: 10,
