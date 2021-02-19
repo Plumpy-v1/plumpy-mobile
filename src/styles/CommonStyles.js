@@ -56,6 +56,9 @@ export const CommonStyles = StyleSheet.create({
   whiteColor: {
     color: "#FFFFFF",
   },
+  primary:{
+    color:"#FF7C7C",
+  },
   greyColor: {
     color: "rgb(105,105,105)",
   },

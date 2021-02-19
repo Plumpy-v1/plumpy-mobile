@@ -7,32 +7,84 @@ import {
   Image,
   StatusBar,
   Dimensions,
-  TextInput,
+  // TextInput,
   Text,
   TouchableOpacity,
+  Alert
 } from "react-native";
 import { CommonStyles, deviceWidth } from "../styles/CommonStyles";
 
 import CustomButton from "../elements/CustomButton";
+import TextInput from '../elements/TextInput'
+import {
+  emailValidator,
+  passwordValidator,
+  nameValidator,
+} from '../elements/ErrorMessage';
 
 
 const SignUpScreen = ({navigation}) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword,setConfirmPassword] = useState("")
+
+  const [username, setUsername] = useState({ value: '', error: '' });
+  const [email, setEmail] = useState({ value: '', error: '' });
+  const [password, setPassword] = useState({ value: '', error: '' });
+
+  const _onSignUp = () => {
+    const nameError = nameValidator(username.value);
+    const emailError = emailValidator(email.value);
+    const passwordError = passwordValidator(password.value);
+
+    if (emailError || passwordError || nameError) {
+      setUsername({ ...username, error: nameError });
+      setEmail({ ...email, error: emailError });
+      setPassword({ ...password, error: passwordError });
+      return;
+    }
+
+    navigation.navigate('HomePage');
+  };
+
+
   return (
     <ImageBackground
       style={[CommonStyles.normalSinglePage, CommonStyles.SignInPageBackgroud]}
       source={require("../../assets/img/SignInScreen/LogInBack.png")}
-      resizeMode='cover'
+      resizeMode="cover"
     >
-      <StatusBar barStyle='light-content' />
+      <StatusBar barStyle="light-content" />
       <View style={CommonStyles.SignInLogoImageBox}>
         <Image
           source={require("../../assets/img/SignInScreen/LoginPageLogo.png")}
         />
       </View>
       <View style={styles.formBox}>
+        <View style={CommonStyles.textInputField}>
+          <Image
+            source={require("../../assets/img/SignInScreen/padlock.png")}
+            style={{
+              position: "absolute",
+              bottom: 12,
+              left: 20,
+              width: 17,
+              height: 22,
+            }}
+          />
+          <TextInput
+            placeholder="UserName"
+            // type="text"
+            placeholderTextColor="#FF7C7C"
+            // style={CommonStyles.textInput}
+            underlineColorAndroid="transparent"
+            returnKeyType="next"
+            value={username.value}
+            name='username'
+            error={!!username.error}
+           errorText={username.error}
+            onChangeText={uname => setUsername({ value: uname, error: '' })}
+          />
+         
+        </View>
+
         <View style={CommonStyles.textInputField}>
           <Image
             source={require("../../assets/img/SignInScreen/avatar.png")}
@@ -44,16 +96,23 @@ const SignUpScreen = ({navigation}) => {
               height: 22,
             }}
           />
+          
           <TextInput
-            placeholder='Email'
-            placeholderTextColor='#FF7C7C'
-            style={CommonStyles.textInput}
-            underlineColorAndroid='transparent'
-            value={email}
-            onChangeText={(nemail) => setEmail(nemail)}
+            placeholder="Email"
+            placeholderTextColor="#FF7C7C"
+            returnKeyType="next"
+            
+            // underlineColorAndroid="transparent"
+            returnKeyType="next"
+            value={email.value}
+            error={!!email.error}
+            errorText={email.error}
+            name='email'
+            onChangeText={emailAddr => setEmail({ value: emailAddr, error: '' })}
           />
+           
         </View>
-       
+
         <View style={CommonStyles.textInputField}>
           <Image
             source={require("../../assets/img/SignInScreen/padlock.png")}
@@ -66,50 +125,37 @@ const SignUpScreen = ({navigation}) => {
             }}
           />
           <TextInput
-            placeholder='Password'
-            type='password'
-            placeholderTextColor='#FF7C7C'
-            style={CommonStyles.textInput}
-            underlineColorAndroid='transparent'
-            value={password}
-            onChangeText={(pass) => setPassword(pass)}
+            placeholder="Password"
+            type="password"
+            returnKeyType="done"
+            placeholderTextColor="#FF7C7C"
+            
+            underlineColorAndroid="transparent"
+            onChangeText={pass => setPassword({ value: pass, error: '' })}
+            value={password.value}
+            error={!!password.error}
+            errorText={password.error}
+            name='password'
+            secureTextEntry={true}
+            
           />
+          
         </View>
-        <View style={CommonStyles.textInputField}>
-          <Image
-            source={require("../../assets/img/SignInScreen/padlock.png")}
-            style={{
-              position: "absolute",
-              bottom: 12,
-              left: 20,
-              width: 17,
-              height: 22,
-            }}
-          />
-          <TextInput
-            placeholder='Comfirm Password'
-            type='password'
-            placeholderTextColor='#FF7C7C'
-            style={CommonStyles.textInput}
-            underlineColorAndroid='transparent'
-            value={confirmPassword}
-            onChangeText={(pass) => setConfirmPassword(pass)}
-          />
-        </View>
-        <TouchableOpacity onPress={() => console.log("Start")}>
+
+        <TouchableOpacity>
           <View style={CommonStyles.LogInButton}>
             <CustomButton
-              title='SignUp'
-              textcolor='#FFFFFF'
-              colorbg='#FF7C7C'
+              title="SignUp"
+              textcolor="#FFFFFF"
+              colorbg="#FF7C7C"
               width={"100%"}
               height={45}
-              onPress={() => navigation.navigate("HomeTab")}
+              onPress={_onSignUp}
             />
           </View>
         </TouchableOpacity>
       </View>
-      
+
       <Text style={styles.loginText}>SignUp with</Text>
       <View style={styles.loginAuth}>
         <TouchableOpacity>
@@ -173,7 +219,7 @@ const styles = StyleSheet.create({
     // lineHeight: ,
     width: 100,
     height: 24,
-    textAlign:'center',
+    textAlign: "center",
   },
   loginAuth: {
     flexDirection: "row",

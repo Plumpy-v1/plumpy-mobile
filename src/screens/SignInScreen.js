@@ -7,18 +7,37 @@ import {
   Image,
   StatusBar,
   Dimensions,
-  TextInput,
+  
   Text,
   TouchableOpacity,
 } from "react-native";
 import { CommonStyles, deviceWidth } from "../styles/CommonStyles";
+import TextInput from '../elements/TextInput'
 
 import CustomButton from "../elements/CustomButton";
-import { Navigation } from "react-native-navigation";
 
+import {
+  passwordValidator,
+  nameValidator,
+} from '../elements/ErrorMessage';
 const SignInScreen = ({ navigation }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState({ value: '', error: '' });
+  const [password, setPassword] = useState({ value: '', error: '' });
+
+
+  const _onSignIn = () => {
+    const nameError = nameValidator(username.value);
+    const passwordError = passwordValidator(password.value);
+
+    if (nameError || passwordError ) {
+      setUsername({ ...username, error: nameError });
+      setPassword({ ...password, error: passwordError });
+      return;
+    }
+
+    navigation.navigate('HomePage');
+  };
+
   return (
     <ImageBackground
       style={[CommonStyles.normalSinglePage, CommonStyles.SignInPageBackgroud]}
@@ -46,10 +65,12 @@ const SignInScreen = ({ navigation }) => {
           <TextInput
             placeholder="Username"
             placeholderTextColor="#FF7C7C"
-            style={CommonStyles.textInput}
+            returnKeyType="next"
             underlineColorAndroid="transparent"
-            value={username}
-            onChangeText={(uname) => setUsername(uname)}
+            value={username.value}
+            error={!!username.error}
+           errorText={username.error}
+            onChangeText={uname => setUsername({ value: uname, error: '' })}
           />
         </View>
         <View style={CommonStyles.textInputField}>
@@ -66,11 +87,14 @@ const SignInScreen = ({ navigation }) => {
           <TextInput
             placeholder="Password"
             type="password"
+            returnKeyType="done"
             placeholderTextColor="#FF7C7C"
-            style={CommonStyles.textInput}
             underlineColorAndroid="transparent"
-            value={password}
-            onChangeText={(pass) => setPassword(pass)}
+            value={password.value}
+            onChangeText={pass => setPassword({ value: pass, error: '' })}
+            error={!!password.error}
+            errorText={password.error}
+            secureTextEntry={true}
           />
         </View>
         <TouchableOpacity onPress={() => console.log("Start")}>
@@ -81,7 +105,7 @@ const SignInScreen = ({ navigation }) => {
               colorbg="#FF7C7C"
               width={"100%"}
               height={45}
-              onPress={() => navigation.navigate("SignUp")}
+              onPress={_onSignIn}
             />
           </View>
         </TouchableOpacity>
