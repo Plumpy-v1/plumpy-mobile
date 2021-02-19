@@ -10,10 +10,61 @@ import {
 import { CommonStyles } from "../styles/CommonStyles";
 import { SwipeablePanel } from "rn-swipeable-panel";
 import NearEvent from "./NearEvent";
-import { DefaultState } from "../../constant";
+import { DefaultState, Get_shareddata } from "../../constant";
+import { env } from "../../env";
 //import { Navigation } from "react-native-navigation";
 
 const MainServiceScreen = ({ navigation }) => {
+  const [user, setUser] = useState(null);
+
+  const userData = async () => {
+    const sharedData = await Get_shareddata();
+    // console.log({ sharedData });
+
+    const query = `
+   query{
+  viewer{
+    name
+    email
+    
+  }
+}
+`;
+
+    //  console.log({ query });
+    const url = env.url;
+
+    const params = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: sharedData.token,
+      },
+      body: JSON.stringify({ query }),
+    };
+    try {
+      const res = await fetch(url, params);
+      const data = await res.json();
+
+      console.log({ Listdata: data.data.viewer });
+
+      if (!!data.data.viewer.email) {
+        setUser(data.data.viewer);
+      }
+    } catch (error) {
+      console.log({ errorInReg: error });
+    }
+  };
+
+
+  useEffect(() => {
+    
+    userData();
+    // console.log({ userdata: user });
+  }, []);
+  
+
+
   return (
     <ImageBackground
       style={styles.backimage}
@@ -36,7 +87,7 @@ const MainServiceScreen = ({ navigation }) => {
               styles.Username,
             ]}
           >
-            Peter
+            {user?.name || "Peter"} 
           </Text>
           <Text
             style={[

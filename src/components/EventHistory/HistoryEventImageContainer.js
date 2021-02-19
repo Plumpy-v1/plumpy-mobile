@@ -1,26 +1,44 @@
 import React from "react";
 import { View, Text, Image, StyleSheet,TouchableOpacity } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
-
-const HistoryEventImageContainer = ({  info }) => {
+import { env } from "../../../env";
+import {navigationiteam} from "../../navigation/MainNavigation"
+const HistoryEventImageContainer = ({ info, navigation }) => {
+  console.log({ info });
   return (
-    <View style={styles.container}>
-      {/* <TouchableOpacity onPress={onPress}> */}
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate(navigationiteam.EventDetails, {
+          eventId: info?.node.eventId,
+          isJoinShow : false
+        })
+      }
+    >
+      <View style={styles.container}>
+        {/* <TouchableOpacity onPress={onPress}> */}
         <View style={styles.imageContainer}>
-          <Image style={styles.image} source={{ uri: info.image }} />
+          <Image
+            style={styles.image}
+            source={{
+              uri: `${env.serverUrl}/${
+                info?.node.eventPic || env.defaultImageName
+              }`,
+            }}
+          />
           <View style={{ marginHorizontal: 12 }}>
-            <Text style={styles.details}>{info.date}</Text>
+            <Text style={styles.details}>{info?.node.date}</Text>
             <Text numberOfLines={1} style={styles.details}>
-              {info.title}
+              {info?.node.name}
             </Text>
             <View style={styles.locationContainer}>
-              <EvilIcons name='location' size={21} color='white' />
-              <Text style={styles.details}>{info.location}</Text>
+              <EvilIcons name="location" size={21} color="white" />
+              <Text style={styles.details}>{info?.node.address}</Text>
             </View>
           </View>
         </View>
-      {/* </TouchableOpacity> */}
-    </View>
+        {/* </TouchableOpacity> */}
+      </View>
+    </TouchableOpacity>
   );
 };
 

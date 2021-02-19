@@ -1,11 +1,71 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, SafeAreaView, ScrollView,FlatList } from "react-native";
 import ImageComponent from "../components/ImageSelection/ImageComponent";
 import { Feather } from "@expo/vector-icons";
 import FutureEventList from "../components/FutureEventList/FutureEventList";
-import eventdata from "../../assets/data/feed";
+// import eventdata from "../../assets/data/feed";
+import { Get_shareddata } from "../../constant";
+import { env } from "../../env";
 
 const FutureEvents = ({ navigation }) => {
+    const [futureEvents, setfutureEvents] = useState([]);
+
+    // console.log({ events });
+
+    useEffect(() => {
+      const getFutureEvent = async () => {
+        const sharedData = await Get_shareddata();
+        // console.log({ sharedData });
+
+        const query = `
+query{
+  viewer{
+    participateEvents{
+      edges{
+        node{
+          eventId
+          name
+          date
+          mapLat
+          mapLag
+          eventPic
+          
+        }
+      }
+    }
+  }
+}
+`;
+
+        //  console.log({ query });
+        const url = env.url;
+
+        const params = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: sharedData.token,
+          },
+          body: JSON.stringify({ query }),
+        };
+        try {
+          const res = await fetch(url, params);
+          const data = await res.json();
+
+          // console.log({ Listdata: data.data.viewer.participateEvents.edges });
+
+          if (!!data.data.viewer.participateEvents) {
+            setfutureEvents([
+              ...futureEvents,
+              ...data.data.viewer.participateEvents.edges,
+            ]);
+          }
+        } catch (error) {
+          console.log({ errorInReg: error });
+        }
+      };
+      getFutureEvent();
+    }, []);
   return (
     <View style={styles.container}>
       <SafeAreaView>
@@ -19,24 +79,20 @@ const FutureEvents = ({ navigation }) => {
           >
             <Text style={styles.text}>Your Events</Text>
           </View>
+          <View style={{ height: "90%" }}>
+            <FlatList
+              data={futureEvents}
+              keyExtractor={(item, index) => item.node.eventId}
+              renderItem={({ item }) => {
+                // console.log(event);
 
-          <FlatList
-            data={eventdata}
-            // keyExtractor={(item, index) => item.eventId}
-            renderItem={({ item }) => {
-              // console.log(event);
-
-              // return <Text>Mphit</Text>;
-              return (
-                <FutureEventList
-                  info={item}
-                  onPress={() => navigation.navigate("EventDetails")}
-                />
-              );
-            }}
-            snapToAlignment={"center"}
-            decelerationRate={"fast"}
-          />
+                // return <Text>Mphit</Text>;
+                return <FutureEventList info={item} navigation={navigation} />;
+              }}
+              snapToAlignment={"center"}
+              decelerationRate={"fast"}
+            />
+          </View>
         </View>
       </SafeAreaView>
     </View>

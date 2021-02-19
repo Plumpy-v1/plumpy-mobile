@@ -12,8 +12,9 @@ import * as Linking from "expo-linking";
 
 const JoinedEvent = ({ navigation, route }) => {
   const { res } = route.params;
-  console.log({ res });
-  const eventData = JSON.parse(res.eventdata);
+  let x = res.eventdata;
+  console.log(x)
+  const eventData = x;
   console.log({ eventData });
   const _navigateToMap = () => {
     const scheme = Platform.select({

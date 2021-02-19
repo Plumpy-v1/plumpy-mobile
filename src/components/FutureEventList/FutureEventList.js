@@ -1,16 +1,24 @@
 import React from "react";
 import { View,Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-const FutureEventList = ({ info }) => {
+const FutureEventList = ({ info, navigation }) => {
   return (
-    <TouchableOpacity onPress={() => console.log("m")} style={styles.container}>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate("JoinedEvent", {
+          res: { eventdata: { mapLat: info.node.mapLat, mapLag: info.node.mapLat } },
+        })
+      }
+      style={styles.container}
+    >
       <Image
         style={styles.img}
         source={require("../../../assets/img/event.png")}
       />
+      
       <View style={styles.innerContainer}>
-        <Text style={styles.text}>{info.date}</Text>
-        <Text style={[styles.text, { fontSize: 20.4 }]}>{info.title}</Text>
+        <Text style={styles.text}>{info?.node.date}</Text>
+        <Text style={[styles.text, { fontSize: 20.4 }]}>{info?.node.name}</Text>
       </View>
     </TouchableOpacity>
   );

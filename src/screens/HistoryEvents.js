@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState  ,useEffect} from "react";
 import {
   View,
   StyleSheet,
@@ -14,11 +14,74 @@ import EventImageContainer from "../components/NearEventContainer/EventImageCont
 import eventdata from "../../assets/data/feed";
 import { Feather } from "@expo/vector-icons";
 import HistoryEventImageContainer from "../components/EventHistory/HistoryEventImageContainer";
+import { Get_shareddata } from "../../constant";
+import { env } from "../../env";
 
 const HistoryEvents = ({ navigation }) => {
+    const [historyevents, sethistoryevents] = useState([]);
+
+    // console.log({ events });
+
+    useEffect(() => {
+      const getHistoryEvent = async () => {
+        const sharedData = await Get_shareddata();
+        // console.log({ sharedData });
+
+        const query = `
+  query{
+  viewer{
+    historyEvents{
+      edges{
+        node{
+          eventId
+          date
+         name
+          address
+          eventPic
+          
+        }
+      }
+    }
+  }
+}
+`;
+
+        //  console.log({ query });
+        const url = env.url;
+
+        const params = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: sharedData.token,
+          },
+          body: JSON.stringify({ query }),
+        };
+        try {
+        
+          const res = await fetch(url, params);
+          const data = await res.json();
+
+          console.log({ Listdata: data.data.viewer.historyEvents.edges });
+
+          if (!!data.data.viewer.historyEvents) {
+            sethistoryevents([
+              ...historyevents,
+              ...data.data.viewer.historyEvents.edges,
+            ]);
+          }
+        } catch (error) {
+          console.log({ errorInReg: error });
+        }
+      };
+      getHistoryEvent();
+    }, []);
+  
+  
   return (
     // <View style={styles.container}>
     <SafeAreaView style={styles.container}>
+      {/* {console.log("data", historyevents)} */}
       <View style={{ marginTop: "15%" }}>
         <View
           style={{
@@ -30,15 +93,19 @@ const HistoryEvents = ({ navigation }) => {
         >
           <Text style={styles.text}>History Events</Text>
 
-          <Feather style={styles.icon} name='search' size={24} color='black' />
+          <Feather style={styles.icon} name="search" size={24} color="black" />
         </View>
-
-        <FlatList
-          data={eventdata}
-          renderItem={({ item }) => <HistoryEventImageContainer info={item} />}
-          snapToAlignment={"center"}
-          decelerationRate={"fast"}
-        />
+        <View style={{ height: "85%" }}>
+          <FlatList
+            data={historyevents}
+            keyExtractor={(item, index) => index}
+            renderItem={({ item }) => (
+              <HistoryEventImageContainer info={item} navigation={navigation} />
+            )}
+            snapToAlignment={"center"}
+            decelerationRate={"fast"}
+          />
+        </View>
       </View>
     </SafeAreaView>
     // </View>

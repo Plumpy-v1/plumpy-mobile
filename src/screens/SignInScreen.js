@@ -45,7 +45,9 @@ const SignInScreen = ({ navigation }) => {
       body: JSON.stringify({ query }),
     };
     try {
+      console.log("hello")
       const res = await fetch(url, params);
+      console.log({response : res})
       const data = await res.json();
 
       console.log({ data });

@@ -18,16 +18,19 @@ import { navigationiteam } from "../navigation/MainNavigation";
 
 const EventDetails = ({ navigation, route }) => {
   const width = useWindowDimensions().width;
-  const { eventId } = route.params;
+  const { eventId, isJoinShow } = route.params;
   // console.log(eventId);
 
   const [eventdata, setEventdata] = useState(null);
 
   const _joinEvent = async () => {
-    const sharedData = await Get_shareddata();
-    // console.log({ sharedData });
 
-    const query = `
+    if (isJoinShow) {
+
+      const sharedData = await Get_shareddata();
+      // console.log({ sharedData });
+
+      const query = `
       mutation{
 
         joinEvent(input :{eventId :\"${eventId}\"})
@@ -39,30 +42,34 @@ const EventDetails = ({ navigation, route }) => {
       
 `;
 
-    //  console.log({ query });
-    const url = env.url;
+      //  console.log({ query });
+      const url = env.url;
 
-    const params = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: sharedData.token,
-      },
-      body: JSON.stringify({ query }),
-    };
-    try {
-      const res = await fetch(url, params);
-      const data = await res.json();
-      // console.log({ eventdetail: data.data.viewer.getEventById });
+      const params = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: sharedData.token,
+        },
+        body: JSON.stringify({ query }),
+      };
+      try {
+        const res = await fetch(url, params);
+        const data = await res.json();
+        // console.log({ eventdetail: data.data.viewer.getEventById });
 
-      if (!!data.data.joinEvent.success) {
-        navigation.navigate(navigationiteam.ImageSelection, {
-          eventId,
-          eventdata: JSON.stringify(eventdata),
-        });
+        if (!!data.data.joinEvent.success) {
+          navigation.navigate(navigationiteam.ImageSelection, {
+            eventId,
+            eventdata: JSON.stringify(eventdata),
+          });
+        }
+      } catch (error) {
+        console.log({ errorInReg: error });
       }
-    } catch (error) {
-      console.log({ errorInReg: error });
+    }
+    else {
+       navigation.navigate(navigationiteam.HistoryEvents);
     }
   };
 
@@ -193,7 +200,7 @@ const EventDetails = ({ navigation, route }) => {
           }}
         >
           <CustomButton
-            title="Join"
+            title={!!!isJoinShow ? "Back" : "Join"}
             colorbg="#FFFFFF"
             textcolor="#FF7C7C"
             onPress={_joinEvent}

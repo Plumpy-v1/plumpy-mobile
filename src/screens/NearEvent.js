@@ -93,28 +93,30 @@ const NearEvent = ({ navigation }) => {
               />
             </TouchableOpacity>
           </View>
+          <View style={{height : "85%"}}>
+            <FlatList
+              data={events}
+              keyExtractor={(item, index) => item.eventId}
+              renderItem={({ item }) => {
+                // console.log(event);
 
-          <FlatList
-            data={events}
-            keyExtractor={(item, index) => item.eventId}
-            renderItem={({ item }) => {
-              // console.log(event);
-
-              // return <Text>Mphit</Text>;
-              return (
-                <EventImageContainer
-                  info={item.node}
-                  onPress={() =>
-                    navigation.navigate("EventDetails", {
-                      eventId: item.node.eventId,
-                    })
-                  }
-                />
-              );
-            }}
-            snapToAlignment={"center"}
-            decelerationRate={"fast"}
-          />
+                // return <Text>Mphit</Text>;
+                return (
+                  <EventImageContainer
+                    info={item.node}
+                    onPress={() =>
+                      navigation.navigate("EventDetails", {
+                        eventId: item.node.eventId,
+                        isJoinShow: true,
+                      })
+                    }
+                  />
+                );
+              }}
+              snapToAlignment={"center"}
+              decelerationRate={"fast"}
+            />
+          </View>
         </View>
       </SafeAreaView>
     </View>
@@ -123,8 +125,13 @@ const NearEvent = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
+    display: 'flex',
+    height : '100%',
     flex: 1,
     backgroundColor: "#FF7C7C",
+    justifyContent: "space-between",
+    
+    
   },
   text: {
     fontSize: 22,
