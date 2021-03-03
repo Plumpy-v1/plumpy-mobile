@@ -56,14 +56,10 @@ const MainServiceScreen = ({ navigation }) => {
     }
   };
 
-
   useEffect(() => {
-    
     userData();
     // console.log({ userdata: user });
   }, []);
-  
-
 
   return (
     <ImageBackground
@@ -87,7 +83,7 @@ const MainServiceScreen = ({ navigation }) => {
               styles.Username,
             ]}
           >
-            {user?.name || "Peter"} 
+            {user?.name || "Peter"}
           </Text>
           <Text
             style={[
@@ -154,7 +150,8 @@ const MainServiceScreen = ({ navigation }) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={{ marginTop: 20 }}
-            onPress={() => navigation.navigate("HistoryEvents")}
+            // onPress={() => navigation.navigate("HistoryEvents")}
+            onPress={() => navigation.navigate("ChatScreen")}
           >
             <Image
               source={require("../../assets/img/HomeScreen/History.png")}

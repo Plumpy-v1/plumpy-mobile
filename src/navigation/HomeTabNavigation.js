@@ -2,6 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
 import MainServiceScreen from "../screens/MainServiceScreen";
+import ChatScreen from "../screens/ChatScreen";
 import NearEvent from "../screens/NearEvent";
 import { FontAwesome } from "@expo/vector-icons";
 
@@ -44,7 +45,7 @@ const HomeTabNavigation = (props) => {
       />
       <Tab.Screen
         name={"Chat"}
-        component={MainServiceScreen}
+        component={ChatScreen}
         options={{
           tabBarIcon: () => (
             <FontAwesome name="wechat" size={30} color="#FF7C7C" />

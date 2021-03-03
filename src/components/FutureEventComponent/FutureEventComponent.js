@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-const ImageComponent = (props) => {
+const FutureEventComponent = ({ image, text }) => {
   return (
     <TouchableOpacity onPress={() => console.log("m")} style={styles.container}>
       <Image
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ImageComponent;
+export default FutureEventComponent;

@@ -19,6 +19,7 @@ import PollScreen from "../screens/PollScreen";
 import PollUpVoteContainer from "../components/PollUpVote/PollUpVoteContainer";
 import EventRequest from "../screens/EventRequest";
 import HistoryEvents from "../screens/HistoryEvents";
+import ChatScreen from "../screens/ChatScreen";
 
 export const navigationiteam = {
   IntroOne: "IntroOne",
@@ -42,14 +43,12 @@ import EventDetails from "../screens/EventDetails";
 import JoinedEvent from "../screens/JoinedEvent";
 import ProfileScreen from "../screens/ProfileScreen";
 
-
-
 const Stack = createStackNavigator();
 
 export const AppStack = ({ navigation }) => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>      
+      <Stack.Navigator>
         <Stack.Screen
           name={"IntroOne"}
           component={IntroOneScreen}
@@ -57,7 +56,7 @@ export const AppStack = ({ navigation }) => {
             headerShown: false,
           }}
         />
-        
+
         <Stack.Screen
           name={"HomeTab"}
           component={HomeTabNavigation}
@@ -94,7 +93,7 @@ export const AppStack = ({ navigation }) => {
           component={NearEvent}
           options={({ navigation }) => ({
             headerTitle: "Plumpy",
-            headerTitleStyle: { fontFamily: "Poppins-Bold",color:'#ffffff' },
+            headerTitleStyle: { fontFamily: "Poppins-Bold", color: "#ffffff" },
             headerTransparent: true,
             headerTitleAlign: "center",
             headerLeft: () => <Back onPress={() => navigation.pop()} />,
@@ -113,7 +112,7 @@ export const AppStack = ({ navigation }) => {
             headerTitle: "Plumpy",
             headerStyle: { backgroundColor: "#FBE7E3" },
 
-            headerTitleStyle: { fontFamily: "Poppins-Bold" ,color:'#FF7C7C'},
+            headerTitleStyle: { fontFamily: "Poppins-Bold", color: "#FF7C7C" },
             //headerTransparent: true,
             headerTitleAlign: "center",
             headerLeft: () => <Back onPress={() => navigation.pop()} />,
@@ -154,6 +153,26 @@ export const AppStack = ({ navigation }) => {
         <Stack.Screen
           name={"FutureEvents"}
           component={FutureEvents}
+          options={({ navigation }) => ({
+            headerTitle: "Plumpy",
+            headerStyle: { backgroundColor: "#FBE7E3" },
+
+            headerTitleStyle: { fontFamily: "Poppins-Bold" },
+            //headerTransparent: true,
+            headerStyle: { backgroundColor: "#FBE7E3" },
+
+            headerTitleAlign: "center",
+            headerLeft: () => <Back onPress={() => navigation.pop()} />,
+            headerLeftContainerStyle: { padding: 15 },
+            headerRight: () => (
+              <Profile onPress={() => navigation.navigate("")} />
+            ),
+            headerRightContainerStyle: { padding: 15 },
+          })}
+        />
+        <Stack.Screen
+          name={"ChatScreen"}
+          component={ChatScreen}
           options={({ navigation }) => ({
             headerTitle: "Plumpy",
             headerStyle: { backgroundColor: "#FBE7E3" },
@@ -220,7 +239,7 @@ export const AppStack = ({ navigation }) => {
             headerRightContainerStyle: { padding: 15 },
           })}
         />
-         <Stack.Screen
+        <Stack.Screen
           name={"HistoryEvents"}
           component={HistoryEvents}
           options={({ navigation }) => ({
@@ -237,26 +256,25 @@ export const AppStack = ({ navigation }) => {
           })}
         />
 
-<Stack.Screen
+        <Stack.Screen
           name={"ProfileScreen"}
           component={ProfileScreen}
           options={({ navigation }) => ({
             headerTitle: "Plumpy",
-            headerTitleStyle: { fontFamily: "Poppins-Bold",color:'#ffffff' },
+            headerTitleStyle: { fontFamily: "Poppins-Bold", color: "#ffffff" },
             headerTransparent: true,
             headerTitleAlign: "center",
             headerLeft: () => <Back onPress={() => navigation.pop()} />,
             headerLeftContainerStyle: { padding: 15 },
           })}
         />
-      
 
-      <Stack.Screen
+        <Stack.Screen
           name={"JoinedEvent"}
           component={JoinedEvent}
           options={({ navigation }) => ({
             headerTitle: "Plumpy",
-            headerTitleStyle: { fontFamily: "Poppins-Bold" ,color:'#FF7C7C'},
+            headerTitleStyle: { fontFamily: "Poppins-Bold", color: "#FF7C7C" },
             headerTransparent: true,
             headerTitleAlign: "center",
             headerLeft: () => <Back onPress={() => navigation.pop()} />,
@@ -267,7 +285,6 @@ export const AppStack = ({ navigation }) => {
             headerRightContainerStyle: { padding: 15 },
           })}
         />
-
 
         <Stack.Screen
           name={"HomeTest"}
