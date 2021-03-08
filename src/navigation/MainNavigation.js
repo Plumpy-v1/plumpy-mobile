@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import IntroOneScreen from "../screens/IntroOneScreen";
 import IntroSecondScreen from "../screens/IntroSecondScreen";
 import SignInScreen from "../screens/SignInScreen";
@@ -20,6 +20,8 @@ import PollUpVoteContainer from "../components/PollUpVote/PollUpVoteContainer";
 import EventRequest from "../screens/EventRequest";
 import HistoryEvents from "../screens/HistoryEvents";
 import ChatScreen from "../screens/ChatScreen";
+import ChatRoom from "../screens/ChatRoom";
+import { Alert } from "react-native";
 
 export const navigationiteam = {
   IntroOne: "IntroOne",
@@ -46,6 +48,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 const Stack = createStackNavigator();
 
 export const AppStack = ({ navigation }) => {
+  const [roomname, setroomname] = useState("Plumpy");
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -171,8 +174,8 @@ export const AppStack = ({ navigation }) => {
           })}
         />
         <Stack.Screen
-          name={"ChatScreen"}
-          component={ChatScreen}
+          name={"ChatRoom"}
+          component={ChatRoom}
           options={({ navigation }) => ({
             headerTitle: "Plumpy",
             headerStyle: { backgroundColor: "#FBE7E3" },
@@ -186,6 +189,26 @@ export const AppStack = ({ navigation }) => {
             headerLeftContainerStyle: { padding: 15 },
             headerRight: () => (
               <Profile onPress={() => navigation.navigate("")} />
+            ),
+            headerRightContainerStyle: { padding: 15 },
+          })}
+        />
+        <Stack.Screen
+          name={"ChatScreen"}
+          component={ChatScreen}
+          options={({ navigation }) => ({
+            headerTitle: roomname,
+            headerStyle: { backgroundColor: "#FBE7E3" },
+
+            headerTitleStyle: { fontFamily: "Poppins-Bold" },
+            //headerTransparent: true,
+            headerStyle: { backgroundColor: "#FBE7E3" },
+
+            headerTitleAlign: "center",
+            headerLeft: () => <Back onPress={() => navigation.pop()} />,
+            headerLeftContainerStyle: { padding: 15 },
+            headerRight: () => (
+              <Profile onPress={() => Alert.alert("Room info", "my message")} />
             ),
             headerRightContainerStyle: { padding: 15 },
           })}

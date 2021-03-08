@@ -152,6 +152,7 @@ const MainServiceScreen = ({ navigation }) => {
             style={{ marginTop: 20 }}
             // onPress={() => navigation.navigate("HistoryEvents")}
             onPress={() => navigation.navigate("ChatScreen")}
+            // onPress={() => navigation.navigate("ChatRoom")}
           >
             <Image
               source={require("../../assets/img/HomeScreen/History.png")}
