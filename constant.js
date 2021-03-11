@@ -14,8 +14,14 @@ export const DefaultState = async () => {
     let isVisibleSplash = true;
     let token = "";
     let isLogin = false;
+    let userName = "";
 
-    const jsonValue = JSON.stringify({ isVisibleSplash, token, isLogin });
+    const jsonValue = JSON.stringify({
+      isVisibleSplash,
+      token,
+      isLogin,
+      userName,
+    });
     await AsyncStorage.setItem("shared_object", jsonValue);
   } catch (e) {
     console.error({ DefaultState: e });
@@ -29,9 +35,11 @@ export const Update_Mobilestore_Variable = async ({
   isVisibleSplash,
   token,
   isLogin,
+  userName,
 }) => {
   try {
     const sobj = await AsyncStorage.getItem("shared_object");
+    console.log({ userName });
 
     if (!!sobj) {
       let obj = JSON.parse(sobj);
@@ -53,6 +61,12 @@ export const Update_Mobilestore_Variable = async ({
         newObj = {
           ...newObj,
           isVisibleSplash: isVisibleSplash,
+        };
+      }
+      if (!!userName) {
+        newObj = {
+          ...newObj,
+          userName: userName,
         };
       }
       console.log({ newObj, obj });

@@ -151,7 +151,9 @@ const MainServiceScreen = ({ navigation }) => {
           <TouchableOpacity
             style={{ marginTop: 20 }}
             // onPress={() => navigation.navigate("HistoryEvents")}
-            onPress={() => navigation.navigate("ChatScreen")}
+            onPress={() =>
+              navigation.navigate("ChatScreen", { userName: user.name })
+            }
             // onPress={() => navigation.navigate("ChatRoom")}
           >
             <Image

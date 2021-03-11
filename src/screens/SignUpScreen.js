@@ -55,6 +55,7 @@ const SignUpScreen = ({ navigation }) => {
           isLogin: true,
           token: data.data.register.token,
           isVisibleSplash: false,
+          userName: data.data.register.userName,
         });
         navigation.navigate(navigationiteam.HomeTab);
       }

@@ -1,28 +1,82 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, TextInput, ScrollView } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  ScrollView,
+  SafeAreaView,
+} from "react-native";
+import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 import { CommonStyles } from "../../styles/CommonStyles";
 import { env } from "../../../env";
 import io from "socket.io-client";
 import SendMessage from "./sendMessage/index";
-// let initialSocket;
-const index = () => {
+import MessagesContainer from "./MessagesContainer";
+import { Get_shareddata } from "../../../constant";
+
+const data = [
+  {
+    isLeft: true,
+    text: "Hello guys",
+  },
+  {
+    isLeft: false,
+    text: "I am new here",
+  },
+  {
+    isLeft: true,
+    text: "Ok Lol i am also",
+  },
+  {
+    isLeft: true,
+    text: "Yo yoo yo",
+  },
+  {
+    isLeft: true,
+    text: "Hello guys",
+  },
+  {
+    isLeft: false,
+    text: "I am new here",
+  },
+  {
+    isLeft: false,
+    text: "Ok Lol i am also",
+  },
+  {
+    isLeft: true,
+    text: "Yo yoo yo",
+  },
+];
+
+// let ex = {
+//   userName,
+//   text,
+//   timeStamp,
+// };
+
+const index = ({ userName }) => {
   const [socket, setSocket] = useState(io(env.socketUrl));
+  const [messages, setMessages] = useState([{}]);
+  let roomId = "8095f6e4-3ba8-479e-887c-e83064de4748";
+  // console.log({ parajm: route.params });
+
+  // const { userName } = route.params;/
+
+  // const userName = "mohti";
+  // let eventData = JSON.parse(res);
+
+  // console.log({ deno: eventData });
+
   useEffect(() => {
-    console.log({ itsRun: true, socketUrl: env.socketUrl });
+    // console.log({ itsRun: true, socketUrl: env.socketUrl });
 
-    // socket = io(env.socketUrl);
-    // setSocket(socket);
-
-    socket.emit(
-      "join",
-      { userName: "mohit", roomId: "8095f6e4-3ba8-479e-887c-e83064de4748" },
-      (err, user) => {
-        if (err) {
-          console.log({ mohitJoinError: err });
-        }
+    socket.emit("join", { userName: userName, roomId }, (err, user) => {
+      if (err) {
+        console.log({ mohitJoinError: err });
       }
-    );
+    });
 
     return () => {
       console.log({ itsRun: false });
@@ -31,10 +85,64 @@ const index = () => {
     };
   }, [env.socketUrl]);
 
+  // listen messages
   useEffect(() => {
-    socket.on("message", ({ user, text }) => {
-      console.log({ user, text });
+    socket.on("message", ({ userName, text, timeStamp }) => {
+      console.log({ userName, text, timeStamp });
+      messages.push({ userName, text, timeStamp });
+      setMessages([...messages]);
     });
+  }, []);
+
+  // starting messages
+  useEffect(() => {
+    const getAllMessages = async () => {
+      const sharedData = await Get_shareddata();
+      // console.log({ sharedData });
+
+      const query = `query{
+        viewer
+        {
+          getAllMessages(roomId:"8095f6e4-3ba8-479e-887c-e83064de4748")
+          {
+            id
+            roomId
+            roomName
+            eventId
+            chatsMessages{
+              userName
+              text
+              timeStamp
+            }
+          }
+        }
+      }`;
+
+      //  console.log({ query });
+      const url = env.url;
+
+      const params = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: sharedData.token,
+        },
+        body: JSON.stringify({ query }),
+      };
+      try {
+        const res = await fetch(url, params);
+        const data = await res.json();
+
+        // console.log({ Listdata: data.data.viewer.participateEvents.edges });
+
+        if (!!data.data.viewer.getAllMessages) {
+          setMessages(data.data.viewer.getAllMessages.chatsMessages);
+        }
+      } catch (error) {
+        console.log({ errorInReg: error });
+      }
+    };
+    getAllMessages();
   }, []);
 
   return (
@@ -42,63 +150,10 @@ const index = () => {
       <View style={styles.room}>
         <Text style={styles.roomtext}>Room name</Text>
       </View>
-      <ScrollView style={{ flex: 1 }}>
-        <View style={styles.recived}>
-          <Text
-            style={[
-              styles.text,
-              { fontSize: 15, fontFamily: "Poppins-SemiBold" },
-            ]}
-          >
-            Name
-          </Text>
-          <Text style={styles.text}>
-            Hello school mates welcome all to new chat room!! here we go
-          </Text>
-        </View>
-        <View style={styles.sender}>
-          <Text style={[styles.text, { color: "#fff" }]}>
-            Hello guys here i am back with onther video
-          </Text>
-        </View>
-        <View style={styles.recived}>
-          <Text
-            style={[
-              styles.text,
-              { fontSize: 15, fontFamily: "Poppins-SemiBold" },
-            ]}
-          >
-            Name
-          </Text>
-          <Text style={styles.text}>
-            Hello school mates welcome all to new chat room!! here we go
-          </Text>
-        </View>
-        <View style={styles.sender}>
-          <Text style={[styles.text, { color: "#fff" }]}>
-            Hello guys here i am back with onther video
-          </Text>
-        </View>
-        <View style={styles.recived}>
-          <Text
-            style={[
-              styles.text,
-              { fontSize: 15, fontFamily: "Poppins-SemiBold" },
-            ]}
-          >
-            Name
-          </Text>
-          <Text style={styles.text}>
-            Hello school mates welcome all to new chat room!! here we go
-          </Text>
-        </View>
-        <View style={styles.sender}>
-          <Text style={[styles.text, { color: "#fff" }]}>
-            Hello guys here i am back with onther video
-          </Text>
-        </View>
-      </ScrollView>
-      <SendMessage socket={socket} />
+
+      <MessagesContainer data={data} messages={messages} userName={userName} />
+
+      <SendMessage socket={socket} userName={userName} roomId={roomId} />
     </View>
   );
 };
@@ -109,42 +164,38 @@ const styles = StyleSheet.create({
     backgroundColor: "#FBE7E3",
     justifyContent: "space-between",
   },
-  recived: {
-    backgroundColor: "#fff",
-    height: "auto",
-    alignItems: "flex-start",
-    justifyContent: "center",
-    paddingHorizontal: "2%",
-    paddingVertical: "1.5%",
-    width: "50%",
-    marginTop: "5%",
-    marginHorizontal: "5%",
-    borderRadius: 15,
-  },
-  sender: {
-    backgroundColor: "#FF5A5A",
-    height: "auto",
-    alignItems: "flex-end",
-    justifyContent: "center",
-    paddingHorizontal: "2%",
-    paddingVertical: "1.5%",
-    marginVertical: "2%",
-    marginHorizontal: "5%",
-    borderRadius: 15,
-    width: "50%",
-    alignSelf: "flex-end",
-  },
-  text: {
-    fontFamily: "Poppins-Regular",
-    fontSize: 13,
-    letterSpacing: 0.1,
-  },
+
   room: {
     alignItems: "center",
   },
   roomtext: {
     fontSize: 30,
     fontFamily: "Poppins-Bold",
+  },
+  chatinput_container: {
+    marginHorizontal: "5%",
+    flexDirection: "row",
+    marginVertical: "5%",
+    // alignSelf: "flex-end",
+    height: "8%",
+  },
+  chatinput: {
+    backgroundColor: "#fff",
+    paddingVertical: "2%",
+    borderRadius: 7,
+    paddingHorizontal: "4%",
+    color: "black",
+    width: "85%",
+  },
+  send_btn: {
+    height: 44,
+    width: 44,
+    backgroundColor: "#FF7C7C",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "4%",
+    borderRadius: 7,
+    marginHorizontal: "9%",
   },
 });
 

@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { CommonStyles } from "../../../styles/CommonStyles";
-function index({ socket }) {
+function index({ socket, userName, roomId }) {
   const [value, setValue] = useState("");
   const _sendMessage = () => {
     if (value) {
-      socket.emit("sendMessage", value, () => setValue(""));
+      socket.emit("sendMessage", { message: value, userName, roomId }, () =>
+        setValue("")
+      );
     }
   };
   return (

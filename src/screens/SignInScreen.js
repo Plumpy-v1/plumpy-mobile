@@ -30,11 +30,12 @@ const SignInScreen = ({ navigation }) => {
       {
         success
         token
+        userName
       }
     }
 `;
 
-    console.log({ query });
+    // console.log({ query });
     const url = env.url;
 
     const params = {
@@ -45,9 +46,9 @@ const SignInScreen = ({ navigation }) => {
       body: JSON.stringify({ query }),
     };
     try {
-      console.log("hello")
+      console.log("hello");
       const res = await fetch(url, params);
-      console.log({response : res})
+      // console.log({ response: res });
       const data = await res.json();
 
       console.log({ data });
@@ -57,6 +58,7 @@ const SignInScreen = ({ navigation }) => {
           isLogin: true,
           token: data.data.login.token,
           isVisibleSplash: false,
+          userName: data.data.login.userName,
         });
         await navigation.navigate(navigationiteam.HomeTab);
       }
