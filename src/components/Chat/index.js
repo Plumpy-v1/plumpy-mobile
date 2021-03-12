@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   StyleSheet,
   Text,
@@ -58,8 +58,10 @@ const data = [
 
 const index = ({ userName }) => {
   const [socket, setSocket] = useState(io(env.socketUrl));
-  const [messages, setMessages] = useState([{}]);
+  const [messages, setMessages] = useState([]);
+  const [socketMessages, setSocketMessages] = useState([]);
   let roomId = "8095f6e4-3ba8-479e-887c-e83064de4748";
+  const refMessage = useRef(messages);
   // console.log({ parajm: route.params });
 
   // const { userName } = route.params;/
@@ -89,8 +91,12 @@ const index = ({ userName }) => {
   useEffect(() => {
     socket.on("message", ({ userName, text, timeStamp }) => {
       console.log({ userName, text, timeStamp });
-      messages.push({ userName, text, timeStamp });
-      setMessages([...messages]);
+      // console.log({ messageXyz: refMessage.current.value });
+      socketMessages.push({ userName, text, timeStamp });
+      // setMessages([...messages]);
+
+      setSocketMessages([...socketMessages]);
+      // updateMessages({ userName, text, timeStamp });
     });
   }, []);
 
@@ -136,7 +142,7 @@ const index = ({ userName }) => {
         // console.log({ Listdata: data.data.viewer.participateEvents.edges });
 
         if (!!data.data.viewer.getAllMessages) {
-          setMessages(data.data.viewer.getAllMessages.chatsMessages);
+          await setMessages(data.data.viewer.getAllMessages.chatsMessages);
         }
       } catch (error) {
         console.log({ errorInReg: error });
@@ -151,7 +157,11 @@ const index = ({ userName }) => {
         <Text style={styles.roomtext}>Room name</Text>
       </View>
 
-      <MessagesContainer data={data} messages={messages} userName={userName} />
+      <MessagesContainer
+        data={data}
+        messages={[].concat(messages, socketMessages)}
+        userName={userName}
+      />
 
       <SendMessage socket={socket} userName={userName} roomId={roomId} />
     </View>
