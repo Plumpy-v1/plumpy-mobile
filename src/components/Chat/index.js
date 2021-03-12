@@ -60,16 +60,19 @@ const index = ({ userName }) => {
   const [socket, setSocket] = useState(io(env.socketUrl));
   const [messages, setMessages] = useState([]);
   const [socketMessages, setSocketMessages] = useState([]);
+
+  let finalMessages = [].concat(messages, socketMessages);
+
   let roomId = "8095f6e4-3ba8-479e-887c-e83064de4748";
-  const refMessage = useRef(messages);
-  // console.log({ parajm: route.params });
-
-  // const { userName } = route.params;/
-
-  // const userName = "mohti";
-  // let eventData = JSON.parse(res);
-
-  // console.log({ deno: eventData });
+  const flatListRef = React.useRef();
+  const scrollToItem = () => {
+    finalMessages &&
+      finalMessages.length > 0 &&
+      flatListRef.current.scrollToIndex({
+        animated: true,
+        index: 0,
+      });
+  };
 
   useEffect(() => {
     // console.log({ itsRun: true, socketUrl: env.socketUrl });
@@ -96,6 +99,7 @@ const index = ({ userName }) => {
       // setMessages([...messages]);
 
       setSocketMessages([...socketMessages]);
+      scrollToItem();
       // updateMessages({ userName, text, timeStamp });
     });
   }, []);
@@ -142,7 +146,8 @@ const index = ({ userName }) => {
         // console.log({ Listdata: data.data.viewer.participateEvents.edges });
 
         if (!!data.data.viewer.getAllMessages) {
-          await setMessages(data.data.viewer.getAllMessages.chatsMessages);
+          setMessages(data.data.viewer.getAllMessages.chatsMessages);
+          scrollToItem();
         }
       } catch (error) {
         console.log({ errorInReg: error });
@@ -150,6 +155,10 @@ const index = ({ userName }) => {
     };
     getAllMessages();
   }, []);
+
+  // useEffect(() => {
+  //   scrollToItem();
+  // }, [messages, socketMessages]);
 
   return (
     <View style={styles.mainchat}>
@@ -159,11 +168,17 @@ const index = ({ userName }) => {
 
       <MessagesContainer
         data={data}
-        messages={[].concat(messages, socketMessages)}
+        messages={finalMessages.reverse()}
         userName={userName}
+        flatListRef={flatListRef}
       />
 
-      <SendMessage socket={socket} userName={userName} roomId={roomId} />
+      <SendMessage
+        socket={socket}
+        userName={userName}
+        roomId={roomId}
+        scrollToItem={scrollToItem}
+      />
     </View>
   );
 };

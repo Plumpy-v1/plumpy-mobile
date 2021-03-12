@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, StyleSheet } from "react-native";
 // import ScrollToBottom from "react-scroll-to-bottom";
 
-function index({ data, messages, userName }) {
+function index({ data, messages, userName, flatListRef, scrollToItem }) {
   // console.log({ messages123: messages });
 
   return (
@@ -38,10 +38,17 @@ function index({ data, messages, userName }) {
       </ScrollToBottom> */}
       <FlatList
         data={messages}
-        scrollToIndex={messages.length}
-        // flatListRef={React.createRef()}
-        // ref={flatList}
+        // scrollToIndex={0}
+        inverted
+        // initialNumToRender={messages.length}
+        //here start
+        // data={messages.reverse()}
+        // scrollToIndex={0}
+        // inverted
+        // initialNumToRender={messages.length}
+        ref={flatListRef}
         renderItem={(item) => {
+          console.log(item.item);
           return (
             <View
               style={
