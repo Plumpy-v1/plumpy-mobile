@@ -7,6 +7,8 @@ import { View, Text, StyleSheet } from "react-native";
 function index({ data, messages, userName, flatListRef, scrollToItem }) {
   // console.log({ messages123: messages });
 
+  // console.log({ messages });
+
   return (
     <SafeAreaView style={styles.main_innerscroll}>
       {/* <ScrollToBottom>
@@ -39,7 +41,7 @@ function index({ data, messages, userName, flatListRef, scrollToItem }) {
       <FlatList
         data={messages}
         // scrollToIndex={0}
-        inverted
+        // inverted
         // initialNumToRender={messages.length}
         //here start
         // data={messages.reverse()}
@@ -48,7 +50,7 @@ function index({ data, messages, userName, flatListRef, scrollToItem }) {
         // initialNumToRender={messages.length}
         ref={flatListRef}
         renderItem={(item) => {
-          console.log(item.item);
+          // console.log(item.item);
           return (
             <View
               style={
@@ -65,15 +67,17 @@ function index({ data, messages, userName, flatListRef, scrollToItem }) {
                   {item.item.userName}
                 </Text>
               )}
-              <Text
-                style={
-                  item.item.userName !== userName
-                    ? styles.text
-                    : [styles.text, { color: "#fff" }]
-                }
-              >
-                {item.item.text}
-              </Text>
+              {item.item.text && (
+                <Text
+                  style={
+                    item.item.userName !== userName
+                      ? styles.text
+                      : [styles.text, { color: "#fff" }]
+                  }
+                >
+                  {item.item.text}
+                </Text>
+              )}
             </View>
           );
         }}

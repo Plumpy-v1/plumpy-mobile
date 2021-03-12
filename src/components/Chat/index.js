@@ -75,8 +75,6 @@ const index = ({ userName }) => {
   };
 
   useEffect(() => {
-    // console.log({ itsRun: true, socketUrl: env.socketUrl });
-
     socket.emit("join", { userName: userName, roomId }, (err, user) => {
       if (err) {
         console.log({ mohitJoinError: err });
@@ -93,8 +91,6 @@ const index = ({ userName }) => {
   // listen messages
   useEffect(() => {
     socket.on("message", ({ userName, text, timeStamp }) => {
-      console.log({ userName, text, timeStamp });
-      // console.log({ messageXyz: refMessage.current.value });
       socketMessages.push({ userName, text, timeStamp });
       // setMessages([...messages]);
 
@@ -108,7 +104,6 @@ const index = ({ userName }) => {
   useEffect(() => {
     const getAllMessages = async () => {
       const sharedData = await Get_shareddata();
-      // console.log({ sharedData });
 
       const query = `query{
         viewer
@@ -128,7 +123,6 @@ const index = ({ userName }) => {
         }
       }`;
 
-      //  console.log({ query });
       const url = env.url;
 
       const params = {
@@ -142,8 +136,6 @@ const index = ({ userName }) => {
       try {
         const res = await fetch(url, params);
         const data = await res.json();
-
-        // console.log({ Listdata: data.data.viewer.participateEvents.edges });
 
         if (!!data.data.viewer.getAllMessages) {
           setMessages(data.data.viewer.getAllMessages.chatsMessages);
@@ -168,7 +160,7 @@ const index = ({ userName }) => {
 
       <MessagesContainer
         data={data}
-        messages={finalMessages.reverse()}
+        messages={finalMessages}
         userName={userName}
         flatListRef={flatListRef}
       />
