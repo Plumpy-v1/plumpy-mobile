@@ -24,52 +24,13 @@ const EventDetails = ({ navigation, route }) => {
   const [eventdata, setEventdata] = useState(null);
 
   const _joinEvent = async () => {
-
     if (isJoinShow) {
-
-      const sharedData = await Get_shareddata();
-      // console.log({ sharedData });
-
-      const query = `
-      mutation{
-
-        joinEvent(input :{eventId :\"${eventId}\"})
-        {
-          success
-        }
-      }
-      
-      
-`;
-
-      //  console.log({ query });
-      const url = env.url;
-
-      const params = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: sharedData.token,
-        },
-        body: JSON.stringify({ query }),
-      };
-      try {
-        const res = await fetch(url, params);
-        const data = await res.json();
-        // console.log({ eventdetail: data.data.viewer.getEventById });
-
-        if (!!data.data.joinEvent.success) {
-          navigation.navigate(navigationiteam.ImageSelection, {
-            eventId,
-            eventdata: JSON.stringify(eventdata),
-          });
-        }
-      } catch (error) {
-        console.log({ errorInReg: error });
-      }
-    }
-    else {
-       navigation.navigate(navigationiteam.HistoryEvents);
+      navigation.navigate(navigationiteam.ImageSelection, {
+        eventId,
+        eventdata: JSON.stringify(eventdata),
+      });
+    } else {
+      navigation.navigate(navigationiteam.HistoryEvents);
     }
   };
 

@@ -12,6 +12,8 @@ import {
 import ImageComponent from "../components/ImageSelection/ImageComponent";
 import CustomButton from "../elements/CustomButton";
 import places from "../../assets/data/feed";
+import { env } from "../../env";
+import { Get_shareddata } from "../../constant";
 
 const ImageSelectionContainer = ({ navigation, route }) => {
   const res = route.params;
@@ -20,6 +22,54 @@ const ImageSelectionContainer = ({ navigation, route }) => {
   const [imageIndex, setImageIndex] = useState([-1, -1, -1, -1, -1, -1]);
   // console.log({ res: JSON.parse(res.eventdata) });
   // let eventJsonData = JSON.parse(eventData)
+
+  const _next = async () => {
+    let weight = imageIndex.reduce(
+      (ac = 0, img, i) => ac + (img != -1 ? i + 1 : 0)
+    );
+
+    if (weight >= 6) {
+      const sharedData = await Get_shareddata();
+      // console.log({ sharedData });
+      // register(input :{email :\"${email.toString()}\" ,password :\"${password.toString()}\" , name :\"${name.toString()}\"})
+
+      const query = `
+    mutation{
+
+      joinEvent(input :{eventId :\"${eventId}\" , weight:\"${weight}\"})
+      {
+        success
+      }
+    }
+`;
+
+      //  console.log({ query });
+      const url = env.url;
+
+      const params = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: sharedData.token,
+        },
+        body: JSON.stringify({ query }),
+      };
+      try {
+        const res = await fetch(url, params);
+        const data = await res.json();
+        // console.log({ eventdetail: data.data.viewer.getEventById });
+
+        if (!!data.data.joinEvent.success) {
+          navigation.navigate("JoinedEvent", { res });
+        }
+      } catch (error) {
+        console.log({ errorInReg: error });
+      }
+    } else {
+      alert("please select any 3 image");
+    }
+  };
+
   return (
     <SafeAreaView style={styles.safe}>
       <View style={styles.container}>
@@ -70,7 +120,7 @@ const ImageSelectionContainer = ({ navigation, route }) => {
             title="Done"
             colorbg="#FF7878"
             textcolor="#fff"
-            onPress={() => navigation.navigate("JoinedEvent", { res })}
+            onPress={_next}
           />
         </View>
       </View>

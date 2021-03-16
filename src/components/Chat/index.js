@@ -56,7 +56,7 @@ const data = [
 //   timeStamp,
 // };
 
-const index = ({ userName }) => {
+const index = ({ userName, len }) => {
   const [socket, setSocket] = useState(io(env.socketUrl));
   const [messages, setMessages] = useState([]);
   const [socketMessages, setSocketMessages] = useState([]);
@@ -66,11 +66,17 @@ const index = ({ userName }) => {
   let roomId = "8095f6e4-3ba8-479e-887c-e83064de4748";
   const flatListRef = React.useRef();
   const scrollToItem = () => {
-    finalMessages &&
-      finalMessages.length > 0 &&
+    console.log({
+      messages: messages.length,
+      socketMessages: socketMessages.length,
+      len,
+    });
+
+    len + socketMessages.length > 0 &&
       flatListRef.current.scrollToIndex({
         animated: true,
-        index: 0,
+        index: len + socketMessages.length,
+        // index: finalMessages.length,
       });
   };
 
@@ -160,7 +166,7 @@ const index = ({ userName }) => {
 
       <MessagesContainer
         data={data}
-        messages={finalMessages}
+        messages={finalMessages.reverse()}
         userName={userName}
         flatListRef={flatListRef}
       />

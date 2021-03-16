@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 import { FlatList } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, StyleSheet } from "react-native";
@@ -8,6 +8,7 @@ function index({ data, messages, userName, flatListRef, scrollToItem }) {
   // console.log({ messages123: messages });
 
   // console.log({ messages });
+  // lenRef.current.value = messages.length;
 
   return (
     <SafeAreaView style={styles.main_innerscroll}>
@@ -39,7 +40,7 @@ function index({ data, messages, userName, flatListRef, scrollToItem }) {
         })}
       </ScrollToBottom> */}
       <FlatList
-        data={messages}
+        data={messages.reverse()}
         // scrollToIndex={0}
         // inverted
         // initialNumToRender={messages.length}
@@ -47,7 +48,7 @@ function index({ data, messages, userName, flatListRef, scrollToItem }) {
         // data={messages.reverse()}
         // scrollToIndex={0}
         // inverted
-        // initialNumToRender={messages.length}
+        initialNumToRender={messages.length}
         ref={flatListRef}
         renderItem={(item) => {
           // console.log(item.item);
