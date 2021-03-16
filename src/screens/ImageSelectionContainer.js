@@ -18,6 +18,7 @@ import { Get_shareddata } from "../../constant";
 const ImageSelectionContainer = ({ navigation, route }) => {
   const res = route.params;
   let eventData = JSON.parse(res.eventdata);
+  let eventId = res.eventId;
   const [count, setCount] = useState(0);
   const [imageIndex, setImageIndex] = useState([-1, -1, -1, -1, -1, -1]);
   // console.log({ res: JSON.parse(res.eventdata) });
@@ -27,6 +28,7 @@ const ImageSelectionContainer = ({ navigation, route }) => {
     let weight = imageIndex.reduce(
       (ac = 0, img, i) => ac + (img != -1 ? i + 1 : 0)
     );
+    // console.log({ weight, eventId });
 
     if (weight >= 6) {
       const sharedData = await Get_shareddata();
@@ -60,7 +62,7 @@ const ImageSelectionContainer = ({ navigation, route }) => {
         // console.log({ eventdetail: data.data.viewer.getEventById });
 
         if (!!data.data.joinEvent.success) {
-          navigation.navigate("JoinedEvent", { res });
+          navigation.navigate("JoinedEvent", { eventdata: eventData });
         }
       } catch (error) {
         console.log({ errorInReg: error });

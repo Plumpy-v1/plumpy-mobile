@@ -1,12 +1,12 @@
 import React from "react";
-import { View,Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 const FutureEventList = ({ info, navigation }) => {
   return (
     <TouchableOpacity
       onPress={() =>
         navigation.navigate("JoinedEvent", {
-          res: { eventdata: { mapLat: info.node.mapLat, mapLag: info.node.mapLat } },
+          eventdata: { mapLat: info.node.mapLat, mapLag: info.node.mapLat },
         })
       }
       style={styles.container}
@@ -15,7 +15,7 @@ const FutureEventList = ({ info, navigation }) => {
         style={styles.img}
         source={require("../../../assets/img/event.png")}
       />
-      
+
       <View style={styles.innerContainer}>
         <Text style={styles.text}>{info?.node.date}</Text>
         <Text style={[styles.text, { fontSize: 20.4 }]}>{info?.node.name}</Text>
@@ -26,7 +26,7 @@ const FutureEventList = ({ info, navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   innerContainer: {
     display: "flex",
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     top: 100,
     // overflow: "hidden",
     // height: "50%",
-    width: 250
+    width: 250,
   },
   text: {
     fontSize: 12,
@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     //justifyContent:'center',
     alignSelf: "center",
     borderRadius: 10,
-      margin: 5,
-    opacity :0.4
+    margin: 5,
+    opacity: 0.4,
   },
 });
 
