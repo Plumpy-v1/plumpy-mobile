@@ -111,20 +111,20 @@ export const AppStack = ({ navigation }) => {
         <Stack.Screen
           name={"EventDetails"}
           component={EventDetails}
-          options={({ navigation }) => ({
-            headerTitle: "Plumpy",
-            headerStyle: { backgroundColor: "#FBE7E3" },
+          // options={({ navigation }) => ({
+          //   headerTitle: "Plumpy",
+          //   headerStyle: { backgroundColor: "#FBE7E3" },
 
-            headerTitleStyle: { fontFamily: "Poppins-Bold", color: "#FF7C7C" },
-            //headerTransparent: true,
-            headerTitleAlign: "center",
-            headerLeft: () => <Back onPress={() => navigation.pop()} />,
-            headerLeftContainerStyle: { padding: 15 },
-            headerRight: () => (
-              <Profile onPress={() => navigation.navigate("ProfileScreen")} />
-            ),
-            headerRightContainerStyle: { padding: 15 },
-          })}
+          //   headerTitleStyle: { fontFamily: "Poppins-Bold", color: "#FF7C7C" },
+          //   //headerTransparent: true,
+          //   headerTitleAlign: "center",
+          //   headerLeft: () => <Back onPress={() => navigation.pop()} />,
+          //   headerLeftContainerStyle: { padding: 15 },
+          //   headerRight: () => (
+          //     <Profile onPress={() => navigation.navigate("ProfileScreen")} />
+          //   ),
+          //   headerRightContainerStyle: { padding: 15 },
+          // })}
         />
 
         <Stack.Screen
@@ -295,18 +295,18 @@ export const AppStack = ({ navigation }) => {
         <Stack.Screen
           name={"JoinedEvent"}
           component={JoinedEvent}
-          options={({ navigation }) => ({
-            headerTitle: "Plumpy",
-            headerTitleStyle: { fontFamily: "Poppins-Bold", color: "#FF7C7C" },
-            headerTransparent: true,
-            headerTitleAlign: "center",
-            headerLeft: () => <Back onPress={() => navigation.pop()} />,
-            headerLeftContainerStyle: { padding: 15 },
-            headerRight: () => (
-              <Profile onPress={() => navigation.navigate("ProfileScreen")} />
-            ),
-            headerRightContainerStyle: { padding: 15 },
-          })}
+          // options={({ navigation }) => ({
+          //   headerTitle: "Plumpy",
+          //   headerTitleStyle: { fontFamily: "Poppins-Bold", color: "#FF7C7C" },
+          //   headerTransparent: true,
+          //   headerTitleAlign: "center",
+          //   headerLeft: () => <Back onPress={() => navigation.pop()} />,
+          //   headerLeftContainerStyle: { padding: 15 },
+          //   headerRight: () => (
+          //     <Profile onPress={() => navigation.navigate("ProfileScreen")} />
+          //   ),
+          //   headerRightContainerStyle: { padding: 15 },
+          // })}
         />
 
         <Stack.Screen
