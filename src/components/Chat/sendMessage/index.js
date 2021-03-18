@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     paddingHorizontal: "4%",
     color: "black",
-    width: "85%",
+    // width: "85%",
+    height:45,
   },
   btnStyle: {
     height: 44,
