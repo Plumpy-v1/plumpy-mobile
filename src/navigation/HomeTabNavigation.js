@@ -5,7 +5,7 @@ import ChatScreen from "../screens/ChatScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-
+import ChatRoom from "../screens/ChatRoom";
 import { Feather } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { Back, Profile } from "../components/HeaderComponent/NavIcon";
@@ -23,11 +23,11 @@ const MainServiceTabScreens = () => {
     <Stack1.Navigator>
       <Stack1.Screen
         options={{ headerShown: false }}
-        name="HomePage"
+        name='HomePage'
         component={MainServiceScreen}
       />
       <Stack1.Screen
-        name="NearEvent"
+        name='NearEvent'
         component={NearEvent}
         options={({ navigation }) => ({
           headerTitle: "Plumpy",
@@ -44,11 +44,11 @@ const MainServiceTabScreens = () => {
       />
       <Stack1.Screen
         options={{ headerShown: false }}
-        name="HistoryEvents"
+        name='HistoryEvents'
         component={HistoryEvents}
       />
       <Stack1.Screen
-        name="EventDetails"
+        name='EventDetails'
         component={EventDetails}
         options={({ navigation }) => ({
           headerTitle: "Plumpy",
@@ -66,7 +66,7 @@ const MainServiceTabScreens = () => {
         })}
       />
       <Stack1.Screen
-        name="JoinedEvent"
+        name='JoinedEvent'
         component={JoinedEvent}
         options={({ navigation }) => ({
           headerTitle: "Plumpy",
@@ -81,6 +81,7 @@ const MainServiceTabScreens = () => {
           headerRightContainerStyle: { padding: 15 },
         })}
       />
+
       {/* <Stack1.Screen name="JoinedEvent" component={JoinedEvent} /> */}
     </Stack1.Navigator>
   );
@@ -92,10 +93,10 @@ const Tab2Screens = () => {
     // Add Search module related bottomtab
     <Stack2.Navigator>
       <Stack2.Screen
-        name="Search"
-        component={null}
+        name='Search'
+        component={ChatRoom}
         options={{
-          tabBarIcon: () => <Feather name="search" size={30} color="#FF7C7C" />,
+          tabBarIcon: () => <Feather name='search' size={30} color='#FF7C7C' />,
 
           tabBarLabel: () => {
             return null;
@@ -109,7 +110,26 @@ const Stack3 = createStackNavigator();
 const Tab3Screens = () => {
   return (
     <Stack3.Navigator>
-      <Stack3.Screen name="ChatScreen" component={ChatScreen} />
+      <Stack3.Screen
+        name='ChatRoom'
+        component={ChatRoom}
+        options={({ navigation }) => ({
+          headerTitle: "Plumpy",
+          headerStyle: { backgroundColor: "#FBE7E3" },
+
+          headerTitleStyle: { fontFamily: "Poppins-Bold" },
+          //headerTransparent: true,
+          headerStyle: { backgroundColor: "#FBE7E3" },
+
+          headerTitleAlign: "center",
+          headerLeft: () => <Back onPress={() => navigation.pop()} />,
+          headerLeftContainerStyle: { padding: 15 },
+          headerRight: () => (
+            <Profile onPress={() => navigation.navigate("ProfileScreen")} />
+          ),
+          headerRightContainerStyle: { padding: 15 },
+        })}
+      />
     </Stack3.Navigator>
   );
 };
@@ -128,12 +148,12 @@ const TabScreens = () => {
           overflow: "hidden",
         },
       }}
-      initialRouteName="Tab1Screens"
+      initialRouteName='Tab1Screens'
     >
       <Tab.Screen
-        name="Tab1Screens"
+        name='Tab1Screens'
         options={{
-          tabBarIcon: () => <Feather name="home" size={30} color="#FF7C7C" />,
+          tabBarIcon: () => <Feather name='home' size={30} color='#FF7C7C' />,
 
           tabBarLabel: () => {
             return null;
@@ -142,9 +162,9 @@ const TabScreens = () => {
         component={MainServiceTabScreens}
       />
       <Tab.Screen
-        name="Tab2Screens"
+        name='Tab2Screens'
         options={{
-          tabBarIcon: () => <Feather name="search" size={30} color="#FF7C7C" />,
+          tabBarIcon: () => <Feather name='search' size={30} color='#FF7C7C' />,
 
           tabBarLabel: () => {
             return null;
@@ -153,11 +173,11 @@ const TabScreens = () => {
         component={Tab2Screens}
       />
       <Tab.Screen
-        name="Tab3Screens"
+        name='Tab3Screens'
         component={Tab3Screens}
         options={{
           tabBarIcon: () => (
-            <FontAwesome name="wechat" size={30} color="#FF7C7C" />
+            <FontAwesome name='wechat' size={30} color='#FF7C7C' />
           ),
 
           tabBarLabel: () => {
@@ -168,7 +188,6 @@ const TabScreens = () => {
     </Tab.Navigator>
   );
 };
-
 
 const HomeTabNavigation = () => {
   return <TabScreens />;

@@ -168,7 +168,7 @@ export const AppStack = ({ navigation }) => {
             headerLeft: () => <Back onPress={() => navigation.pop()} />,
             headerLeftContainerStyle: { padding: 15 },
             headerRight: () => (
-              <Profile onPress={() => navigation.navigate("")} />
+              <Profile onPress={() => navigation.navigate("ProfileScreen")} />
             ),
             headerRightContainerStyle: { padding: 15 },
           })}
@@ -196,22 +196,7 @@ export const AppStack = ({ navigation }) => {
         <Stack.Screen
           name={"ChatScreen"}
           component={ChatScreen}
-          options={({ navigation }) => ({
-            headerTitle: roomname,
-            headerStyle: { backgroundColor: "#FBE7E3" },
-
-            headerTitleStyle: { fontFamily: "Poppins-Bold" },
-            //headerTransparent: true,
-            headerStyle: { backgroundColor: "#FBE7E3" },
-
-            headerTitleAlign: "center",
-            headerLeft: () => <Back onPress={() => navigation.pop()} />,
-            headerLeftContainerStyle: { padding: 15 },
-            headerRight: () => (
-              <Profile onPress={() => Alert.alert("Room info", "my message")} />
-            ),
-            headerRightContainerStyle: { padding: 15 },
-          })}
+         
         />
         {/* 
         <Stack.Screen
