@@ -7,7 +7,6 @@ import {
   Image,
   StatusBar,
   Dimensions,
-  TextInput,
   Text,
   TouchableOpacity,
 } from "react-native";
@@ -17,22 +16,41 @@ import CustomButton from "../elements/CustomButton";
 import { env } from "../../env";
 import { DefaultState, Update_Mobilestore_Variable } from "../../constant";
 import { navigationiteam } from "../navigation/MainNavigation";
+import {
+  emailValidator,
+  passwordValidator,
+  nameValidator,
+} from '../elements/ErrorMessage';
+import TextInput from '../elements/TextInput'
+
 
 const SignUpScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+
+  const [name, setName] = useState({ value: '', error: '' });
+  const [email, setEmail] = useState({ value: '', error: '' });
+  const [password, setPassword] = useState({ value: '', error: '' });
 
   const _submit = async () => {
     const query = `
     mutation{
-      register(input :{email :\"${email.toString()}\" ,password :\"${password.toString()}\" , name :\"${name.toString()}\"})
+      register(input :{email :\"${email.value.toString()}\" ,password :\"${password.value.toString()}\" , name :\"${name.value.toString()}\"})
       {
         success
         token
       }
     }
 `;
+
+const nameError = nameValidator(name.value);
+const emailError = emailValidator(email.value);
+const passwordError = passwordValidator(password.value);
+
+if (emailError || passwordError || nameError) {
+  setName({ ...name, error: nameError });
+  setEmail({ ...email, error: emailError });
+  setPassword({ ...password, error: passwordError });
+  return;
+}
 
     console.log({ query });
     const url = env.url;
@@ -88,14 +106,19 @@ const SignUpScreen = ({ navigation }) => {
               height: 22,
             }}
           />
+         
           <TextInput
             placeholder="Name"
             // type="text"
             placeholderTextColor="#FF7C7C"
-            style={CommonStyles.textInput}
+            // style={CommonStyles.textInput}
             underlineColorAndroid="transparent"
-            value={name}
-            onChangeText={(eName) => setName(eName)}
+            returnKeyType="next"
+            value={name.value}
+            name='name'
+            error={!!name.error}
+            errorText={name.error}
+            onChangeText={uname => setName({ value: uname, error: '' })}
           />
         </View>
 
@@ -110,13 +133,20 @@ const SignUpScreen = ({ navigation }) => {
               height: 22,
             }}
           />
-          <TextInput
+         
+
+      <TextInput
             placeholder="Email"
             placeholderTextColor="#FF7C7C"
-            style={CommonStyles.textInput}
-            underlineColorAndroid="transparent"
-            value={email}
-            onChangeText={(nemail) => setEmail(nemail)}
+            returnKeyType="next"
+            
+            // underlineColorAndroid="transparent"
+            returnKeyType="next"
+            value={email.value}
+            error={!!email.error}
+            errorText={email.error}
+            name='email'
+            onChangeText={emailAddr => setEmail({ value: emailAddr, error: '' })}
           />
         </View>
 
@@ -131,14 +161,21 @@ const SignUpScreen = ({ navigation }) => {
               height: 22,
             }}
           />
-          <TextInput
+
+        <TextInput
             placeholder="Password"
             type="password"
+            returnKeyType="done"
             placeholderTextColor="#FF7C7C"
-            style={CommonStyles.textInput}
+            
             underlineColorAndroid="transparent"
-            value={password}
-            onChangeText={(pass) => setPassword(pass)}
+            onChangeText={pass => setPassword({ value: pass, error: '' })}
+            value={password.value}
+            error={!!password.error}
+            errorText={password.error}
+            name='password'
+            secureTextEntry={true}
+            
           />
         </View>
 

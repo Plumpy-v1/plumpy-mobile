@@ -7,7 +7,6 @@ import {
   Image,
   StatusBar,
   Dimensions,
-  TextInput,
   Text,
   TouchableOpacity,
 } from "react-native";
@@ -18,15 +17,21 @@ import { Navigation } from "react-native-navigation";
 import { env } from "../../env";
 import { Update_Mobilestore_Variable } from "../../constant";
 import { navigationiteam } from "../navigation/MainNavigation";
+import {
+  passwordValidator,
+  nameValidator,
+} from '../elements/ErrorMessage';
+import TextInput from '../elements/TextInput'
+
 
 const SignInScreen = ({ navigation }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState({ value: '', error: '' });
+  const [password, setPassword] = useState({ value: '', error: '' });
 
   const _submit = async () => {
     const query = `
     mutation{
-      login(input:{email:\"${username}\" , password: \"${password}\"})
+      login(input:{email:\"${username.value}\" , password: \"${password.value}\"})
       {
         success
         token
@@ -34,6 +39,16 @@ const SignInScreen = ({ navigation }) => {
       }
     }
 `;
+
+    const nameError = nameValidator(username.value);
+    const passwordError = passwordValidator(password.value);
+
+    if (nameError || passwordError ) {
+      setUsername({ ...username, error: nameError });
+      setPassword({ ...password, error: passwordError });
+      return;
+    }
+
 
     // console.log({ query });
     const url = env.url;
@@ -92,13 +107,16 @@ const SignInScreen = ({ navigation }) => {
             }}
           />
           <TextInput
-            placeholder="Username"
+            placeholder="Email"
             placeholderTextColor="#FF7C7C"
-            style={CommonStyles.textInput}
+            returnKeyType="next"
             underlineColorAndroid="transparent"
-            value={username}
-            onChangeText={(uname) => setUsername(uname)}
+            value={username.value}
+            error={!!username.error}
+           errorText={username.error}
+            onChangeText={uname => setUsername({ value: uname, error: '' })}
           />
+
         </View>
         <View style={CommonStyles.textInputField}>
           <Image
@@ -111,14 +129,19 @@ const SignInScreen = ({ navigation }) => {
               height: 22,
             }}
           />
+         
+
           <TextInput
             placeholder="Password"
             type="password"
+            returnKeyType="done"
             placeholderTextColor="#FF7C7C"
-            style={CommonStyles.textInput}
             underlineColorAndroid="transparent"
-            value={password}
-            onChangeText={(pass) => setPassword(pass)}
+            value={password.value}
+            onChangeText={pass => setPassword({ value: pass, error: '' })}
+            error={!!password.error}
+            errorText={password.error}
+            secureTextEntry={true}
           />
         </View>
         <TouchableOpacity onPress={() => console.log("Start")}>
