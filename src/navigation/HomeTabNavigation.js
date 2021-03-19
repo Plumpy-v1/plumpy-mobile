@@ -46,6 +46,19 @@ const MainServiceTabScreens = () => {
         options={{ headerShown: false }}
         name='HistoryEvents'
         component={HistoryEvents}
+        options={({ navigation }) => ({
+            headerTitle: "Plumpy",
+            headerTitleStyle: { fontFamily: "Poppins-Bold" },
+            headerTransparent: true,
+            headerTitleAlign: "center",
+            headerLeft: () => <Back onPress={() => navigation.pop()} />,
+            headerLeftContainerStyle: { padding: 15 },
+            headerRight: () => (
+              <Profile onPress={() => navigation.navigate("ProfileScreen")} />
+            ),
+            headerRightContainerStyle: { padding: 15 },
+          })}
+
       />
       <Stack1.Screen
         name='EventDetails'
