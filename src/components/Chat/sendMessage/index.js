@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { CommonStyles } from "../../../styles/CommonStyles";
-function index({ socket, userName, roomId }) {
+function index({ socket, userName, roomId, discussionChatRoomId }) {
   const [value, setValue] = useState("");
   const _sendMessage = () => {
     if (value) {
-      socket.emit("sendMessage", { message: value, userName, roomId }, () =>
-        setValue("")
+      socket.emit(
+        "sendMessage",
+        { message: value, userName, roomId, discussionChatRoomId },
+        () => setValue("")
       );
     }
   };
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: "4%",
     color: "black",
     // width: "85%",
-    height:45,
+    height: 45,
   },
   btnStyle: {
     height: 44,

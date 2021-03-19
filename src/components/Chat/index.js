@@ -56,14 +56,13 @@ const data = [
 //   timeStamp,
 // };
 
-const index = ({ userName, len }) => {
+const index = ({ userName, len, roomId, eventName, discussionChatRoomId }) => {
   const [socket, setSocket] = useState(io(env.socketUrl));
   const [messages, setMessages] = useState([]);
   const [socketMessages, setSocketMessages] = useState([]);
 
   let finalMessages = [].concat(messages, socketMessages);
 
-  let roomId = "8095f6e4-3ba8-479e-887c-e83064de4748";
   const flatListRef = React.useRef();
   const scrollToItem = () => {
     console.log({
@@ -75,7 +74,7 @@ const index = ({ userName, len }) => {
     len + socketMessages.length > 0 &&
       flatListRef.current.scrollToIndex({
         animated: true,
-        index: len + socketMessages.length,
+        index: len + socketMessages.length - 1,
         // index: finalMessages.length,
       });
   };
@@ -114,7 +113,7 @@ const index = ({ userName, len }) => {
       const query = `query{
         viewer
         {
-          getAllMessages(roomId:"8095f6e4-3ba8-479e-887c-e83064de4748")
+          getAllMessages(roomId:\"${roomId}\")
           {
             id
             roomId
@@ -161,7 +160,7 @@ const index = ({ userName, len }) => {
   return (
     <View style={styles.mainchat}>
       <View style={styles.room}>
-        <Text style={styles.roomtext}>Room name</Text>
+        <Text style={styles.roomtext}>{eventName}</Text>
       </View>
 
       <MessagesContainer
@@ -176,6 +175,7 @@ const index = ({ userName, len }) => {
         userName={userName}
         roomId={roomId}
         scrollToItem={scrollToItem}
+        discussionChatRoomId={discussionChatRoomId}
       />
     </View>
   );

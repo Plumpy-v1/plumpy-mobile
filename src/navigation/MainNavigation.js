@@ -193,11 +193,7 @@ export const AppStack = ({ navigation }) => {
             headerRightContainerStyle: { padding: 15 },
           })}
         />
-        <Stack.Screen
-          name={"ChatScreen"}
-          component={ChatScreen}
-         
-        />
+        <Stack.Screen name={"ChatScreen"} component={ChatScreen} />
         {/* 
         <Stack.Screen
           name={"PollScreen"}
