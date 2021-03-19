@@ -41,7 +41,7 @@ const JoinedEvent = ({ navigation, route }) => {
             source={require("../../assets/img/NearEvents/eventImg.png")}
           />
           <Text style={{ fontSize: 22, textAlign: "center", color: "#000000" }}>
-            Games Paradise
+            {eventData?.name}
           </Text>
           <Text
             style={{
@@ -51,7 +51,7 @@ const JoinedEvent = ({ navigation, route }) => {
               opacity: 20,
             }}
           >
-            By gammerconnect
+            By {eventData?.organizerInfo?.name}
           </Text>
         </View>
 
