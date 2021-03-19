@@ -33,7 +33,7 @@ export const navigationiteam = {
   // HistoryEvents: "HistoryEvents",
   HomePage: "HomePage",
   ImageSelection: "ImageSelection",
-  FutureEvents: "FutureEvents",
+  // FutureEvents: "FutureEvents",
   PollScreen: "PollScreen",
   EventRequest: "EventRequest",
   HomeTest: "HomeTest",
@@ -153,26 +153,7 @@ export const AppStack = ({ navigation }) => {
             headerRightContainerStyle: { padding: 15 },
           })}
         />
-        <Stack.Screen
-          name={"FutureEvents"}
-          component={FutureEvents}
-          options={({ navigation }) => ({
-            headerTitle: "Plumpy",
-            headerStyle: { backgroundColor: "#FBE7E3" },
-
-            headerTitleStyle: { fontFamily: "Poppins-Bold" },
-            //headerTransparent: true,
-            headerStyle: { backgroundColor: "#FBE7E3" },
-
-            headerTitleAlign: "center",
-            headerLeft: () => <Back onPress={() => navigation.pop()} />,
-            headerLeftContainerStyle: { padding: 15 },
-            headerRight: () => (
-              <Profile onPress={() => navigation.navigate("ProfileScreen")} />
-            ),
-            headerRightContainerStyle: { padding: 15 },
-          })}
-        />
+        
         <Stack.Screen
           name={"ChatRoom"}
           component={ChatRoom}

@@ -16,6 +16,7 @@ import SignInScreen from "../screens/SignInScreen";
 import HistoryEvents from "../screens/HistoryEvents";
 import JoinedEvent from "../screens/JoinedEvent";
 import EventDetails from "../screens/EventDetails";
+import FutureEvents from "../screens/FutureEvents";
 const Stack1 = createStackNavigator();
 
 const MainServiceTabScreens = () => {
@@ -61,6 +62,27 @@ const MainServiceTabScreens = () => {
 
       />
       <Stack1.Screen
+          name={"FutureEvents"}
+          component={FutureEvents}
+          options={({ navigation }) => ({
+            headerTitle: "Plumpy",
+            // headerStyle: { backgroundColor: "#FBE7E3" },
+
+            headerTitleStyle: { fontFamily: "Poppins-Bold",color:'#FF7C7C' },
+            //headerTransparent: true,
+             headerStyle: { backgroundColor: "#5C63AB" },
+
+            headerTitleAlign: "center",
+            headerLeft: () => <Back onPress={() => navigation.pop()} />,
+            headerLeftContainerStyle: { padding: 15 },
+            headerRight: () => (
+              <Profile onPress={() => navigation.navigate("ProfileScreen")} />
+            ),
+            headerRightContainerStyle: { padding: 15 },
+          })}
+        />
+
+      <Stack1.Screen
         name='EventDetails'
         component={EventDetails}
         options={({ navigation }) => ({
@@ -83,7 +105,7 @@ const MainServiceTabScreens = () => {
         component={JoinedEvent}
         options={({ navigation }) => ({
           headerTitle: "Plumpy",
-          headerTitleStyle: { fontFamily: "Poppins-Bold", color: "#FF7C7C" },
+          headerTitleStyle: { fontFamily: "Poppins-Bold"},
           headerTransparent: true,
           headerTitleAlign: "center",
           headerLeft: () => <Back onPress={() => navigation.pop()} />,
