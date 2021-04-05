@@ -18,7 +18,7 @@ import FutureEvents from "../screens/FutureEvents";
 import PollScreen from "../screens/PollScreen";
 import PollUpVoteContainer from "../components/PollUpVote/PollUpVoteContainer";
 import EventRequest from "../screens/EventRequest";
-import HistoryEvents from "../screens/HistoryEvents";
+// import HistoryEvents from "../screens/HistoryEvents";
 import ChatScreen from "../screens/ChatScreen";
 import ChatRoom from "../screens/ChatRoom";
 import { Alert } from "react-native";
@@ -30,19 +30,19 @@ export const navigationiteam = {
   SignIn: "SignIn",
   SignUp: "SignUp",
   NearEvent: "NearEvent",
-  HistoryEvents: "HistoryEvents",
+  // HistoryEvents: "HistoryEvents",
   HomePage: "HomePage",
   ImageSelection: "ImageSelection",
-  FutureEvents: "FutureEvents",
+  // FutureEvents: "FutureEvents",
   PollScreen: "PollScreen",
   EventRequest: "EventRequest",
   HomeTest: "HomeTest",
   UserProfile: "UserProfile",
-  JoinedEvent: "JoinedEvent",
+  // JoinedEvent: "JoinedEvent",
   EventDetails: "EventDetails",
 };
 import EventDetails from "../screens/EventDetails";
-import JoinedEvent from "../screens/JoinedEvent";
+// import JoinedEvent from "../screens/JoinedEvent";
 import ProfileScreen from "../screens/ProfileScreen";
 
 const Stack = createStackNavigator();
@@ -153,26 +153,7 @@ export const AppStack = ({ navigation }) => {
             headerRightContainerStyle: { padding: 15 },
           })}
         />
-        <Stack.Screen
-          name={"FutureEvents"}
-          component={FutureEvents}
-          options={({ navigation }) => ({
-            headerTitle: "Plumpy",
-            headerStyle: { backgroundColor: "#FBE7E3" },
-
-            headerTitleStyle: { fontFamily: "Poppins-Bold" },
-            //headerTransparent: true,
-            headerStyle: { backgroundColor: "#FBE7E3" },
-
-            headerTitleAlign: "center",
-            headerLeft: () => <Back onPress={() => navigation.pop()} />,
-            headerLeftContainerStyle: { padding: 15 },
-            headerRight: () => (
-              <Profile onPress={() => navigation.navigate("ProfileScreen")} />
-            ),
-            headerRightContainerStyle: { padding: 15 },
-          })}
-        />
+        
         <Stack.Screen
           name={"ChatRoom"}
           component={ChatRoom}
@@ -243,7 +224,7 @@ export const AppStack = ({ navigation }) => {
             headerRightContainerStyle: { padding: 15 },
           })}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name={"HistoryEvents"}
           component={HistoryEvents}
           options={({ navigation }) => ({
@@ -258,7 +239,7 @@ export const AppStack = ({ navigation }) => {
             ),
             headerRightContainerStyle: { padding: 15 },
           })}
-        />
+        /> */}
 
         <Stack.Screen
           name={"ProfileScreen"}
@@ -273,22 +254,11 @@ export const AppStack = ({ navigation }) => {
           })}
         />
 
-        <Stack.Screen
+        {/* <Stack.Screen
           name={"JoinedEvent"}
           component={JoinedEvent}
-          // options={({ navigation }) => ({
-          //   headerTitle: "Plumpy",
-          //   headerTitleStyle: { fontFamily: "Poppins-Bold", color: "#FF7C7C" },
-          //   headerTransparent: true,
-          //   headerTitleAlign: "center",
-          //   headerLeft: () => <Back onPress={() => navigation.pop()} />,
-          //   headerLeftContainerStyle: { padding: 15 },
-          //   headerRight: () => (
-          //     <Profile onPress={() => navigation.navigate("ProfileScreen")} />
-          //   ),
-          //   headerRightContainerStyle: { padding: 15 },
-          // })}
-        />
+         
+        /> */}
 
         <Stack.Screen
           name={"HomeTest"}

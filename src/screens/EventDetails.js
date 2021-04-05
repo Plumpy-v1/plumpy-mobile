@@ -30,7 +30,7 @@ const EventDetails = ({ navigation, route }) => {
         eventdata: JSON.stringify(eventdata),
       });
     } else {
-      navigation.navigate(navigationiteam.HistoryEvents);
+      navigation.navigate("HistoryEvents");
     }
   };
 

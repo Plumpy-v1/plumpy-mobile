@@ -11,22 +11,19 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { CommonStyles, deviceWidth } from "../styles/CommonStyles";
-
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import CustomButton from "../elements/CustomButton";
 import { Navigation } from "react-native-navigation";
 import { env } from "../../env";
 import { Update_Mobilestore_Variable } from "../../constant";
 import { navigationiteam } from "../navigation/MainNavigation";
-import {
-  passwordValidator,
-  nameValidator,
-} from '../elements/ErrorMessage';
-import TextInput from '../elements/TextInput'
-
+import { passwordValidator, nameValidator } from "../elements/ErrorMessage";
+import TextInput from "../elements/TextInput";
 
 const SignInScreen = ({ navigation }) => {
-  const [username, setUsername] = useState({ value: '', error: '' });
-  const [password, setPassword] = useState({ value: '', error: '' });
+  const [username, setUsername] = useState({ value: "", error: "" });
+  const [password, setPassword] = useState({ value: "", error: "" });
 
   const _submit = async () => {
     const query = `
@@ -43,12 +40,11 @@ const SignInScreen = ({ navigation }) => {
     const nameError = nameValidator(username.value);
     const passwordError = passwordValidator(password.value);
 
-    if (nameError || passwordError ) {
+    if (nameError || passwordError) {
       setUsername({ ...username, error: nameError });
       setPassword({ ...password, error: passwordError });
       return;
     }
-
 
     // console.log({ query });
     const url = env.url;
@@ -66,16 +62,18 @@ const SignInScreen = ({ navigation }) => {
       // console.log({ response: res });
       const data = await res.json();
 
-      console.log({ data });
-
-      if (!!data.data.login.success) {
-        await Update_Mobilestore_Variable({
-          isLogin: true,
-          token: data.data.login.token,
-          isVisibleSplash: false,
-          userName: data.data.login.userName,
-        });
-        await navigation.navigate(navigationiteam.HomeTab);
+      if (!!data.data.login) {
+        if (!!data.data.login.success) {
+          await Update_Mobilestore_Variable({
+            isLogin: true,
+            token: data.data.login.token,
+            isVisibleSplash: false,
+            userName: data.data.login.userName,
+          });
+          await navigation.navigate(navigationiteam.HomeTab);
+        }
+      } else {
+        alert("Invalid credential");
       }
     } catch (error) {
       console.log({ errorInReg: error });
@@ -96,16 +94,22 @@ const SignInScreen = ({ navigation }) => {
       </View>
       <View style={styles.formBox}>
         <View style={CommonStyles.textInputField}>
-          <Image
-            source={require("../../assets/img/SignInScreen/avatar.png")}
+          <MaterialCommunityIcons
+            name="email-outline"
             style={{
               position: "absolute",
               bottom: 12,
-              left: 20,
-              width: 19,
+              left: 18,
+              width: 22,
               height: 22,
             }}
+            size={24}
+            color="black"
           />
+          {/* <Image
+            source={require("../../assets/img/SignInScreen/avatar.png")}
+            
+          /> */}
           <TextInput
             placeholder="Email"
             placeholderTextColor="#FF7C7C"
@@ -113,23 +117,23 @@ const SignInScreen = ({ navigation }) => {
             underlineColorAndroid="transparent"
             value={username.value}
             error={!!username.error}
-           errorText={username.error}
-            onChangeText={uname => setUsername({ value: uname, error: '' })}
+            errorText={username.error}
+            onChangeText={(uname) => setUsername({ value: uname, error: "" })}
           />
-
         </View>
         <View style={CommonStyles.textInputField}>
-          <Image
-            source={require("../../assets/img/SignInScreen/padlock.png")}
+          <Feather
+            name="lock"
+            size={24}
             style={{
               position: "absolute",
-              bottom: 12,
+              bottom: 10,
               left: 20,
-              width: 17,
-              height: 22,
+              width: 22,
+              height: 25,
             }}
+            color="black"
           />
-         
 
           <TextInput
             placeholder="Password"
@@ -138,7 +142,7 @@ const SignInScreen = ({ navigation }) => {
             placeholderTextColor="#FF7C7C"
             underlineColorAndroid="transparent"
             value={password.value}
-            onChangeText={pass => setPassword({ value: pass, error: '' })}
+            onChangeText={(pass) => setPassword({ value: pass, error: "" })}
             error={!!password.error}
             errorText={password.error}
             secureTextEntry={true}

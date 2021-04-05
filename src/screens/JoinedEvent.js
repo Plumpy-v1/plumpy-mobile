@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Image,
@@ -32,6 +32,16 @@ const JoinedEvent = ({ navigation, route }) => {
 
     Linking.openURL(url);
   };
+
+  const [userName, setUserName] = useState("peter");
+
+  useEffect(() => {
+    const getUserName = async () => {
+      const sharedData = await Get_shareddata();
+      setUserName(sharedData.userName);
+    };
+    getUserName();
+  }, []);
   return (
     <SafeAreaView style={styles.safe}>
       <View>
@@ -41,7 +51,7 @@ const JoinedEvent = ({ navigation, route }) => {
             source={require("../../assets/img/NearEvents/eventImg.png")}
           />
           <Text style={{ fontSize: 22, textAlign: "center", color: "#000000" }}>
-            Games Paradise
+            {eventData?.name}
           </Text>
           <Text
             style={{
@@ -51,7 +61,7 @@ const JoinedEvent = ({ navigation, route }) => {
               opacity: 20,
             }}
           >
-            By gammerconnect
+            By {eventData?.organizerInfo?.name}
           </Text>
         </View>
 
@@ -97,11 +107,17 @@ const JoinedEvent = ({ navigation, route }) => {
           </View>
           <View style={{ marginVertical: 10 }}>
             <CustomButton
-              title="Chat"
+              title="Discussion"
               colorbg="#FFFFFF"
               textcolor="#FF7C7C"
               width={250}
-              onPress={() => console.log("Chat")}
+              onPress={() =>
+                navigation.navigate("ChatScreen", {
+                  userName: userName,
+                  roomId: eventData.roomId,
+                  eventName: eventData.name,
+                })
+              }
             />
           </View>
           <View style={{ marginVertical: 10 }}>

@@ -22,6 +22,8 @@ import {
   nameValidator,
 } from '../elements/ErrorMessage';
 import TextInput from '../elements/TextInput'
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { Feather } from '@expo/vector-icons'; 
 
 
 const SignUpScreen = ({ navigation }) => {
@@ -96,16 +98,14 @@ if (emailError || passwordError || nameError) {
       </View>
       <View style={styles.formBox}>
         <View style={CommonStyles.textInputField}>
-          <Image
-            source={require("../../assets/img/SignInScreen/padlock.png")}
-            style={{
+          
+          <Feather name="user" size={24} style={{
               position: "absolute",
               bottom: 12,
-              left: 20,
-              width: 17,
+              left: 18,
+              width: 22,
               height: 22,
-            }}
-          />
+            }} color="black" />
          
           <TextInput
             placeholder="Name"
@@ -123,16 +123,14 @@ if (emailError || passwordError || nameError) {
         </View>
 
         <View style={CommonStyles.textInputField}>
-          <Image
-            source={require("../../assets/img/SignInScreen/avatar.png")}
-            style={{
+          
+          <MaterialCommunityIcons name="email-outline" style={{
               position: "absolute",
               bottom: 12,
-              left: 20,
-              width: 19,
+              left: 18,
+              width: 22,
               height: 22,
-            }}
-          />
+            }} size={24} color="black" />
          
 
       <TextInput
@@ -151,16 +149,13 @@ if (emailError || passwordError || nameError) {
         </View>
 
         <View style={CommonStyles.textInputField}>
-          <Image
-            source={require("../../assets/img/SignInScreen/padlock.png")}
-            style={{
+        <Feather name="lock" size={24} style={{
               position: "absolute",
-              bottom: 12,
-              left: 20,
-              width: 17,
-              height: 22,
-            }}
-          />
+              bottom: 10,
+              left: 18,
+              width: 22,
+              height: 25,
+            }} color="black" />
 
         <TextInput
             placeholder="Password"

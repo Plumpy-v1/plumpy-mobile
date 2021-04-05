@@ -6,7 +6,7 @@ import Chat from "../components/Chat";
 import { Get_shareddata } from "../../constant";
 import { env } from "../../env";
 const ChatScreen = ({ route }) => {
-  const { userName, roomId, eventName, discussionChatRoomId } = route.params;
+  const { userName, roomId, eventName } = route.params;
   // console.log({ userName });
   // const [len, setLen] = useState(0);
 
@@ -60,13 +60,7 @@ const ChatScreen = ({ route }) => {
   // }, []);
   // console.log(len);
   return (
-    <Chat
-      userName={userName}
-      len={0}
-      roomId={roomId}
-      eventName={eventName}
-      discussionChatRoomId={discussionChatRoomId}
-    />
+    <Chat userName={userName} len={0} roomId={roomId} eventName={eventName} />
   );
 };
 

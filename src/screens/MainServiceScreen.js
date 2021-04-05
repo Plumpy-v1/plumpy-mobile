@@ -129,7 +129,7 @@ const MainServiceScreen = ({ navigation }) => {
                 { color: "#FF7C7C" },
               ]}
             >
-              Future Events
+              Your Events
             </Text>
           </TouchableOpacity>
         </View>

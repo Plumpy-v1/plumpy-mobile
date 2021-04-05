@@ -10,7 +10,7 @@ export const emailValidator = (email) => {
 
 export const passwordValidator = (password) => {
   if (!password || password.length <= 0) return "Password cannot be empty.";
-  if (password.length < 2) return "password should be minimum 8 characters";
+  if (password.length < 2) return "password should be minimum 2 characters";
 
   return "";
 };

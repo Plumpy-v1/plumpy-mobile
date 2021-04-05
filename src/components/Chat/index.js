@@ -56,7 +56,7 @@ const data = [
 //   timeStamp,
 // };
 
-const index = ({ userName, len, roomId, eventName, discussionChatRoomId }) => {
+const index = ({ userName, len, roomId, eventName }) => {
   const [socket, setSocket] = useState(io(env.socketUrl));
   const [messages, setMessages] = useState([]);
   const [socketMessages, setSocketMessages] = useState([]);
@@ -175,7 +175,6 @@ const index = ({ userName, len, roomId, eventName, discussionChatRoomId }) => {
         userName={userName}
         roomId={roomId}
         scrollToItem={scrollToItem}
-        discussionChatRoomId={discussionChatRoomId}
       />
     </View>
   );

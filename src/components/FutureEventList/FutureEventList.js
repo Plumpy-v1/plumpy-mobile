@@ -6,7 +6,13 @@ const FutureEventList = ({ info, navigation }) => {
     <TouchableOpacity
       onPress={() =>
         navigation.navigate("JoinedEvent", {
-          eventdata: { mapLat: info.node.mapLat, mapLag: info.node.mapLat },
+          eventdata: {
+            mapLat: info.node.mapLat,
+            mapLag: info.node.mapLat,
+            organizerInfo: info.node.organizerInfo,
+            name: info.node.name,
+            roomId: info.node.roomId,
+          },
         })
       }
       style={styles.container}

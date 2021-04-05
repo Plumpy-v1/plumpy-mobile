@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Text, SafeAreaView, ScrollView,FlatList } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  FlatList,
+} from "react-native";
 import ImageComponent from "../components/ImageSelection/ImageComponent";
 import { Feather } from "@expo/vector-icons";
 import FutureEventList from "../components/FutureEventList/FutureEventList";
@@ -8,16 +15,16 @@ import { Get_shareddata } from "../../constant";
 import { env } from "../../env";
 
 const FutureEvents = ({ navigation }) => {
-    const [futureEvents, setfutureEvents] = useState([]);
+  const [futureEvents, setfutureEvents] = useState([]);
 
-    // console.log({ events });
+  // console.log({ events });
 
-    useEffect(() => {
-      const getFutureEvent = async () => {
-        const sharedData = await Get_shareddata();
-        // console.log({ sharedData });
+  useEffect(() => {
+    const getFutureEvent = async () => {
+      const sharedData = await Get_shareddata();
+      // console.log({ sharedData });
 
-        const query = `
+      const query = `
 query{
   viewer{
     participateEvents{
@@ -29,6 +36,11 @@ query{
           mapLat
           mapLag
           eventPic
+          roomId
+          organizerInfo{
+            name
+          }
+       
           
         }
       }
@@ -37,35 +49,35 @@ query{
 }
 `;
 
-        //  console.log({ query });
-        const url = env.url;
+      //  console.log({ query });
+      const url = env.url;
 
-        const params = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: sharedData.token,
-          },
-          body: JSON.stringify({ query }),
-        };
-        try {
-          const res = await fetch(url, params);
-          const data = await res.json();
-
-          // console.log({ Listdata: data.data.viewer.participateEvents.edges });
-
-          if (!!data.data.viewer.participateEvents) {
-            setfutureEvents([
-              ...futureEvents,
-              ...data.data.viewer.participateEvents.edges,
-            ]);
-          }
-        } catch (error) {
-          console.log({ errorInReg: error });
-        }
+      const params = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: sharedData.token,
+        },
+        body: JSON.stringify({ query }),
       };
-      getFutureEvent();
-    }, []);
+      try {
+        const res = await fetch(url, params);
+        const data = await res.json();
+
+        // console.log({ Listdata: data.data.viewer.participateEvents.edges });
+
+        if (!!data.data.viewer.participateEvents) {
+          setfutureEvents([
+            ...futureEvents,
+            ...data.data.viewer.participateEvents.edges,
+          ]);
+        }
+      } catch (error) {
+        console.log({ errorInReg: error });
+      }
+    };
+    getFutureEvent();
+  }, []);
   return (
     <View style={styles.container}>
       <SafeAreaView>
@@ -106,7 +118,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#5C63AB",
     // borderTopStartRadius: 20,
     // borderTopEndRadius: 20,
-    flex : 1
+    flex: 1,
   },
   text: {
     fontSize: 22,
