@@ -6,15 +6,17 @@ import {
   SafeAreaView,
   FlatList,
   ScrollView,
+  TextInput
 } from "react-native";
 
 import EventImageContainer from "../components/NearEventContainer/EventImageContainer";
 import NearEventDistanceLine from "../components/NearEventContainer/NearEventDistanceLine";
 import eventdata from "../../assets/data/feed";
-import { Feather } from "@expo/vector-icons";
+import { Feather,FontAwesome5 } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Get_shareddata } from "../../constant";
 import { env } from "../../env";
+// import TextInput from "../elements/TextInput";
 const NearEvent = ({ navigation }) => {
   const [events, setEvents] = useState([]);
 
@@ -93,6 +95,24 @@ const NearEvent = ({ navigation }) => {
               />
             </TouchableOpacity>
           </View>
+         
+
+        <View style={styles.searchSection}>
+           <View style={styles.searchContainer}>
+              <FontAwesome5 name="search" size={18} color="#FF7C7C" />
+              <TextInput
+                // value={}
+                style={styles.input}
+                placeholder="Search here"
+                // onChangeText={}
+                underlineColorAndroid="transparent"
+              />
+        
+           </View>
+        </View>
+
+
+
           <View style={{height : "85%"}}>
             <FlatList
               data={events}
@@ -146,6 +166,41 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
   image: {},
+  searchSection: {
+    height: 48,
+    borderRadius: 12,
+    
+  },
+  searchContainer: {
+    padding: 4,
+    flex: 1,
+    paddingLeft: 12,
+    paddingRight: 12,
+    borderRadius: 12,
+    minWidth: "100%",
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+  searchIcon: {
+    padding: 10,
+    width: 36,
+    height: 36,
+  },
+  input: {
+    flex: 1,
+    height: 40,
+    padding: 12,
+    fontSize: 14,
+    paddingTop: 8,
+    borderRadius: 12,
+    color: "#424242",
+    paddingBottom: 10,
+    alignSelf: "stretch",
+    
+  },
+
 });
 
 export default NearEvent;
