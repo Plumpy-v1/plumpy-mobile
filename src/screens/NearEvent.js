@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import {
   View,
   StyleSheet,
@@ -6,43 +6,96 @@ import {
   SafeAreaView,
   FlatList,
   ScrollView,
+  TextInput,
 } from "react-native";
 
 import EventImageContainer from "../components/NearEventContainer/EventImageContainer";
 import NearEventDistanceLine from "../components/NearEventContainer/NearEventDistanceLine";
 import eventdata from "../../assets/data/feed";
-import { Feather } from "@expo/vector-icons";
+import { Feather, FontAwesome5 } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Get_shareddata } from "../../constant";
 import { env } from "../../env";
+// import TextInput from "../elements/TextInput";
 const NearEvent = ({ navigation }) => {
   const [events, setEvents] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   // console.log({ events });
+  const getExploreEvent = async () => {
+    const sharedData = await Get_shareddata();
+    // console.log({ sharedData });
 
-  useEffect(() => {
-    const getExploreEvent = async () => {
+    const query = `
+ query{
+viewer{
+  exploreQuery{
+    edges{
+      node{
+        eventId
+        date
+        address
+        name
+        eventPic
+        
+      }
+    }
+  }
+}
+}
+`;
+
+    //  console.log({ query });
+    const url = env.url;
+
+    const params = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: sharedData.token,
+      },
+      body: JSON.stringify({ query }),
+    };
+    try {
+      const res = await fetch(url, params);
+      const data = await res.json();
+
+      // console.log({ Listdata: data.data.viewer.exploreQuery.edges });
+
+      if (!!data.data.viewer.exploreQuery) {
+        setEvents([...data.data.viewer.exploreQuery.edges]);
+      }
+    } catch (error) {
+      console.log({ errorInReg: error });
+    }
+  };
+  // useEffect(() => {
+  //   getExploreEvent();
+  // }, []);
+
+  const getSearchResult = async () => {
+    console.log({ searchTerm });
+    if (searchTerm !== "") {
       const sharedData = await Get_shareddata();
       // console.log({ sharedData });
 
       const query = `
    query{
   viewer{
-    exploreQuery{
+    searchEvent(searchTerm:\"${searchTerm}\"){
       edges{
         node{
           eventId
           date
           address
-        	name
+          name
           eventPic
-          
         }
       }
     }
   }
-}
-`;
+  }
+  `;
 
       //  console.log({ query });
       const url = env.url;
@@ -59,17 +112,22 @@ const NearEvent = ({ navigation }) => {
         const res = await fetch(url, params);
         const data = await res.json();
 
-        // console.log({ Listdata: data.data.viewer.exploreQuery.edges });
+        // console.log({ Listdata: data.data.viewer });
 
-        if (!!data.data.viewer.exploreQuery) {
-          setEvents([...events, ...data.data.viewer.exploreQuery.edges]);
+        if (!!data.data.viewer.searchEvent) {
+          setEvents([...data.data.viewer.searchEvent.edges]);
         }
       } catch (error) {
         console.log({ errorInReg: error });
       }
-    };
-    getExploreEvent();
-  }, []);
+    } else {
+      await getExploreEvent();
+    }
+  };
+
+  useEffect(() => {
+    getSearchResult();
+  }, [searchTerm]);
 
   return (
     <View style={styles.container}>
@@ -93,7 +151,21 @@ const NearEvent = ({ navigation }) => {
               />
             </TouchableOpacity>
           </View>
-          <View style={{height : "85%"}}>
+
+          <View style={styles.searchSection}>
+            <View style={styles.searchContainer}>
+              <FontAwesome5 name="search" size={18} color="#FF7C7C" />
+              <TextInput
+                value={searchTerm}
+                style={styles.input}
+                placeholder="Search here"
+                onChangeText={(value) => setSearchTerm(value)}
+                underlineColorAndroid="transparent"
+              />
+            </View>
+          </View>
+
+          <View style={{ height: "85%" }}>
             <FlatList
               data={events}
               keyExtractor={(item, index) => item.eventId}
@@ -125,13 +197,11 @@ const NearEvent = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    height : '100%',
+    display: "flex",
+    height: "100%",
     flex: 1,
     backgroundColor: "#FF7C7C",
     justifyContent: "space-between",
-    
-    
   },
   text: {
     fontSize: 22,
@@ -146,6 +216,38 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
   image: {},
+  searchSection: {
+    height: 48,
+    borderRadius: 12,
+  },
+  searchContainer: {
+    padding: 4,
+    flex: 1,
+    paddingLeft: 12,
+    paddingRight: 12,
+    borderRadius: 12,
+    minWidth: "100%",
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+  searchIcon: {
+    padding: 10,
+    width: 36,
+    height: 36,
+  },
+  input: {
+    flex: 1,
+    height: 40,
+    padding: 12,
+    fontSize: 14,
+    paddingTop: 8,
+    borderRadius: 12,
+    color: "#424242",
+    paddingBottom: 10,
+    alignSelf: "stretch",
+  },
 });
 
 export default NearEvent;

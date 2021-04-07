@@ -6,7 +6,8 @@ import Chat from "../components/Chat";
 import { Get_shareddata } from "../../constant";
 import { env } from "../../env";
 const ChatScreen = ({ route }) => {
-  const { userName, roomId, eventName } = route.params;
+  const { roomId, eventName } = route.params;
+  const [userName, setUserName] = useState("");
   // console.log({ userName });
   // const [len, setLen] = useState(0);
 
@@ -59,6 +60,14 @@ const ChatScreen = ({ route }) => {
   //   getAllMessages();
   // }, []);
   // console.log(len);
+  useEffect(() => {
+    const setUserNameForBlock = async () => {
+      const sharedData = await Get_shareddata();
+      // console.log({ d: sharedData.userName });
+      setUserName(sharedData.userName);
+    };
+    setUserNameForBlock();
+  }, []);
   return (
     <Chat userName={userName} len={0} roomId={roomId} eventName={eventName} />
   );

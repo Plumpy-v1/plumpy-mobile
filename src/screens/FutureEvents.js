@@ -20,6 +20,7 @@ const FutureEvents = ({ navigation }) => {
   // console.log({ events });
 
   useEffect(() => {
+    console.log("run..");
     const getFutureEvent = async () => {
       const sharedData = await Get_shareddata();
       // console.log({ sharedData });
@@ -64,7 +65,7 @@ query{
         const res = await fetch(url, params);
         const data = await res.json();
 
-        // console.log({ Listdata: data.data.viewer.participateEvents.edges });
+        console.log({ Listdata: data.data.viewer });
 
         if (!!data.data.viewer.participateEvents) {
           setfutureEvents([

@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { CommonStyles } from "../../../styles/CommonStyles";
-function index({ socket, userName, roomId }) {
+function index({ socket, userName, roomId, amIBlocked }) {
   const [value, setValue] = useState("");
   const _sendMessage = () => {
-    if (value) {
+    if (amIBlocked) {
+      alert("You are blocked by admin");
+    } else if (value) {
+      // console.log({ userName });
       socket.emit("sendMessage", { message: value, userName, roomId }, () =>
         setValue("")
       );

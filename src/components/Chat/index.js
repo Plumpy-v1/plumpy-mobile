@@ -61,15 +61,17 @@ const index = ({ userName, len, roomId, eventName }) => {
   const [messages, setMessages] = useState([]);
   const [socketMessages, setSocketMessages] = useState([]);
 
+  const [amIBlocked, setAmIBlocked] = useState(false);
+
   let finalMessages = [].concat(messages, socketMessages);
 
   const flatListRef = React.useRef();
   const scrollToItem = () => {
-    console.log({
-      messages: messages.length,
-      socketMessages: socketMessages.length,
-      len,
-    });
+    // console.log({
+    //   messages: messages.length,
+    //   socketMessages: socketMessages.length,
+    //   len,
+    // });
 
     len + socketMessages.length > 0 &&
       flatListRef.current.scrollToIndex({
@@ -104,6 +106,16 @@ const index = ({ userName, len, roomId, eventName }) => {
       // updateMessages({ userName, text, timeStamp });
     });
   }, []);
+  // listen Blocking
+  useEffect(() => {
+    socket.on("blockUser", async ({ userName: blockUserName }) => {
+      let uName = await Get_shareddata();
+      console.log({ blockUserName, uName });
+      if (blockUserName == uName.userName) {
+        setAmIBlocked(true);
+      }
+    });
+  }, []);
 
   // starting messages
   useEffect(() => {
@@ -124,6 +136,7 @@ const index = ({ userName, len, roomId, eventName }) => {
               text
               timeStamp
             }
+            amIBlocked
           }
         }
       }`;
@@ -144,6 +157,7 @@ const index = ({ userName, len, roomId, eventName }) => {
 
         if (!!data.data.viewer.getAllMessages) {
           setMessages(data.data.viewer.getAllMessages.chatsMessages);
+          setAmIBlocked(data.data.viewer.getAllMessages.amIBlocked);
           scrollToItem();
         }
       } catch (error) {
@@ -175,6 +189,7 @@ const index = ({ userName, len, roomId, eventName }) => {
         userName={userName}
         roomId={roomId}
         scrollToItem={scrollToItem}
+        amIBlocked={amIBlocked}
       />
     </View>
   );

@@ -51,7 +51,7 @@ function index({ data, messages, userName, flatListRef, scrollToItem }) {
         initialNumToRender={messages.length}
         ref={flatListRef}
         renderItem={(item) => {
-          // console.log(item.item);
+          console.log(item.item);
           return (
             <View
               style={

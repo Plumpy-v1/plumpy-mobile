@@ -55,6 +55,7 @@ const ChatRoom = ({ navigation }) => {
   useEffect(() => {
     const getAllRooms = async () => {
       const sharedData = await Get_shareddata();
+      console.log({ d: sharedData.userName });
       setUserName(sharedData.userName);
 
       const query = `query{

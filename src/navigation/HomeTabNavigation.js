@@ -24,11 +24,11 @@ const MainServiceTabScreens = () => {
     <Stack1.Navigator>
       <Stack1.Screen
         options={{ headerShown: false }}
-        name='HomePage'
+        name="HomePage"
         component={MainServiceScreen}
       />
       <Stack1.Screen
-        name='NearEvent'
+        name="NearEvent"
         component={NearEvent}
         options={({ navigation }) => ({
           headerTitle: "Plumpy",
@@ -45,45 +45,44 @@ const MainServiceTabScreens = () => {
       />
       <Stack1.Screen
         options={{ headerShown: false }}
-        name='HistoryEvents'
+        name="HistoryEvents"
         component={HistoryEvents}
         options={({ navigation }) => ({
-            headerTitle: "Plumpy",
-            headerTitleStyle: { fontFamily: "Poppins-Bold" },
-            headerTransparent: true,
-            headerTitleAlign: "center",
-            headerLeft: () => <Back onPress={() => navigation.pop()} />,
-            headerLeftContainerStyle: { padding: 15 },
-            headerRight: () => (
-              <Profile onPress={() => navigation.navigate("ProfileScreen")} />
-            ),
-            headerRightContainerStyle: { padding: 15 },
-          })}
-
+          headerTitle: "Plumpy",
+          headerTitleStyle: { fontFamily: "Poppins-Bold" },
+          headerTransparent: true,
+          headerTitleAlign: "center",
+          headerLeft: () => <Back onPress={() => navigation.pop()} />,
+          headerLeftContainerStyle: { padding: 15 },
+          headerRight: () => (
+            <Profile onPress={() => navigation.navigate("ProfileScreen")} />
+          ),
+          headerRightContainerStyle: { padding: 15 },
+        })}
       />
       <Stack1.Screen
-          name={"FutureEvents"}
-          component={FutureEvents}
-          options={({ navigation }) => ({
-            headerTitle: "Plumpy",
-            // headerStyle: { backgroundColor: "#FBE7E3" },
+        name={"FutureEvents"}
+        component={FutureEvents}
+        options={({ navigation }) => ({
+          headerTitle: "Plumpy",
+          // headerStyle: { backgroundColor: "#FBE7E3" },
 
-            headerTitleStyle: { fontFamily: "Poppins-Bold",color:'#FF7C7C' },
-            //headerTransparent: true,
-             headerStyle: { backgroundColor: "#5C63AB" },
+          headerTitleStyle: { fontFamily: "Poppins-Bold", color: "#FF7C7C" },
+          //headerTransparent: true,
+          headerStyle: { backgroundColor: "#5C63AB" },
 
-            headerTitleAlign: "center",
-            headerLeft: () => <Back onPress={() => navigation.pop()} />,
-            headerLeftContainerStyle: { padding: 15 },
-            headerRight: () => (
-              <Profile onPress={() => navigation.navigate("ProfileScreen")} />
-            ),
-            headerRightContainerStyle: { padding: 15 },
-          })}
-        />
+          headerTitleAlign: "center",
+          headerLeft: () => <Back onPress={() => navigation.pop()} />,
+          headerLeftContainerStyle: { padding: 15 },
+          headerRight: () => (
+            <Profile onPress={() => navigation.navigate("ProfileScreen")} />
+          ),
+          headerRightContainerStyle: { padding: 15 },
+        })}
+      />
 
       <Stack1.Screen
-        name='EventDetails'
+        name="EventDetails"
         component={EventDetails}
         options={({ navigation }) => ({
           headerTitle: "Plumpy",
@@ -101,11 +100,11 @@ const MainServiceTabScreens = () => {
         })}
       />
       <Stack1.Screen
-        name='JoinedEvent'
+        name="JoinedEvent"
         component={JoinedEvent}
         options={({ navigation }) => ({
           headerTitle: "Plumpy",
-          headerTitleStyle: { fontFamily: "Poppins-Bold"},
+          headerTitleStyle: { fontFamily: "Poppins-Bold" },
           headerTransparent: true,
           headerTitleAlign: "center",
           headerLeft: () => <Back onPress={() => navigation.pop()} />,
@@ -128,10 +127,10 @@ const Tab2Screens = () => {
     // Add Search module related bottomtab
     <Stack2.Navigator>
       <Stack2.Screen
-        name='Search'
+        name="Search"
         component={ChatRoom}
         options={{
-          tabBarIcon: () => <Feather name='search' size={30} color='#FF7C7C' />,
+          tabBarIcon: () => <Feather name="search" size={30} color="#FF7C7C" />,
 
           tabBarLabel: () => {
             return null;
@@ -146,7 +145,7 @@ const Tab3Screens = () => {
   return (
     <Stack3.Navigator>
       <Stack3.Screen
-        name='ChatRoom'
+        name="ChatRoom"
         component={ChatRoom}
         options={({ navigation }) => ({
           headerTitle: "Plumpy",
@@ -183,12 +182,12 @@ const TabScreens = () => {
           overflow: "hidden",
         },
       }}
-      initialRouteName='Tab1Screens'
+      initialRouteName="Tab1Screens"
     >
       <Tab.Screen
-        name='Tab1Screens'
+        name="Tab1Screens"
         options={{
-          tabBarIcon: () => <Feather name='home' size={30} color='#FF7C7C' />,
+          tabBarIcon: () => <Feather name="home" size={30} color="#FF7C7C" />,
 
           tabBarLabel: () => {
             return null;
@@ -197,9 +196,9 @@ const TabScreens = () => {
         component={MainServiceTabScreens}
       />
       <Tab.Screen
-        name='Tab2Screens'
+        name="Tab2Screens"
         options={{
-          tabBarIcon: () => <Feather name='search' size={30} color='#FF7C7C' />,
+          tabBarIcon: () => <Feather name="search" size={30} color="#FF7C7C" />,
 
           tabBarLabel: () => {
             return null;
@@ -208,17 +207,18 @@ const TabScreens = () => {
         component={Tab2Screens}
       />
       <Tab.Screen
-        name='Tab3Screens'
-        component={Tab3Screens}
+        name="Tab3Screens"
+        // component={Tab3Screens}
         options={{
           tabBarIcon: () => (
-            <FontAwesome name='wechat' size={30} color='#FF7C7C' />
+            <FontAwesome name="wechat" size={30} color="#FF7C7C" />
           ),
 
           tabBarLabel: () => {
             return null;
           },
         }}
+        component={Tab2Screens}
       />
     </Tab.Navigator>
   );
